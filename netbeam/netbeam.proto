@@ -1,0 +1,447 @@
+
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+
+package esnet.netbeam.v1;
+
+
+/////////////////////////////////////////////////////////////////////////
+// Netbeam core API
+/////////////////////////////////////////////////////////////////////////
+
+
+// A single strongly-typed value.
+message TypedValue {
+    // The typed value field.
+    oneof value {
+      // A Boolean value: `true` or `false`.
+      bool bool_value = 1;
+  
+      // A 64-bit integer
+      int64 int64_value = 2;
+  
+      // A 64-bit double-precision floating-point number
+      double double_value = 3;
+  
+      // A variable-length string value.
+      string string_value = 4;
+    }
+}
+
+/*
+ * A single Path to a resource on a namespace
+ */
+ message ResourcePath {
+    
+    // The namespace as a two element array containing organization and collection
+    repeated string namespace = 1;
+
+    // The resource path
+    repeated string resource = 2;
+}
+
+// Defines the shape of data sent into netbeam
+message MetricIngestEvent {
+
+    // The resource path
+    repeated string resourcePath = 1;
+
+    // The metric path
+    MetricPath metricPath = 2;
+
+    // the timestamp of the value in ms since 1/1/1970
+    double timestamp = 3;
+
+    // the value of the metric at this timestamp
+    TypedValue value = 4;
+
+    // tags for aggregation
+    repeated string tags = 5;
+
+}
+
+// Aggregation type of tile
+enum AggregationType {
+    NONE = 0;
+    AVG = 1;
+    MAX = 2;
+    MIN = 3;
+}
+
+// A general visibility enum, used to show or hide interfaces
+enum Visible {
+    SHOW = 0;
+    HIDE = 1;
+}
+
+// Specified a contiguous range of microsecond timestamps.
+message TimeRange {
+    // Inclusive lower bound
+    int64 begin = 1;
+  
+    // Exclusive upper bound
+    int64 end = 2;
+}
+
+/*
+ * A single timestamped Event containing a list of values associated
+ * with athat single time. For example: "in" and "out" traffic [in, out] at the
+ * given timestamp.
+ */
+message Event {
+    // Event time - milliseconds since the unix epoch
+    int64 timestamp = 1;
+
+    // Event values
+    repeated TypedValue values = 2;
+}
+
+/*
+ * A percentile pair, with the percentile (e.g. 95th, and the value
+ * at that percentile)
+ */
+message Percentile {
+    int32 percentile = 1;
+    repeated double values = 2;
+}
+
+
+/*
+ * A TimeSeries, containing the a name and a list
+ * of points. Each point is an `Event` and contains a timestamp and
+ * a list of assocated values at that time. For example to represent
+ * interface traffic those values would be inbound and outbound network
+ * traffic. This is roughly equivalent to a Pond `TimeSeries`, but some
+ * transformation needs to occur.
+ */
+ message TimeSeries {
+    // The name of the TimeSeries
+    string name = 1;
+
+    // Columns of data in the TimeSeries
+    repeated string columns = 2;
+
+    // A list of `Event` points that make up the TimeSeries. Each
+    // point contains a timestamp and list of values. Each value
+    // corresponds to a column described in the `columns` field.
+    repeated Event points = 3;
+}
+
+enum SubscriptionCommand {
+    SUBSCRIBE = 0;
+    UNSUBSCRIBE = 1;
+}
+
+message MetricSubscriptionRequest {
+    // Start or stop the stream
+    SubscriptionCommand cmd = 1;
+
+    // The metric to request, expressed as the namespace,
+    // the resource path and the metric path
+    MetricPath path = 2;
+}
+
+/*
+ * Defines the value type of a Metric
+ */ 
+enum MetricType {
+    COUNTER = 0;
+    GUAGE = 1;
+    STRING = 3;
+    BOOL = 4;
+}
+
+/*
+ * Defines the metric processor type. Metric processors are used to
+ * transform metric measurements into other metrics
+ */
+enum MetricProcessorType {
+    ROLLUP = 0;
+    RATE = 1;
+}
+
+/*
+ * Defines the args for a ROLLUP processor, used to take measurements
+ * of one metric and build a new metric containing an aggregated rollup
+ * over a fixed window of size specified.
+ */
+message RollupArgs {
+    // The aggregation function to use e.g AVG
+    AggregationType function = 1;
+
+    // The window bucket to use, e.g. "5m"
+    string window = 2;
+}
+
+/*
+ * Defines the args for the RATE processor, used to take measurements
+ * and output a new metric with the derivative of those measurements.
+ * You can constrain that the output should always be positive, which
+ * is useful when you are getting rates from a supposedly always increasing
+ * counter
+ */
+message RateArgs {
+    bool allowNegative = 1;
+}
+
+/*
+ * Defines a metric processor for transforming metric measurements into a new
+ * metric. All metric processors define the `type` (currently either ROLLUP or
+ * RATE) and the output `metric`. In addition they define `args` for those
+ * processors.
+ */
+message MetricProcessor {
+    // The type of this processor, e.g. ROLLUP or RATE
+    MetricProcessorType type = 1;
+
+    // The args used by the processor
+    oneof args {
+        RollupArgs rollup_args = 2;
+        RateArgs rate_args = 3;
+    }
+
+    // The output metric after this processor has been applied
+    string metric = 4;
+}
+
+/*
+ * Defines a metric output type, one of the available outputs that
+ * can be specified as a MetricOutput
+ */
+enum MetricOutputType {
+    TILE = 0;
+    CURRENT = 1;
+    ROLLING = 2;
+}
+
+message TileArgs {
+    // The tile size to use e.g. tiles of 1 day would be "1d" and metrics
+    // will be inserted into fixed window tiles of this size, which generally means
+    // into a row in Bigtable containing all timestamps within the bounds of this span.
+    string span = 1;
+}
+
+message CurrentArgs {
+}
+
+message MetricOutput {
+    // The type of this sink, e.g. TILE or CURRENT
+    MetricOutputType type = 1;
+
+    // The sink args
+    oneof args {
+        TileArgs tile_args = 2;
+        CurrentArgs current_args = 3;
+        RollupArgs rolling_args = 4;
+    }
+}
+
+message MetricDescription {
+
+    // The type of this metric, e.g. COUNTER, RATE, GUAGE, STRING, BOOL
+    MetricType type = 1;
+
+    // A description for the metric
+    string description = 2;
+
+    // The units the metric is in
+    string units = 3;
+
+    // A list of wildcard strings which match resources this metric applies to
+    repeated string scopes = 4;
+
+    // The alignment period, for example you might align data to 30 second boundaries
+    // by setting this to "30s". Aligning is necessary to be able to aggregate multiple
+    // timeseries together because such operations are done using corresponding timestamps.
+    string align = 5;
+}
+
+/*
+ * A metric, including the meta data about the metric contained in the
+ * description field, along with `processors` and `outputs` that govern
+ * the behavior of the metric
+ */
+message Metric {
+    MetricPath path = 1;
+    MetricDescription description = 2;
+    repeated MetricOutput outputs = 3;
+    //repeated MetricProcessor processors = 4;
+}
+
+/* 
+ * Object used to create (register) a new metric. To do so
+ * you need to provide the path to the new metric which
+ * consists of the organization and collection the metric
+ * should be in, along with the new name of the metric.
+ * In the description portion of the request you provide
+ * details about the actual metric.
+ */
+message CreateMetricRequest {
+    MetricPath path = 1; 
+    MetricDescription description = 2;
+}
+
+/*
+ * Internal identifier for the Metric
+ */
+message MetricId {
+    string id = 1;
+}
+
+/*
+ * Internal identifier for the MetricOutput
+ */
+message MetricOutputId {
+    string id = 1;
+}
+
+/*
+ * Internal identifier for the MetricProcessor
+ */
+message MetricProcessorId {
+    string id = 1;
+}
+
+message MetricDescriptionList {
+    // A list of MetricDesciption objects
+    repeated MetricDescription descriptions = 1;
+}
+
+/*
+ * A list of Metrics
+ */
+message MetricList {
+    repeated Metric metrics = 1;
+}
+
+/*
+ * When requesting a list of metrics 
+ */
+message CollectionPath {
+    // The organization the metrics are in
+    string organization = 1;
+
+    // The collection the metrics are in
+    string collection = 2;
+}
+
+/*
+ * Internal identifier for the Collection
+ */
+ message CollectionId {
+    string id = 1;
+}
+
+message MetricPath {
+    // The organization the metric is in
+    string organization = 1;
+
+    // The collection the metric is in
+    string collection = 2;
+
+    // The name of the metric
+    string metric = 3;
+}
+
+message CreateMetricProcessorRequest {
+    // The organization the metric is in
+    string organization = 1;
+
+    // The collection the metric is in
+    string collection = 2;
+
+    // The name of the metric
+    string metric = 3;
+
+    // The processor to add
+    MetricProcessor processor = 4;
+}
+
+message CreateMetricOutputRequest {
+    // The organization the metric is in
+    MetricPath path = 1;
+
+    // The processor to add
+    MetricOutput output = 2;
+}
+
+/*
+ * Internal identifier for the Organization
+ */
+message OrganizationId {
+    string id = 1;
+}
+
+message CreateOrganizationRequest {
+    // A short string id for the name. This name will be used in keys
+    // thoughout the system, so a short concise name should be chosen.
+    // The name needs to be globally unique.
+    string id = 1;
+
+    // The full UI friendly name
+    string fullName = 2;
+}
+
+message CreateCollectionRequest {
+    // The organization to attach this collection to
+    string organization = 1;
+
+    // A short string id for the collection. This name will be used in keys
+    // thoughout the system, so a short concise name should be chosen.
+    string name = 2;
+
+    // A description of what the collection is that may be exposed in the UI
+    string description = 3;
+}
+
+service Netbeam {
+
+    /*
+     * Add a new organization.
+     */
+    rpc CreateOrganization(CreateOrganizationRequest) returns (OrganizationId) {}
+
+    /*
+     * Add a new collection to the organization. This returns a new namespace within
+     * which metrics can be defined.
+     */
+    rpc CreateCollection(CreateCollectionRequest) returns (CollectionId) {}
+
+    /*
+     * Add a new metric description. Returns the internal id of the
+     * database record for this metric.
+     */
+    rpc CreateMetric(CreateMetricRequest) returns (MetricId) {}
+
+    /*
+     * Add a new Processor to an existing metric. A processor will convert
+     * measurements of a metric to a new metric in some way. Processors are
+     * chosen from a set known to the system. For example a processor my
+     * rollup a metric to 5 minute averages and emit that as a new metric
+     */
+    rpc CreateMetricProcessor(CreateMetricProcessorRequest) returns (MetricProcessorId) {}
+
+    /*
+     * Adds a new Output for the metric. An output defines how the metric is
+     * written. If you need to persist and later look up a metric, it is necessary
+     * to provide at least one Output.
+     */
+    rpc CreateMetricOutput(CreateMetricOutputRequest) returns (MetricOutputId) {}
+
+    /*
+     * Get a list of registered metrics for a namespace. Returns a list
+     * MetricDescriptions.
+     */
+    rpc ListMetrics(CollectionPath) returns (MetricList) {}
+
+    /*
+     * Get the description of a registered metric
+     */
+    rpc GetMetric(MetricPath) returns (MetricDescription) {}
+
+    /*
+     * Watch a metric. Allows you to get a stream of changes to that metrics
+     */
+    rpc WatchMetric(stream MetricSubscriptionRequest) returns (stream Event) {}
+}

@@ -1,0 +1,250 @@
+
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+import "netbeam.proto";
+
+package esnet.netbeam.v1;
+
+
+/////////////////////////////////////////////////////////////////////////
+// Networking API
+/////////////////////////////////////////////////////////////////////////
+
+
+enum Direction {
+    IN = 0;
+    OUT = 1;
+}
+
+/*
+ * A single timestamped Event containing a list of values associated
+ * with a single time for a specific network interface
+ */
+ message InterfaceEvent {
+    // The device associated with this interface
+    string device = 1;
+
+    // The interface the traffic percentiles are calculated for
+    string interface = 2;
+
+    // The direction of the Event (IN or OUT of the interface)
+    Direction direction = 3;
+
+    // An event associated with this interface, for example "current traffic"
+    Event event = 4;
+}
+
+/**
+ * Represents a single interface
+ */
+message InterfaceDetails {
+    // The name of the interface
+    string name = 1;
+
+    // The device the interface is associated with
+    string device = 2;
+
+    // The ifIndex from SNMP if applicable
+    string ifIndex = 3;
+
+    // The interface description. At ESnet this encodes multiple additional fields
+    // such as the site the interface faces, tags and so on
+    string description = 4;
+
+    // The interface capacity or maximum theoretical data transfer speed, in bps
+    int32 speed = 5;
+
+    // Either "SHOW" or "HIDE", depending on if this interface should be publically shown or not
+    Visible visibility = 6;
+
+    // The connection from this interface. May indicate a router to router connection
+    // (e.g. "albq-asw1->albq-cr5"), or a site connection (e.g. "star-cr5->anl(as683)").
+    string connection = 7;
+
+    // The link type (e.g. "100ge" is 100 Gigabit Ethernet)
+    string link = 8;
+
+    // A list of tags associated with this interface
+    repeated string tags = 9;
+
+    // Sector of the interface (typically "intercloud" or "intracloud")
+    string sector = 10;
+
+    // The name of the site this interface faces, if applicable
+    string site = 11;
+
+    // Flag to indicate that this interface is part of LHCONE
+    bool lhcone = 12;
+
+    // Flag to indicate that this interface is part on an OSCARS circuit
+    bool oscars = 13;
+
+    // Flag to indicate that the interface transmits data in and out of ESnet
+    bool intercloud = 14;
+    
+    // Flag to indicate that the interface transmits data within ESnet
+    bool intracloud = 15;
+}
+
+/**
+ * Response containing a list of `interfaces`. Each element of the list is
+ * an `InterfaceDetails` object containing extracted information known about
+ * this interface.
+ */
+ message InterfaceList {
+    repeated InterfaceDetails interfaces = 1;
+}
+
+/**
+ * A map of a string key to an Event
+ */
+message InterfaceTrafficList {
+    repeated InterfaceEvent interfaces = 1;
+}
+
+
+/*
+ * A list of percentiles from n = 0th percentile to 100th percentile in increments
+ * on a single percentile for a specific month.
+ *
+ * Each nth percentile in the list gives the traffic value for both in and out
+ * directions [in, out] for which n percent of the traffic samples are under that value.
+ * Traffic samples are 5 min averages over the month.
+ */
+message InterfaceMonthlyUtilization {
+    // The month the percentiles were calculated over
+    string month = 1;
+
+    // The device associated with this interface
+    string device = 2;
+
+    // The interface the traffic percentiles are calculated for
+    string interface = 3;
+
+    // A list of percentiles, from 0 percentile (0.0) to 100th percentile (100.0)
+    repeated Percentile percentiles = 4;
+}
+
+/*
+ * A request for a single traffic tile defined by the a
+ * Pond index string. The request should include the network
+ * device and interface for the traffic required. You should
+ * also provide the aggregation type
+ */
+message InterfaceTileRequest {
+    // Pond index of the tile
+    string index = 1;
+
+    // The network interface to request
+    string interface = 2;
+
+    // The device 
+    string device = 3;
+  
+    // Tile roll-up aggregation
+    AggregationType agg = 4;
+}
+
+message InterfaceTrafficRequest {
+    // Lower time bound
+    int64 begin = 1;
+  
+    // Upper time bound
+    int64 end = 2;
+
+    // The network interface to request
+    string interface = 3;
+
+    // The device 
+    string device = 4;
+    
+    // Aggregation. If data request is of sufficent duration returned data
+    // will be rolled up. This lets you specify the aggregation used for that
+    // rollup. (Currently only AVG is used)
+    AggregationType agg = 5;
+}
+
+/**
+ * Requests for the list of interfaces. Currently takes has no options
+ */
+message InterfaceListRequest {
+}
+
+/**
+ * Requests for the list of interface current traffic. Currently takes has no options
+ */
+message InterfaceTrafficListRequest {
+}
+
+message InterfaceUtilizationRequest {
+    // The month of the request in the format YYYY-MM
+    string month = 1;
+
+    // The network interface to request
+    string interface = 2;
+
+    // The device 
+    string device = 3;
+}
+
+service Network {
+
+    /*
+     * Returns the list of current interfaces seen by the SNMP collection
+     * system. The result is an object containing a single property `interfaces`.
+     * This is a list containing a set of `InterfaceDetail` objects.
+     */
+    rpc GetAllInterfaces(InterfaceListRequest) returns (InterfaceList) {
+        option (google.api.http) = {
+            get: "/v1/interfaces"
+        };
+    }
+
+    /*
+     * Returns a map of current interfaces seen by netbeam's SNMP collection
+     * system.
+     * While the value is an `Event` object containing the `timestamp` and `values`. In
+     * this case there is only one value, the latest traffic rate (in bps) for the
+     * device, interface and direction (`in` or `out`) encoded in the key.
+     */
+    rpc GetAllInterfacesLatestTraffic(InterfaceTrafficListRequest) returns (InterfaceTrafficList) {
+        option (google.api.http) = {
+            get: "/v1/interfaces/latest_traffic"
+        };
+    }
+
+    /*
+     * Returns a SNMP traffic tile for the specified device and interface. A tile is a `TimeSeries`
+     * which contains a known duration of data. The length and location of the tile is determined
+     * with an index (a Pond Index string). An example index might be 1d-17646, which is a one
+     * day (in UTC time) tile ("1d"), located 17647 days from Jan 1, 1970 midnight UTC.
+     */
+    rpc GetInterfaceTrafficRatesByTile(InterfaceTileRequest) returns (TimeSeries) {
+      option (google.api.http) = {
+        get: "/v1/devices/{device}/interfaces/{interface}/tile/{index}"
+      };
+    }
+
+    /*
+     * Returns the interface traffic for the specified `begin` and `end` timerange.
+     * The result will be a single `TimeSeries` for that range. Rollups will automatically
+     * be applied, depending on the timerange specified.
+     */
+    rpc GetInterfaceTrafficRates(InterfaceTrafficRequest) returns (TimeSeries) {
+      option (google.api.http) = {
+        get: "/v1/devices/{device}/interfaces/{interface}/traffic"
+      };
+    }
+
+    /*
+     * Returns the interface utilization as a list of percentiles for a given month
+     * based on 5m average samples.
+     */
+    rpc GetMonthlyInterfaceUtilization(InterfaceUtilizationRequest) returns (InterfaceMonthlyUtilization) {
+      option (google.api.http) = {
+        get: "/v1/devices/{device}/interfaces/{interface}/monthly_utilization/{month}"
+      };
+    }
+}
+
