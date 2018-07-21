@@ -7,4 +7,4 @@ Contains a set of protobuf definitions for ESnet services.
 -   netbeamCore
 -   netbeamCoreServices
 -   netbeamNetwork
--   networkNetworkServices
+-   netbeamNetworkServices
