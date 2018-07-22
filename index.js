@@ -7,5 +7,5 @@ export {
     netbeam_pb as netbeamCore,
     netbeam_grpc as netbeamCoreServices,
     network_pb as netbeamNetwork,
-    network_grpc as networkNetworkServices
+    network_grpc as netbeamNetworkServices
 };
