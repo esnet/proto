@@ -1,11 +1,11 @@
-import netbeam_pb from "./js/netbeam_pb";
-import netbeam_grpc from "./js/netbeam_grpc_pb";
-import network_pb from "./js/network_pb";
-import network_grpc from "./js/network_grpc_pb";
+const netbeam_pb = require("./js/netbeam_pb");
+const netbeam_grpc = require("./js/netbeam_grpc_pb");
+const network_pb = require("./js/network_pb");
+const network_grpc = require("./js/network_grpc_pb");
 
-export {
-    netbeam_pb as netbeamCore,
-    netbeam_grpc as netbeamCoreServices,
-    network_pb as netbeamNetwork,
-    network_grpc as netbeamNetworkServices
+module.exports = {
+    netbeamCore: netbeam_pb,
+    netbeamCoreServices: netbeam_grpc,
+    netbeamNetwork: network_pb,
+    netbeamNetworkServices: network_grpc
 };
