@@ -2,6 +2,11 @@
     "name": "esnet-proto",
     "version": "0.0.1",
     "main": "index.js",
+    "files": [
+        "js/",
+        "netbeam/",
+        "index.js"
+    ],
     "devDependencies": {
         "grpc": "^1.13.0",
         "grpc-tools": "^1.6.6"
