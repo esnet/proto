@@ -6,6 +6,28 @@ var network_pb = require('./network_pb.js');
 var google_api_annotations_pb = require('./google/api/annotations_pb.js');
 var netbeam_pb = require('./netbeam_pb.js');
 
+function serialize_esnet_netbeam_v1_AuthorizeRequest(arg) {
+  if (!(arg instanceof network_pb.AuthorizeRequest)) {
+    throw new Error('Expected argument of type esnet.netbeam.v1.AuthorizeRequest');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_esnet_netbeam_v1_AuthorizeRequest(buffer_arg) {
+  return network_pb.AuthorizeRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_esnet_netbeam_v1_AuthorizeResponse(arg) {
+  if (!(arg instanceof network_pb.AuthorizeResponse)) {
+    throw new Error('Expected argument of type esnet.netbeam.v1.AuthorizeResponse');
+  }
+  return new Buffer(arg.serializeBinary());
+}
+
+function deserialize_esnet_netbeam_v1_AuthorizeResponse(buffer_arg) {
+  return network_pb.AuthorizeResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_esnet_netbeam_v1_InterfaceList(arg) {
   if (!(arg instanceof network_pb.InterfaceList)) {
     throw new Error('Expected argument of type esnet.netbeam.v1.InterfaceList');
@@ -107,6 +129,17 @@ function deserialize_esnet_netbeam_v1_TimeSeries(buffer_arg) {
 
 
 var NetworkService = exports.NetworkService = {
+  authorize: {
+    path: '/esnet.netbeam.v1.Network/Authorize',
+    requestStream: false,
+    responseStream: false,
+    requestType: network_pb.AuthorizeRequest,
+    responseType: network_pb.AuthorizeResponse,
+    requestSerialize: serialize_esnet_netbeam_v1_AuthorizeRequest,
+    requestDeserialize: deserialize_esnet_netbeam_v1_AuthorizeRequest,
+    responseSerialize: serialize_esnet_netbeam_v1_AuthorizeResponse,
+    responseDeserialize: deserialize_esnet_netbeam_v1_AuthorizeResponse,
+  },
   //
   // Returns the list of current interfaces seen by the SNMP collection
   // system. The result is an object containing a single property `interfaces`.

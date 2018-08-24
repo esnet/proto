@@ -188,8 +188,27 @@ message InterfaceUtilizationRequest {
     string device = 3;
 }
 
+message AuthorizeRequest {
+}
+
+message AuthorizeResponse {
+    // If there is an error, that will be shown here
+    string error = 1;
+
+    // If there is not an error the JWT containing the user
+    // temp access token will be returned. This token should be used
+    // in future API calls
+    string accessToken = 2;
+}
+
 service Network {
 
+    rpc Authorize(AuthorizeRequest) returns (AuthorizeResponse) {
+        option (google.api.http) = {
+            get: "/v1/authorize"
+        };
+    }
+    
     /*
      * Returns the list of current interfaces seen by the SNMP collection
      * system. The result is an object containing a single property `interfaces`.
