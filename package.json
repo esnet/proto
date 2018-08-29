@@ -1,6 +1,6 @@
 {
     "name": "esnet-proto",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "main": "index.js",
     "files": [
         "js/",
@@ -12,6 +12,7 @@
         "grpc-tools": "^1.6.6"
     },
     "dependencies": {
-        "google-protobuf": "^3.6.0"
+        "google-protobuf": "^3.6.0",
+        "protoc": "^1.0.3"
     }
 }

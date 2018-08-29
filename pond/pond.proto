@@ -1,0 +1,176 @@
+syntax = "proto3";
+package pond;
+
+// protoc -I pond --go_out=pond --proto_path=proto pond.proto
+
+// a Timestamp is a point in time independent of any timezone or calendar
+message Timestamp {
+
+    // Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z.
+    int64 seconds = 1;
+  
+    // Non-negative fractions of a second at nanosecond resolution
+    int32 nanos = 2;
+}
+
+// A TimeRange is two points in time, a start and an end, which is independent
+// of any timezone or calendar
+message TimeRange {
+
+    // the start time as a Timestamp
+    Timestamp start_time = 1;
+
+    // The end time as a Timestamp
+    Timestamp end_time = 2;
+}
+
+// An Index is a specific instance of a window
+message Index {
+
+    // The index string itself
+    string index = 1;
+
+    // The derived timerange of the index string
+    TimeRange timerange = 2;
+}
+
+// A duration measured in nanoseconds (max length is a few hundred years)
+message Duration {
+
+    // Nanoseconds duration
+    int64 duration = 1;
+}
+
+// A Period is a repeating time which is typically use to either define the repeating nature of a
+// Window or to describe periodic boundaries for fill or align operations when cleaning data in a
+// TimeSeries.
+message Period {
+
+    // To frequency of the Period i.e. the nanosecond length of the period
+    Duration frequency = 1;
+
+    // The alignment or phase of the Period is determined by how many nanoseconds
+    // it is offset from the UNIX Epoch Jan 1 1970 00:00 UTC
+    int64 offset = 2;
+}
+
+message TypedKey {
+    oneof key {
+        // A timestamp key
+        Timestamp timestamp_key = 1;
+
+        // A timerange key
+        TimeRange timerange_key = 2;
+
+        // An Indexed key
+        Index index_key = 3;
+    }
+}
+
+// A single strongly-typed value.
+message TypedValue {
+    // The typed value field.
+    oneof value {
+      // A Boolean value: `true` or `false`.
+      bool bool_value = 1;
+  
+      // A 64-bit integer
+      int64 int64_value = 2;
+  
+      // A 64-bit double-precision floating-point number
+      double double_value = 3;
+  
+      // A variable-length string value.
+      string string_value = 4;
+    }
+}
+
+// A field, value pair, where field is a string label and value os a TypedValue
+// e.g. "in"=23
+message FieldValue {
+    // A string tag expressing the name of some quantity
+    string field = 1;
+
+    // The quantity itself
+    TypedValue value = 2;
+}
+
+/*
+ * A single Event. The Event contains the time of the event and a set of
+ * data at the time expressed as key value pairs.
+ *
+ * The time of the Event may either be a single point in time, expressed
+ * as a Timestamp, or a range of time expressed either as a TimeRange or
+ * an Index.
+ * 
+ * The value of the Event is expressed a set of fields, value pairs
+ * e.g. 2018-12-31 -> "in"=23, "out"=5, ...
+ */
+ message Event {
+    // The time or timerange of the key, expressed as a timestamp,
+    // timerange or Index.
+    TypedKey key = 1;
+
+    // Event values
+    repeated FieldValue fields = 2;
+}
+
+/*
+ * Describes a list of Events. There is no meta data associated with the
+ * Collection and no expectation of the order of the Events. In Pond
+ * a TimeSeries contains a Collection, which holds most of the functionality
+ * assoicated with Event manipulation.
+ */
+message Collection {
+
+    // A list of Events that make up the Collection
+    repeated Event events = 2;
+}
+
+/*
+ * A tag, value pair, where both are strings
+ * e.g. name="traffic"
+ */
+message TaggedValue {
+    // A string tag expressing the name of some quantity
+    string tag = 1;
+
+    // The quantity itself
+    string value = 2;
+}
+
+/*
+ * A single timestamped Point, part of a TimeSeries, containing a list of
+ * values associated with a single Key. 
+ * For example: "in" and "out" traffic [in, out] at the given timestamp.
+ */
+ message Point {
+    // The time or timerange of the key, expressed as a timestamp,
+    // timerange or Index.
+    TypedKey key = 1;
+
+    // Point values
+    repeated TypedValue values = 2;
+}
+
+/*
+ * A TimeSeries, containing the a name and a list
+ * of points. Each point is an `Event` and contains a timestamp and
+ * a list of assocated values at that time. For example to represent
+ * interface traffic those values would be inbound and outbound network
+ * traffic. This is roughly equivalent to a Pond `TimeSeries`, but some
+ * transformation needs to occur.
+ */
+ message TimeSeries {
+    // A set of tag/value pairs defining meta data about this timeseries
+    // e.g. name="traffic"
+    repeated TaggedValue meta = 1;
+
+    // Columns of data in the TimeSeries
+    repeated string columns = 2;
+
+    // A list of `Event` points that make up the TimeSeries. Each
+    // point contains a timestamp and list of values. Each value
+    // corresponds to a column described in the `columns` field.
+    repeated Point points = 3;
+}
