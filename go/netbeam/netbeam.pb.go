@@ -226,21 +226,27 @@ type isTypedValue_Value interface {
 }
 
 type TypedValue_BoolValue struct {
-	BoolValue bool `protobuf:"varint,1,opt,name=bool_value,json=boolValue,oneof"`
-}
-type TypedValue_Int64Value struct {
-	Int64Value int64 `protobuf:"varint,2,opt,name=int64_value,json=int64Value,oneof"`
-}
-type TypedValue_DoubleValue struct {
-	DoubleValue float64 `protobuf:"fixed64,3,opt,name=double_value,json=doubleValue,oneof"`
-}
-type TypedValue_StringValue struct {
-	StringValue string `protobuf:"bytes,4,opt,name=string_value,json=stringValue,oneof"`
+	BoolValue bool `protobuf:"varint,1,opt,name=bool_value,json=boolValue,proto3,oneof"`
 }
 
-func (*TypedValue_BoolValue) isTypedValue_Value()   {}
-func (*TypedValue_Int64Value) isTypedValue_Value()  {}
+type TypedValue_Int64Value struct {
+	Int64Value int64 `protobuf:"varint,2,opt,name=int64_value,json=int64Value,proto3,oneof"`
+}
+
+type TypedValue_DoubleValue struct {
+	DoubleValue float64 `protobuf:"fixed64,3,opt,name=double_value,json=doubleValue,proto3,oneof"`
+}
+
+type TypedValue_StringValue struct {
+	StringValue string `protobuf:"bytes,4,opt,name=string_value,json=stringValue,proto3,oneof"`
+}
+
+func (*TypedValue_BoolValue) isTypedValue_Value() {}
+
+func (*TypedValue_Int64Value) isTypedValue_Value() {}
+
 func (*TypedValue_DoubleValue) isTypedValue_Value() {}
+
 func (*TypedValue_StringValue) isTypedValue_Value() {}
 
 func (m *TypedValue) GetValue() isTypedValue_Value {
@@ -379,9 +385,9 @@ func _TypedValue_OneofSizer(msg proto.Message) (n int) {
 // A single Path to a resource on a namespace
 type ResourcePath struct {
 	// The namespace as a two element array containing organization and collection
-	Namespace []string `protobuf:"bytes,1,rep,name=namespace" json:"namespace,omitempty"`
+	Namespace []string `protobuf:"bytes,1,rep,name=namespace,proto3" json:"namespace,omitempty"`
 	// The resource path
-	Resource             []string `protobuf:"bytes,2,rep,name=resource" json:"resource,omitempty"`
+	Resource             []string `protobuf:"bytes,2,rep,name=resource,proto3" json:"resource,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -428,15 +434,15 @@ func (m *ResourcePath) GetResource() []string {
 // Defines the shape of data sent into netbeam
 type MetricIngestEvent struct {
 	// The resource path
-	ResourcePath []string `protobuf:"bytes,1,rep,name=resourcePath" json:"resourcePath,omitempty"`
+	ResourcePath []string `protobuf:"bytes,1,rep,name=resourcePath,proto3" json:"resourcePath,omitempty"`
 	// The metric path
-	MetricPath *MetricPath `protobuf:"bytes,2,opt,name=metricPath" json:"metricPath,omitempty"`
+	MetricPath *MetricPath `protobuf:"bytes,2,opt,name=metricPath,proto3" json:"metricPath,omitempty"`
 	// the timestamp of the value in ms since 1/1/1970
-	Timestamp float64 `protobuf:"fixed64,3,opt,name=timestamp" json:"timestamp,omitempty"`
+	Timestamp float64 `protobuf:"fixed64,3,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
 	// the value of the metric at this timestamp
-	Value *TypedValue `protobuf:"bytes,4,opt,name=value" json:"value,omitempty"`
+	Value *TypedValue `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
 	// tags for aggregation
-	Tags                 []string `protobuf:"bytes,5,rep,name=tags" json:"tags,omitempty"`
+	Tags                 []string `protobuf:"bytes,5,rep,name=tags,proto3" json:"tags,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -504,9 +510,9 @@ func (m *MetricIngestEvent) GetTags() []string {
 // Specified a contiguous range of microsecond timestamps.
 type TimeRange struct {
 	// Inclusive lower bound
-	Begin int64 `protobuf:"varint,1,opt,name=begin" json:"begin,omitempty"`
+	Begin int64 `protobuf:"varint,1,opt,name=begin,proto3" json:"begin,omitempty"`
 	// Exclusive upper bound
-	End                  int64    `protobuf:"varint,2,opt,name=end" json:"end,omitempty"`
+	End                  int64    `protobuf:"varint,2,opt,name=end,proto3" json:"end,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -556,9 +562,9 @@ func (m *TimeRange) GetEnd() int64 {
 // given timestamp.
 type Event struct {
 	// Event time - milliseconds since the unix epoch
-	Timestamp int64 `protobuf:"varint,1,opt,name=timestamp" json:"timestamp,omitempty"`
+	Timestamp int64 `protobuf:"varint,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
 	// Event values
-	Values               []*TypedValue `protobuf:"bytes,2,rep,name=values" json:"values,omitempty"`
+	Values               []*TypedValue `protobuf:"bytes,2,rep,name=values,proto3" json:"values,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
 	XXX_unrecognized     []byte        `json:"-"`
 	XXX_sizecache        int32         `json:"-"`
@@ -606,8 +612,8 @@ func (m *Event) GetValues() []*TypedValue {
 // A percentile pair, with the percentile (e.g. 95th, and the value
 // at that percentile)
 type Percentile struct {
-	Percentile           int32     `protobuf:"varint,1,opt,name=percentile" json:"percentile,omitempty"`
-	Values               []float64 `protobuf:"fixed64,2,rep,packed,name=values" json:"values,omitempty"`
+	Percentile           int32     `protobuf:"varint,1,opt,name=percentile,proto3" json:"percentile,omitempty"`
+	Values               []float64 `protobuf:"fixed64,2,rep,packed,name=values,proto3" json:"values,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
 	XXX_sizecache        int32     `json:"-"`
@@ -660,13 +666,13 @@ func (m *Percentile) GetValues() []float64 {
 // transformation needs to occur.
 type TimeSeries struct {
 	// The name of the TimeSeries
-	Name string `protobuf:"bytes,1,opt,name=name" json:"name,omitempty"`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// Columns of data in the TimeSeries
-	Columns []string `protobuf:"bytes,2,rep,name=columns" json:"columns,omitempty"`
+	Columns []string `protobuf:"bytes,2,rep,name=columns,proto3" json:"columns,omitempty"`
 	// A list of `Event` points that make up the TimeSeries. Each
 	// point contains a timestamp and list of values. Each value
 	// corresponds to a column described in the `columns` field.
-	Points               []*Event `protobuf:"bytes,3,rep,name=points" json:"points,omitempty"`
+	Points               []*Event `protobuf:"bytes,3,rep,name=points,proto3" json:"points,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -719,10 +725,10 @@ func (m *TimeSeries) GetPoints() []*Event {
 
 type MetricSubscriptionRequest struct {
 	// Start or stop the stream
-	Cmd SubscriptionCommand `protobuf:"varint,1,opt,name=cmd,enum=esnet.netbeam.v1.SubscriptionCommand" json:"cmd,omitempty"`
+	Cmd SubscriptionCommand `protobuf:"varint,1,opt,name=cmd,proto3,enum=esnet.netbeam.v1.SubscriptionCommand" json:"cmd,omitempty"`
 	// The metric to request, expressed as the namespace,
 	// the resource path and the metric path
-	Path                 *MetricPath `protobuf:"bytes,2,opt,name=path" json:"path,omitempty"`
+	Path                 *MetricPath `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
 	XXX_unrecognized     []byte      `json:"-"`
 	XXX_sizecache        int32       `json:"-"`
@@ -772,9 +778,9 @@ func (m *MetricSubscriptionRequest) GetPath() *MetricPath {
 // over a fixed window of size specified.
 type RollupArgs struct {
 	// The aggregation function to use e.g AVG
-	Function AggregationType `protobuf:"varint,1,opt,name=function,enum=esnet.netbeam.v1.AggregationType" json:"function,omitempty"`
+	Function AggregationType `protobuf:"varint,1,opt,name=function,proto3,enum=esnet.netbeam.v1.AggregationType" json:"function,omitempty"`
 	// The window bucket to use, e.g. "5m"
-	Window               string   `protobuf:"bytes,2,opt,name=window" json:"window,omitempty"`
+	Window               string   `protobuf:"bytes,2,opt,name=window,proto3" json:"window,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -825,7 +831,7 @@ func (m *RollupArgs) GetWindow() string {
 // is useful when you are getting rates from a supposedly always increasing
 // counter
 type RateArgs struct {
-	AllowNegative        bool     `protobuf:"varint,1,opt,name=allowNegative" json:"allowNegative,omitempty"`
+	AllowNegative        bool     `protobuf:"varint,1,opt,name=allowNegative,proto3" json:"allowNegative,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -869,7 +875,7 @@ func (m *RateArgs) GetAllowNegative() bool {
 // processors.
 type MetricProcessor struct {
 	// The type of this processor, e.g. ROLLUP or RATE
-	Type MetricProcessorType `protobuf:"varint,1,opt,name=type,enum=esnet.netbeam.v1.MetricProcessorType" json:"type,omitempty"`
+	Type MetricProcessorType `protobuf:"varint,1,opt,name=type,proto3,enum=esnet.netbeam.v1.MetricProcessorType" json:"type,omitempty"`
 	// The args used by the processor
 	//
 	// Types that are valid to be assigned to Args:
@@ -877,7 +883,7 @@ type MetricProcessor struct {
 	//	*MetricProcessor_RateArgs
 	Args isMetricProcessor_Args `protobuf_oneof:"args"`
 	// The output metric after this processor has been applied
-	Metric               string   `protobuf:"bytes,4,opt,name=metric" json:"metric,omitempty"`
+	Metric               string   `protobuf:"bytes,4,opt,name=metric,proto3" json:"metric,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -907,32 +913,34 @@ func (m *MetricProcessor) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MetricProcessor proto.InternalMessageInfo
 
+func (m *MetricProcessor) GetType() MetricProcessorType {
+	if m != nil {
+		return m.Type
+	}
+	return MetricProcessorType_ROLLUP
+}
+
 type isMetricProcessor_Args interface {
 	isMetricProcessor_Args()
 }
 
 type MetricProcessor_RollupArgs struct {
-	RollupArgs *RollupArgs `protobuf:"bytes,2,opt,name=rollup_args,json=rollupArgs,oneof"`
+	RollupArgs *RollupArgs `protobuf:"bytes,2,opt,name=rollup_args,json=rollupArgs,proto3,oneof"`
 }
+
 type MetricProcessor_RateArgs struct {
-	RateArgs *RateArgs `protobuf:"bytes,3,opt,name=rate_args,json=rateArgs,oneof"`
+	RateArgs *RateArgs `protobuf:"bytes,3,opt,name=rate_args,json=rateArgs,proto3,oneof"`
 }
 
 func (*MetricProcessor_RollupArgs) isMetricProcessor_Args() {}
-func (*MetricProcessor_RateArgs) isMetricProcessor_Args()   {}
+
+func (*MetricProcessor_RateArgs) isMetricProcessor_Args() {}
 
 func (m *MetricProcessor) GetArgs() isMetricProcessor_Args {
 	if m != nil {
 		return m.Args
 	}
 	return nil
-}
-
-func (m *MetricProcessor) GetType() MetricProcessorType {
-	if m != nil {
-		return m.Type
-	}
-	return MetricProcessorType_ROLLUP
 }
 
 func (m *MetricProcessor) GetRollupArgs() *RollupArgs {
@@ -1034,7 +1042,7 @@ type TileArgs struct {
 	// The tile size to use e.g. tiles of 1 day would be "1d" and metrics
 	// will be inserted into fixed window tiles of this size, which generally means
 	// into a row in Bigtable containing all timestamps within the bounds of this span.
-	Span                 string   `protobuf:"bytes,1,opt,name=span" json:"span,omitempty"`
+	Span                 string   `protobuf:"bytes,1,opt,name=span,proto3" json:"span,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -1103,7 +1111,7 @@ var xxx_messageInfo_CurrentArgs proto.InternalMessageInfo
 
 type MetricOutput struct {
 	// The type of this sink, e.g. TILE or CURRENT
-	Type MetricOutputType `protobuf:"varint,1,opt,name=type,enum=esnet.netbeam.v1.MetricOutputType" json:"type,omitempty"`
+	Type MetricOutputType `protobuf:"varint,1,opt,name=type,proto3,enum=esnet.netbeam.v1.MetricOutputType" json:"type,omitempty"`
 	// The sink args
 	//
 	// Types that are valid to be assigned to Args:
@@ -1140,22 +1148,33 @@ func (m *MetricOutput) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_MetricOutput proto.InternalMessageInfo
 
+func (m *MetricOutput) GetType() MetricOutputType {
+	if m != nil {
+		return m.Type
+	}
+	return MetricOutputType_TILE
+}
+
 type isMetricOutput_Args interface {
 	isMetricOutput_Args()
 }
 
 type MetricOutput_TileArgs struct {
-	TileArgs *TileArgs `protobuf:"bytes,2,opt,name=tile_args,json=tileArgs,oneof"`
-}
-type MetricOutput_CurrentArgs struct {
-	CurrentArgs *CurrentArgs `protobuf:"bytes,3,opt,name=current_args,json=currentArgs,oneof"`
-}
-type MetricOutput_RollingArgs struct {
-	RollingArgs *RollupArgs `protobuf:"bytes,4,opt,name=rolling_args,json=rollingArgs,oneof"`
+	TileArgs *TileArgs `protobuf:"bytes,2,opt,name=tile_args,json=tileArgs,proto3,oneof"`
 }
 
-func (*MetricOutput_TileArgs) isMetricOutput_Args()    {}
+type MetricOutput_CurrentArgs struct {
+	CurrentArgs *CurrentArgs `protobuf:"bytes,3,opt,name=current_args,json=currentArgs,proto3,oneof"`
+}
+
+type MetricOutput_RollingArgs struct {
+	RollingArgs *RollupArgs `protobuf:"bytes,4,opt,name=rolling_args,json=rollingArgs,proto3,oneof"`
+}
+
+func (*MetricOutput_TileArgs) isMetricOutput_Args() {}
+
 func (*MetricOutput_CurrentArgs) isMetricOutput_Args() {}
+
 func (*MetricOutput_RollingArgs) isMetricOutput_Args() {}
 
 func (m *MetricOutput) GetArgs() isMetricOutput_Args {
@@ -1163,13 +1182,6 @@ func (m *MetricOutput) GetArgs() isMetricOutput_Args {
 		return m.Args
 	}
 	return nil
-}
-
-func (m *MetricOutput) GetType() MetricOutputType {
-	if m != nil {
-		return m.Type
-	}
-	return MetricOutputType_TILE
 }
 
 func (m *MetricOutput) GetTileArgs() *TileArgs {
@@ -1288,17 +1300,17 @@ func _MetricOutput_OneofSizer(msg proto.Message) (n int) {
 
 type MetricDescription struct {
 	// The type of this metric, e.g. COUNTER, RATE, GUAGE, STRING, BOOL
-	Type MetricType `protobuf:"varint,1,opt,name=type,enum=esnet.netbeam.v1.MetricType" json:"type,omitempty"`
+	Type MetricType `protobuf:"varint,1,opt,name=type,proto3,enum=esnet.netbeam.v1.MetricType" json:"type,omitempty"`
 	// A description for the metric
-	Description string `protobuf:"bytes,2,opt,name=description" json:"description,omitempty"`
+	Description string `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
 	// The units the metric is in
-	Units string `protobuf:"bytes,3,opt,name=units" json:"units,omitempty"`
+	Units string `protobuf:"bytes,3,opt,name=units,proto3" json:"units,omitempty"`
 	// A list of wildcard strings which match resources this metric applies to
-	Scopes []string `protobuf:"bytes,4,rep,name=scopes" json:"scopes,omitempty"`
+	Scopes []string `protobuf:"bytes,4,rep,name=scopes,proto3" json:"scopes,omitempty"`
 	// The alignment period, for example you might align data to 30 second boundaries
 	// by setting this to "30s". Aligning is necessary to be able to aggregate multiple
 	// timeseries together because such operations are done using corresponding timestamps.
-	Align                string   `protobuf:"bytes,5,opt,name=align" json:"align,omitempty"`
+	Align                string   `protobuf:"bytes,5,opt,name=align,proto3" json:"align,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -1368,9 +1380,9 @@ func (m *MetricDescription) GetAlign() string {
 // description field, along with `processors` and `outputs` that govern
 // the behavior of the metric
 type Metric struct {
-	Path                 *MetricPath        `protobuf:"bytes,1,opt,name=path" json:"path,omitempty"`
-	Description          *MetricDescription `protobuf:"bytes,2,opt,name=description" json:"description,omitempty"`
-	Outputs              []*MetricOutput    `protobuf:"bytes,3,rep,name=outputs" json:"outputs,omitempty"`
+	Path                 *MetricPath        `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	Description          *MetricDescription `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	Outputs              []*MetricOutput    `protobuf:"bytes,3,rep,name=outputs,proto3" json:"outputs,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
 	XXX_unrecognized     []byte             `json:"-"`
 	XXX_sizecache        int32              `json:"-"`
@@ -1429,8 +1441,8 @@ func (m *Metric) GetOutputs() []*MetricOutput {
 // In the description portion of the request you provide
 // details about the actual metric.
 type CreateMetricRequest struct {
-	Path                 *MetricPath        `protobuf:"bytes,1,opt,name=path" json:"path,omitempty"`
-	Description          *MetricDescription `protobuf:"bytes,2,opt,name=description" json:"description,omitempty"`
+	Path                 *MetricPath        `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
+	Description          *MetricDescription `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}           `json:"-"`
 	XXX_unrecognized     []byte             `json:"-"`
 	XXX_sizecache        int32              `json:"-"`
@@ -1477,7 +1489,7 @@ func (m *CreateMetricRequest) GetDescription() *MetricDescription {
 //
 // Internal identifier for the Metric
 type MetricId struct {
-	Id                   string   `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -1517,7 +1529,7 @@ func (m *MetricId) GetId() string {
 //
 // Internal identifier for the MetricOutput
 type MetricOutputId struct {
-	Id                   string   `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -1557,7 +1569,7 @@ func (m *MetricOutputId) GetId() string {
 //
 // Internal identifier for the MetricProcessor
 type MetricProcessorId struct {
-	Id                   string   `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -1596,7 +1608,7 @@ func (m *MetricProcessorId) GetId() string {
 
 type MetricDescriptionList struct {
 	// A list of MetricDesciption objects
-	Descriptions         []*MetricDescription `protobuf:"bytes,1,rep,name=descriptions" json:"descriptions,omitempty"`
+	Descriptions         []*MetricDescription `protobuf:"bytes,1,rep,name=descriptions,proto3" json:"descriptions,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
 	XXX_unrecognized     []byte               `json:"-"`
 	XXX_sizecache        int32                `json:"-"`
@@ -1636,7 +1648,7 @@ func (m *MetricDescriptionList) GetDescriptions() []*MetricDescription {
 //
 // A list of Metrics
 type MetricList struct {
-	Metrics              []*Metric `protobuf:"bytes,1,rep,name=metrics" json:"metrics,omitempty"`
+	Metrics              []*Metric `protobuf:"bytes,1,rep,name=metrics,proto3" json:"metrics,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
 	XXX_unrecognized     []byte    `json:"-"`
 	XXX_sizecache        int32     `json:"-"`
@@ -1677,9 +1689,9 @@ func (m *MetricList) GetMetrics() []*Metric {
 // When requesting a list of metrics
 type CollectionPath struct {
 	// The organization the metrics are in
-	Organization string `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
+	Organization string `protobuf:"bytes,1,opt,name=organization,proto3" json:"organization,omitempty"`
 	// The collection the metrics are in
-	Collection           string   `protobuf:"bytes,2,opt,name=collection" json:"collection,omitempty"`
+	Collection           string   `protobuf:"bytes,2,opt,name=collection,proto3" json:"collection,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -1726,7 +1738,7 @@ func (m *CollectionPath) GetCollection() string {
 //
 // Internal identifier for the Collection
 type CollectionId struct {
-	Id                   string   `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -1765,11 +1777,11 @@ func (m *CollectionId) GetId() string {
 
 type MetricPath struct {
 	// The organization the metric is in
-	Organization string `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
+	Organization string `protobuf:"bytes,1,opt,name=organization,proto3" json:"organization,omitempty"`
 	// The collection the metric is in
-	Collection string `protobuf:"bytes,2,opt,name=collection" json:"collection,omitempty"`
+	Collection string `protobuf:"bytes,2,opt,name=collection,proto3" json:"collection,omitempty"`
 	// The name of the metric
-	Metric               string   `protobuf:"bytes,3,opt,name=metric" json:"metric,omitempty"`
+	Metric               string   `protobuf:"bytes,3,opt,name=metric,proto3" json:"metric,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -1822,13 +1834,13 @@ func (m *MetricPath) GetMetric() string {
 
 type CreateMetricProcessorRequest struct {
 	// The organization the metric is in
-	Organization string `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
+	Organization string `protobuf:"bytes,1,opt,name=organization,proto3" json:"organization,omitempty"`
 	// The collection the metric is in
-	Collection string `protobuf:"bytes,2,opt,name=collection" json:"collection,omitempty"`
+	Collection string `protobuf:"bytes,2,opt,name=collection,proto3" json:"collection,omitempty"`
 	// The name of the metric
-	Metric string `protobuf:"bytes,3,opt,name=metric" json:"metric,omitempty"`
+	Metric string `protobuf:"bytes,3,opt,name=metric,proto3" json:"metric,omitempty"`
 	// The processor to add
-	Processor            *MetricProcessor `protobuf:"bytes,4,opt,name=processor" json:"processor,omitempty"`
+	Processor            *MetricProcessor `protobuf:"bytes,4,opt,name=processor,proto3" json:"processor,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
 	XXX_unrecognized     []byte           `json:"-"`
 	XXX_sizecache        int32            `json:"-"`
@@ -1888,9 +1900,9 @@ func (m *CreateMetricProcessorRequest) GetProcessor() *MetricProcessor {
 
 type CreateMetricOutputRequest struct {
 	// The organization the metric is in
-	Path *MetricPath `protobuf:"bytes,1,opt,name=path" json:"path,omitempty"`
+	Path *MetricPath `protobuf:"bytes,1,opt,name=path,proto3" json:"path,omitempty"`
 	// The processor to add
-	Output               *MetricOutput `protobuf:"bytes,2,opt,name=output" json:"output,omitempty"`
+	Output               *MetricOutput `protobuf:"bytes,2,opt,name=output,proto3" json:"output,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
 	XXX_unrecognized     []byte        `json:"-"`
 	XXX_sizecache        int32         `json:"-"`
@@ -1937,7 +1949,7 @@ func (m *CreateMetricOutputRequest) GetOutput() *MetricOutput {
 //
 // Internal identifier for the Organization
 type OrganizationId struct {
-	Id                   string   `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -1978,9 +1990,9 @@ type CreateOrganizationRequest struct {
 	// A short string id for the name. This name will be used in keys
 	// thoughout the system, so a short concise name should be chosen.
 	// The name needs to be globally unique.
-	Id string `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// The full UI friendly name
-	FullName             string   `protobuf:"bytes,2,opt,name=fullName" json:"fullName,omitempty"`
+	FullName             string   `protobuf:"bytes,2,opt,name=fullName,proto3" json:"fullName,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -2026,12 +2038,12 @@ func (m *CreateOrganizationRequest) GetFullName() string {
 
 type CreateCollectionRequest struct {
 	// The organization to attach this collection to
-	Organization string `protobuf:"bytes,1,opt,name=organization" json:"organization,omitempty"`
+	Organization string `protobuf:"bytes,1,opt,name=organization,proto3" json:"organization,omitempty"`
 	// A short string id for the collection. This name will be used in keys
 	// thoughout the system, so a short concise name should be chosen.
-	Name string `protobuf:"bytes,2,opt,name=name" json:"name,omitempty"`
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// A description of what the collection is that may be exposed in the UI
-	Description          string   `protobuf:"bytes,3,opt,name=description" json:"description,omitempty"`
+	Description          string   `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
