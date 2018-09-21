@@ -367,6 +367,10 @@ google-protobuf@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.6.0.tgz#e2bafb00c20a8734174d8f89e0a842709e2ceed0"
 
+google-protobuf@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.6.1.tgz#7ef58e2bea137a93cdaf5cfd5afa5f6abdd92025"
+
 graceful-fs@^4.1.2:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
@@ -1053,6 +1057,12 @@ tough-cookie@~2.4.3:
 "traverse@>=0.3.0 <0.4":
   version "0.3.9"
   resolved "https://registry.yarnpkg.com/traverse/-/traverse-0.3.9.tgz#717b8f220cc0bb7b44e40514c22b2e8bbc70d8b9"
+
+ts-protoc-gen@0.7.7-pre.5959599:
+  version "0.7.7-pre.5959599"
+  resolved "https://registry.yarnpkg.com/ts-protoc-gen/-/ts-protoc-gen-0.7.7-pre.5959599.tgz#7df000a69ee5b8f575f9c8644b0cc1e0bfc6f865"
+  dependencies:
+    google-protobuf "^3.6.1"
 
 tunnel-agent@^0.6.0:
   version "0.6.0"

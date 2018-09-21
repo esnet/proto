@@ -174,7 +174,7 @@ proto.pond.Timestamp.prototype.getSeconds = function() {
 
 /** @param {number} value */
 proto.pond.Timestamp.prototype.setSeconds = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -189,7 +189,7 @@ proto.pond.Timestamp.prototype.getNanos = function() {
 
 /** @param {number} value */
 proto.pond.Timestamp.prototype.setNanos = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -548,7 +548,7 @@ proto.pond.Index.prototype.getIndex = function() {
 
 /** @param {string} value */
 proto.pond.Index.prototype.setIndex = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -720,7 +720,7 @@ proto.pond.Duration.prototype.getDuration = function() {
 
 /** @param {number} value */
 proto.pond.Duration.prototype.setDuration = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -906,7 +906,7 @@ proto.pond.Period.prototype.getOffset = function() {
 
 /** @param {number} value */
 proto.pond.Period.prototype.setOffset = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -1645,7 +1645,7 @@ proto.pond.FieldValue.prototype.getField = function() {
 
 /** @param {string} value */
 proto.pond.FieldValue.prototype.setField = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2209,7 +2209,7 @@ proto.pond.TaggedValue.prototype.getTag = function() {
 
 /** @param {string} value */
 proto.pond.TaggedValue.prototype.setTag = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2224,7 +2224,7 @@ proto.pond.TaggedValue.prototype.getValue = function() {
 
 /** @param {string} value */
 proto.pond.TaggedValue.prototype.setValue = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

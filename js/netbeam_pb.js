@@ -817,7 +817,7 @@ proto.esnet.netbeam.v1.MetricIngestEvent.prototype.getTimestamp = function() {
 
 /** @param {number} value */
 proto.esnet.netbeam.v1.MetricIngestEvent.prototype.setTimestamp = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3FloatField(this, 3, value);
 };
 
 
@@ -1030,7 +1030,7 @@ proto.esnet.netbeam.v1.TimeRange.prototype.getBegin = function() {
 
 /** @param {number} value */
 proto.esnet.netbeam.v1.TimeRange.prototype.setBegin = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -1045,7 +1045,7 @@ proto.esnet.netbeam.v1.TimeRange.prototype.getEnd = function() {
 
 /** @param {number} value */
 proto.esnet.netbeam.v1.TimeRange.prototype.setEnd = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
@@ -1209,7 +1209,7 @@ proto.esnet.netbeam.v1.Event.prototype.getTimestamp = function() {
 
 /** @param {number} value */
 proto.esnet.netbeam.v1.Event.prototype.setTimestamp = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -1401,7 +1401,7 @@ proto.esnet.netbeam.v1.Percentile.prototype.getPercentile = function() {
 
 /** @param {number} value */
 proto.esnet.netbeam.v1.Percentile.prototype.setPercentile = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -1606,7 +1606,7 @@ proto.esnet.netbeam.v1.TimeSeries.prototype.getName = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.TimeSeries.prototype.setName = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -1822,7 +1822,7 @@ proto.esnet.netbeam.v1.MetricSubscriptionRequest.prototype.getCmd = function() {
 
 /** @param {!proto.esnet.netbeam.v1.SubscriptionCommand} value */
 proto.esnet.netbeam.v1.MetricSubscriptionRequest.prototype.setCmd = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -2006,7 +2006,7 @@ proto.esnet.netbeam.v1.RollupArgs.prototype.getFunction = function() {
 
 /** @param {!proto.esnet.netbeam.v1.AggregationType} value */
 proto.esnet.netbeam.v1.RollupArgs.prototype.setFunction = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -2021,7 +2021,7 @@ proto.esnet.netbeam.v1.RollupArgs.prototype.getWindow = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.RollupArgs.prototype.setWindow = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -2165,7 +2165,7 @@ proto.esnet.netbeam.v1.RateArgs.prototype.getAllownegative = function() {
 
 /** @param {boolean} value */
 proto.esnet.netbeam.v1.RateArgs.prototype.setAllownegative = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3BooleanField(this, 1, value);
 };
 
 
@@ -2373,7 +2373,7 @@ proto.esnet.netbeam.v1.MetricProcessor.prototype.getType = function() {
 
 /** @param {!proto.esnet.netbeam.v1.MetricProcessorType} value */
 proto.esnet.netbeam.v1.MetricProcessor.prototype.setType = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -2448,7 +2448,7 @@ proto.esnet.netbeam.v1.MetricProcessor.prototype.getMetric = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.MetricProcessor.prototype.setMetric = function(value) {
-  jspb.Message.setField(this, 4, value);
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -2590,7 +2590,7 @@ proto.esnet.netbeam.v1.TileArgs.prototype.getSpan = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.TileArgs.prototype.setSpan = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -2917,7 +2917,7 @@ proto.esnet.netbeam.v1.MetricOutput.prototype.getType = function() {
 
 /** @param {!proto.esnet.netbeam.v1.MetricOutputType} value */
 proto.esnet.netbeam.v1.MetricOutput.prototype.setType = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -3204,7 +3204,7 @@ proto.esnet.netbeam.v1.MetricDescription.prototype.getType = function() {
 
 /** @param {!proto.esnet.netbeam.v1.MetricType} value */
 proto.esnet.netbeam.v1.MetricDescription.prototype.setType = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -3219,7 +3219,7 @@ proto.esnet.netbeam.v1.MetricDescription.prototype.getDescription = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.MetricDescription.prototype.setDescription = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -3234,7 +3234,7 @@ proto.esnet.netbeam.v1.MetricDescription.prototype.getUnits = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.MetricDescription.prototype.setUnits = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -3278,7 +3278,7 @@ proto.esnet.netbeam.v1.MetricDescription.prototype.getAlign = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.MetricDescription.prototype.setAlign = function(value) {
-  jspb.Message.setField(this, 5, value);
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
@@ -3879,7 +3879,7 @@ proto.esnet.netbeam.v1.MetricId.prototype.getId = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.MetricId.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -4021,7 +4021,7 @@ proto.esnet.netbeam.v1.MetricOutputId.prototype.getId = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.MetricOutputId.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -4163,7 +4163,7 @@ proto.esnet.netbeam.v1.MetricProcessorId.prototype.getId = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.MetricProcessorId.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -4653,7 +4653,7 @@ proto.esnet.netbeam.v1.CollectionPath.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.CollectionPath.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -4668,7 +4668,7 @@ proto.esnet.netbeam.v1.CollectionPath.prototype.getCollection = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.CollectionPath.prototype.setCollection = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -4810,7 +4810,7 @@ proto.esnet.netbeam.v1.CollectionId.prototype.getId = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.CollectionId.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -4976,7 +4976,7 @@ proto.esnet.netbeam.v1.MetricPath.prototype.getOrganization = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.MetricPath.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -4991,7 +4991,7 @@ proto.esnet.netbeam.v1.MetricPath.prototype.getCollection = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.MetricPath.prototype.setCollection = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -5006,7 +5006,7 @@ proto.esnet.netbeam.v1.MetricPath.prototype.getMetric = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.MetricPath.prototype.setMetric = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -5186,7 +5186,7 @@ proto.esnet.netbeam.v1.CreateMetricProcessorRequest.prototype.getOrganization = 
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.CreateMetricProcessorRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -5201,7 +5201,7 @@ proto.esnet.netbeam.v1.CreateMetricProcessorRequest.prototype.getCollection = fu
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.CreateMetricProcessorRequest.prototype.setCollection = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -5216,7 +5216,7 @@ proto.esnet.netbeam.v1.CreateMetricProcessorRequest.prototype.getMetric = functi
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.CreateMetricProcessorRequest.prototype.setMetric = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -5591,7 +5591,7 @@ proto.esnet.netbeam.v1.OrganizationId.prototype.getId = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.OrganizationId.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -5745,7 +5745,7 @@ proto.esnet.netbeam.v1.CreateOrganizationRequest.prototype.getId = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.CreateOrganizationRequest.prototype.setId = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -5760,7 +5760,7 @@ proto.esnet.netbeam.v1.CreateOrganizationRequest.prototype.getFullname = functio
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.CreateOrganizationRequest.prototype.setFullname = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -5926,7 +5926,7 @@ proto.esnet.netbeam.v1.CreateCollectionRequest.prototype.getOrganization = funct
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.CreateCollectionRequest.prototype.setOrganization = function(value) {
-  jspb.Message.setField(this, 1, value);
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
@@ -5941,7 +5941,7 @@ proto.esnet.netbeam.v1.CreateCollectionRequest.prototype.getName = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.CreateCollectionRequest.prototype.setName = function(value) {
-  jspb.Message.setField(this, 2, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -5956,7 +5956,7 @@ proto.esnet.netbeam.v1.CreateCollectionRequest.prototype.getDescription = functi
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.CreateCollectionRequest.prototype.setDescription = function(value) {
-  jspb.Message.setField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
