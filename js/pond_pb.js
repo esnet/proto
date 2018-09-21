@@ -14,11 +14,10 @@ var global = Function('return this')();
 goog.exportSymbol('proto.pond.Collection', null, global);
 goog.exportSymbol('proto.pond.Duration', null, global);
 goog.exportSymbol('proto.pond.Event', null, global);
-goog.exportSymbol('proto.pond.FieldValue', null, global);
 goog.exportSymbol('proto.pond.Index', null, global);
+goog.exportSymbol('proto.pond.LabelPair', null, global);
 goog.exportSymbol('proto.pond.Period', null, global);
 goog.exportSymbol('proto.pond.Point', null, global);
-goog.exportSymbol('proto.pond.TaggedValue', null, global);
 goog.exportSymbol('proto.pond.TimeRange', null, global);
 goog.exportSymbol('proto.pond.TimeSeries', null, global);
 goog.exportSymbol('proto.pond.Timestamp', null, global);
@@ -1504,12 +1503,12 @@ proto.pond.TypedValue.prototype.hasStringValue = function() {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.pond.FieldValue = function(opt_data) {
+proto.pond.LabelPair = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.pond.FieldValue, jspb.Message);
+goog.inherits(proto.pond.LabelPair, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.pond.FieldValue.displayName = 'proto.pond.FieldValue';
+  proto.pond.LabelPair.displayName = 'proto.pond.LabelPair';
 }
 
 
@@ -1524,8 +1523,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.pond.FieldValue.prototype.toObject = function(opt_includeInstance) {
-  return proto.pond.FieldValue.toObject(opt_includeInstance, this);
+proto.pond.LabelPair.prototype.toObject = function(opt_includeInstance) {
+  return proto.pond.LabelPair.toObject(opt_includeInstance, this);
 };
 
 
@@ -1534,14 +1533,14 @@ proto.pond.FieldValue.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.pond.FieldValue} msg The msg instance to transform.
+ * @param {!proto.pond.LabelPair} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.pond.FieldValue.toObject = function(includeInstance, msg) {
+proto.pond.LabelPair.toObject = function(includeInstance, msg) {
   var f, obj = {
-    field: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    value: (f = msg.getValue()) && proto.pond.TypedValue.toObject(includeInstance, f)
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    value: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1555,23 +1554,23 @@ proto.pond.FieldValue.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.pond.FieldValue}
+ * @return {!proto.pond.LabelPair}
  */
-proto.pond.FieldValue.deserializeBinary = function(bytes) {
+proto.pond.LabelPair.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.pond.FieldValue;
-  return proto.pond.FieldValue.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.pond.LabelPair;
+  return proto.pond.LabelPair.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.pond.FieldValue} msg The message object to deserialize into.
+ * @param {!proto.pond.LabelPair} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.pond.FieldValue}
+ * @return {!proto.pond.LabelPair}
  */
-proto.pond.FieldValue.deserializeBinaryFromReader = function(msg, reader) {
+proto.pond.LabelPair.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1580,11 +1579,10 @@ proto.pond.FieldValue.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setField(value);
+      msg.setName(value);
       break;
     case 2:
-      var value = new proto.pond.TypedValue;
-      reader.readMessage(value,proto.pond.TypedValue.deserializeBinaryFromReader);
+      var value = /** @type {string} */ (reader.readString());
       msg.setValue(value);
       break;
     default:
@@ -1600,9 +1598,9 @@ proto.pond.FieldValue.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.pond.FieldValue.prototype.serializeBinary = function() {
+proto.pond.LabelPair.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.pond.FieldValue.serializeBinaryToWriter(this, writer);
+  proto.pond.LabelPair.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1610,13 +1608,13 @@ proto.pond.FieldValue.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.pond.FieldValue} message
+ * @param {!proto.pond.LabelPair} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.pond.FieldValue.serializeBinaryToWriter = function(message, writer) {
+proto.pond.LabelPair.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getField();
+  f = message.getName();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -1624,21 +1622,20 @@ proto.pond.FieldValue.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getValue();
-  if (f != null) {
-    writer.writeMessage(
+  if (f.length > 0) {
+    writer.writeString(
       2,
-      f,
-      proto.pond.TypedValue.serializeBinaryToWriter
+      f
     );
   }
 };
 
 
 /**
- * optional string field = 1;
+ * optional string name = 1;
  * @return {string}
  */
-proto.pond.FieldValue.prototype.getField = function() {
+proto.pond.LabelPair.prototype.getName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -1650,32 +1647,17 @@ proto.pond.FieldValue.prototype.setField = function(value) {
 
 
 /**
- * optional TypedValue value = 2;
- * @return {?proto.pond.TypedValue}
+ * optional string value = 2;
+ * @return {string}
  */
-proto.pond.FieldValue.prototype.getValue = function() {
-  return /** @type{?proto.pond.TypedValue} */ (
-    jspb.Message.getWrapperField(this, proto.pond.TypedValue, 2));
+proto.pond.LabelPair.prototype.getValue = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
-/** @param {?proto.pond.TypedValue|undefined} value */
-proto.pond.FieldValue.prototype.setValue = function(value) {
-  jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-proto.pond.FieldValue.prototype.clearValue = function() {
-  this.setValue(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.pond.FieldValue.prototype.hasValue = function() {
-  return jspb.Message.getField(this, 2) != null;
+/** @param {string} value */
+proto.pond.LabelPair.prototype.setValue = function(value) {
+  jspb.Message.setField(this, 2, value);
 };
 
 
@@ -1702,7 +1684,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.pond.Event.repeatedFields_ = [2];
+proto.pond.Event.repeatedFields_ = [4];
 
 
 
@@ -1733,9 +1715,11 @@ proto.pond.Event.prototype.toObject = function(opt_includeInstance) {
  */
 proto.pond.Event.toObject = function(includeInstance, msg) {
   var f, obj = {
+    name: jspb.Message.getFieldWithDefault(msg, 1, ""),
     key: (f = msg.getKey()) && proto.pond.TypedKey.toObject(includeInstance, f),
-    fieldsList: jspb.Message.toObjectList(msg.getFieldsList(),
-    proto.pond.FieldValue.toObject, includeInstance)
+    value: (f = msg.getValue()) && proto.pond.TypedValue.toObject(includeInstance, f),
+    labelsList: jspb.Message.toObjectList(msg.getLabelsList(),
+    proto.pond.LabelPair.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -1773,14 +1757,23 @@ proto.pond.Event.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setName(value);
+      break;
+    case 2:
       var value = new proto.pond.TypedKey;
       reader.readMessage(value,proto.pond.TypedKey.deserializeBinaryFromReader);
       msg.setKey(value);
       break;
-    case 2:
-      var value = new proto.pond.FieldValue;
-      reader.readMessage(value,proto.pond.FieldValue.deserializeBinaryFromReader);
-      msg.addFields(value);
+    case 3:
+      var value = new proto.pond.TypedValue;
+      reader.readMessage(value,proto.pond.TypedValue.deserializeBinaryFromReader);
+      msg.setValue(value);
+      break;
+    case 4:
+      var value = new proto.pond.LabelPair;
+      reader.readMessage(value,proto.pond.LabelPair.deserializeBinaryFromReader);
+      msg.addLabels(value);
       break;
     default:
       reader.skipField();
@@ -1811,38 +1804,68 @@ proto.pond.Event.prototype.serializeBinary = function() {
  */
 proto.pond.Event.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getName();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
   f = message.getKey();
   if (f != null) {
     writer.writeMessage(
-      1,
+      2,
       f,
       proto.pond.TypedKey.serializeBinaryToWriter
     );
   }
-  f = message.getFieldsList();
+  f = message.getValue();
+  if (f != null) {
+    writer.writeMessage(
+      3,
+      f,
+      proto.pond.TypedValue.serializeBinaryToWriter
+    );
+  }
+  f = message.getLabelsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      2,
+      4,
       f,
-      proto.pond.FieldValue.serializeBinaryToWriter
+      proto.pond.LabelPair.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional TypedKey key = 1;
+ * optional string name = 1;
+ * @return {string}
+ */
+proto.pond.Event.prototype.getName = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.pond.Event.prototype.setName = function(value) {
+  jspb.Message.setField(this, 1, value);
+};
+
+
+/**
+ * optional TypedKey key = 2;
  * @return {?proto.pond.TypedKey}
  */
 proto.pond.Event.prototype.getKey = function() {
   return /** @type{?proto.pond.TypedKey} */ (
-    jspb.Message.getWrapperField(this, proto.pond.TypedKey, 1));
+    jspb.Message.getWrapperField(this, proto.pond.TypedKey, 2));
 };
 
 
 /** @param {?proto.pond.TypedKey|undefined} value */
 proto.pond.Event.prototype.setKey = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
+  jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -1856,38 +1879,68 @@ proto.pond.Event.prototype.clearKey = function() {
  * @return {!boolean}
  */
 proto.pond.Event.prototype.hasKey = function() {
-  return jspb.Message.getField(this, 1) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
- * repeated FieldValue fields = 2;
- * @return {!Array.<!proto.pond.FieldValue>}
+ * optional TypedValue value = 3;
+ * @return {?proto.pond.TypedValue}
  */
-proto.pond.Event.prototype.getFieldsList = function() {
-  return /** @type{!Array.<!proto.pond.FieldValue>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.pond.FieldValue, 2));
+proto.pond.Event.prototype.getValue = function() {
+  return /** @type{?proto.pond.TypedValue} */ (
+    jspb.Message.getWrapperField(this, proto.pond.TypedValue, 3));
 };
 
 
-/** @param {!Array.<!proto.pond.FieldValue>} value */
-proto.pond.Event.prototype.setFieldsList = function(value) {
-  jspb.Message.setRepeatedWrapperField(this, 2, value);
+/** @param {?proto.pond.TypedValue|undefined} value */
+proto.pond.Event.prototype.setValue = function(value) {
+  jspb.Message.setWrapperField(this, 3, value);
+};
+
+
+proto.pond.Event.prototype.clearValue = function() {
+  this.setValue(undefined);
 };
 
 
 /**
- * @param {!proto.pond.FieldValue=} opt_value
+ * Returns whether this field is set.
+ * @return {!boolean}
+ */
+proto.pond.Event.prototype.hasValue = function() {
+  return jspb.Message.getField(this, 3) != null;
+};
+
+
+/**
+ * repeated LabelPair labels = 4;
+ * @return {!Array.<!proto.pond.LabelPair>}
+ */
+proto.pond.Event.prototype.getLabelsList = function() {
+  return /** @type{!Array.<!proto.pond.LabelPair>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.pond.LabelPair, 4));
+};
+
+
+/** @param {!Array.<!proto.pond.LabelPair>} value */
+proto.pond.Event.prototype.setLabelsList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 4, value);
+};
+
+
+/**
+ * @param {!proto.pond.LabelPair=} opt_value
  * @param {number=} opt_index
- * @return {!proto.pond.FieldValue}
+ * @return {!proto.pond.LabelPair}
  */
-proto.pond.Event.prototype.addFields = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 2, opt_value, proto.pond.FieldValue, opt_index);
+proto.pond.Event.prototype.addLabels = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 4, opt_value, proto.pond.LabelPair, opt_index);
 };
 
 
-proto.pond.Event.prototype.clearFieldsList = function() {
-  this.setFieldsList([]);
+proto.pond.Event.prototype.clearLabelsList = function() {
+  this.setLabelsList([]);
 };
 
 
@@ -2494,8 +2547,8 @@ proto.pond.TimeSeries.prototype.toObject = function(opt_includeInstance) {
  */
 proto.pond.TimeSeries.toObject = function(includeInstance, msg) {
   var f, obj = {
-    metaList: jspb.Message.toObjectList(msg.getMetaList(),
-    proto.pond.TaggedValue.toObject, includeInstance),
+    labelsList: jspb.Message.toObjectList(msg.getLabelsList(),
+    proto.pond.LabelPair.toObject, includeInstance),
     columnsList: jspb.Message.getRepeatedField(msg, 2),
     pointsList: jspb.Message.toObjectList(msg.getPointsList(),
     proto.pond.Point.toObject, includeInstance)
@@ -2536,9 +2589,9 @@ proto.pond.TimeSeries.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.pond.TaggedValue;
-      reader.readMessage(value,proto.pond.TaggedValue.deserializeBinaryFromReader);
-      msg.addMeta(value);
+      var value = new proto.pond.LabelPair;
+      reader.readMessage(value,proto.pond.LabelPair.deserializeBinaryFromReader);
+      msg.addLabels(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -2578,12 +2631,12 @@ proto.pond.TimeSeries.prototype.serializeBinary = function() {
  */
 proto.pond.TimeSeries.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMetaList();
+  f = message.getLabelsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
       f,
-      proto.pond.TaggedValue.serializeBinaryToWriter
+      proto.pond.LabelPair.serializeBinaryToWriter
     );
   }
   f = message.getColumnsList();
@@ -2605,33 +2658,33 @@ proto.pond.TimeSeries.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * repeated TaggedValue meta = 1;
- * @return {!Array.<!proto.pond.TaggedValue>}
+ * repeated LabelPair labels = 1;
+ * @return {!Array.<!proto.pond.LabelPair>}
  */
-proto.pond.TimeSeries.prototype.getMetaList = function() {
-  return /** @type{!Array.<!proto.pond.TaggedValue>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.pond.TaggedValue, 1));
+proto.pond.TimeSeries.prototype.getLabelsList = function() {
+  return /** @type{!Array.<!proto.pond.LabelPair>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.pond.LabelPair, 1));
 };
 
 
-/** @param {!Array.<!proto.pond.TaggedValue>} value */
-proto.pond.TimeSeries.prototype.setMetaList = function(value) {
+/** @param {!Array.<!proto.pond.LabelPair>} value */
+proto.pond.TimeSeries.prototype.setLabelsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * @param {!proto.pond.TaggedValue=} opt_value
+ * @param {!proto.pond.LabelPair=} opt_value
  * @param {number=} opt_index
- * @return {!proto.pond.TaggedValue}
+ * @return {!proto.pond.LabelPair}
  */
-proto.pond.TimeSeries.prototype.addMeta = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.pond.TaggedValue, opt_index);
+proto.pond.TimeSeries.prototype.addLabels = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.pond.LabelPair, opt_index);
 };
 
 
-proto.pond.TimeSeries.prototype.clearMetaList = function() {
-  this.setMetaList([]);
+proto.pond.TimeSeries.prototype.clearLabelsList = function() {
+  this.setLabelsList([]);
 };
 
 
