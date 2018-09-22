@@ -1,33 +1,27 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-#
-# Script to compile protobuf files
-#
+JS_DEST=./js/proto
 
-PROTO_PATH="protos"
+mkdir -p ${JS_DEST}
 
-PROTO_GEN_TS_PATH="./node_modules/.bin/protoc-gen-ts"
-GRPC_NODE_PLUGIN_PATH="./node_modules/grpc-tools/bin/grpc_node_plugin"
-TS_OUT_DIR="./js"
+# JavaScript code generating
+grpc_tools_node_protoc \
+    --js_out=import_style=commonjs,binary:${JS_DEST} \
+    --grpc_out=${JS_DEST} \
+    --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin` \
+    -I ./proto \
+    proto/*.proto proto/google/api/*.proto proto/google/protobuf/*.proto
 
-#
-# Cloud Endpoint API descriptor sets
-#
+mkdir -p ${JS_DEST}
 
-# protoc -I=$PROTO_PATH --include_imports --include_source_info netbeam.proto --descriptor_set_out v1/netbeam.pb
-# protoc -I=$PROTO_PATH --include_imports --include_source_info network.proto --descriptor_set_out v1/network.pb
+grpc_tools_node_protoc \
+    --plugin=protoc-gen-ts=`which protoc-gen-ts` \
+    --ts_out=service=true:${JS_DEST} \
+    -I ./proto \
+    proto/*.proto proto/google/api/*.proto proto/google/protobuf/*.proto
 
-#
-# Typescript / Javascript build
-#
-
-mkdir -p js
-protoc \
-    --plugin="protoc-gen-ts=${PROTO_GEN_TS_PATH}" \
-    --js_out="import_style=commonjs,binary:${TS_OUT_DIR}" \
-    --ts_out="service=true:${TS_OUT_DIR}" \
-    --proto_path=$PROTO_PATH \
-    netbeam.proto network.proto pond.proto  google/api/http.proto google/api/annotations.proto google/protobuf/compiler/plugin.proto
+# TypeScript compiling
+tsc -d
 
 
 #
@@ -36,6 +30,7 @@ protoc \
 
 mkdir -p go/netbeam
 mkdir -p go/pond
-./node_modules/.bin/grpc_tools_node_protoc -I protos --go_out=go/netbeam --proto_path=$PROTO_PATH netbeam.proto
-./node_modules/.bin/grpc_tools_node_protoc -I protos --go_out=go/netbeam --proto_path=$PROTO_PATH network.proto
-./node_modules/.bin/grpc_tools_node_protoc -I protos --go_out=go/pond --proto_path=$PROTO_PATH pond.proto
+
+./node_modules/.bin/grpc_tools_node_protoc -I proto --go_out=go/netbeam --proto_path=./proto netbeam.proto
+./node_modules/.bin/grpc_tools_node_protoc -I proto --go_out=go/netbeam --proto_path=./proto network.proto
+./node_modules/.bin/grpc_tools_node_protoc -I proto --go_out=go/pond --proto_path=./proto pond.proto

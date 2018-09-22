@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const NetbeamService = require("./proto/netbeam_pb_service");
+exports.NetbeamService = NetbeamService;
+const Netbeam = require("./proto/netbeam_pb");
+exports.Netbeam = Netbeam;
+const NetworkService = require("./proto/network_pb_service");
+exports.NetworkService = NetworkService;
+const Network = require("./proto/netbeam_pb");
+exports.Network = Network;
+const Pond = require("./proto/pond_pb");
+exports.Pond = Pond;

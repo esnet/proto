@@ -202,7 +202,7 @@ proto.esnet.netbeam.v1.InterfaceEvent.prototype.getDevice = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceEvent.prototype.setDevice = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  jspb.Message.setField(this, 1, value);
 };
 
 
@@ -217,7 +217,7 @@ proto.esnet.netbeam.v1.InterfaceEvent.prototype.getInterface = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceEvent.prototype.setInterface = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+  jspb.Message.setField(this, 2, value);
 };
 
 
@@ -232,7 +232,7 @@ proto.esnet.netbeam.v1.InterfaceEvent.prototype.getDirection = function() {
 
 /** @param {!proto.esnet.netbeam.v1.Direction} value */
 proto.esnet.netbeam.v1.InterfaceEvent.prototype.setDirection = function(value) {
-  jspb.Message.setProto3EnumField(this, 3, value);
+  jspb.Message.setField(this, 3, value);
 };
 
 
@@ -579,7 +579,7 @@ proto.esnet.netbeam.v1.InterfaceDetails.prototype.getName = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceDetails.prototype.setName = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  jspb.Message.setField(this, 1, value);
 };
 
 
@@ -594,7 +594,7 @@ proto.esnet.netbeam.v1.InterfaceDetails.prototype.getDevice = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceDetails.prototype.setDevice = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+  jspb.Message.setField(this, 2, value);
 };
 
 
@@ -609,7 +609,7 @@ proto.esnet.netbeam.v1.InterfaceDetails.prototype.getIfindex = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceDetails.prototype.setIfindex = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
+  jspb.Message.setField(this, 3, value);
 };
 
 
@@ -624,7 +624,7 @@ proto.esnet.netbeam.v1.InterfaceDetails.prototype.getDescription = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceDetails.prototype.setDescription = function(value) {
-  jspb.Message.setProto3StringField(this, 4, value);
+  jspb.Message.setField(this, 4, value);
 };
 
 
@@ -639,7 +639,7 @@ proto.esnet.netbeam.v1.InterfaceDetails.prototype.getSpeed = function() {
 
 /** @param {number} value */
 proto.esnet.netbeam.v1.InterfaceDetails.prototype.setSpeed = function(value) {
-  jspb.Message.setProto3IntField(this, 5, value);
+  jspb.Message.setField(this, 5, value);
 };
 
 
@@ -654,7 +654,7 @@ proto.esnet.netbeam.v1.InterfaceDetails.prototype.getVisibility = function() {
 
 /** @param {!proto.esnet.netbeam.v1.Visible} value */
 proto.esnet.netbeam.v1.InterfaceDetails.prototype.setVisibility = function(value) {
-  jspb.Message.setProto3EnumField(this, 6, value);
+  jspb.Message.setField(this, 6, value);
 };
 
 
@@ -669,7 +669,7 @@ proto.esnet.netbeam.v1.InterfaceDetails.prototype.getConnection = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceDetails.prototype.setConnection = function(value) {
-  jspb.Message.setProto3StringField(this, 7, value);
+  jspb.Message.setField(this, 7, value);
 };
 
 
@@ -684,7 +684,7 @@ proto.esnet.netbeam.v1.InterfaceDetails.prototype.getLink = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceDetails.prototype.setLink = function(value) {
-  jspb.Message.setProto3StringField(this, 8, value);
+  jspb.Message.setField(this, 8, value);
 };
 
 
@@ -728,7 +728,7 @@ proto.esnet.netbeam.v1.InterfaceDetails.prototype.getSector = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceDetails.prototype.setSector = function(value) {
-  jspb.Message.setProto3StringField(this, 10, value);
+  jspb.Message.setField(this, 10, value);
 };
 
 
@@ -743,7 +743,7 @@ proto.esnet.netbeam.v1.InterfaceDetails.prototype.getSite = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceDetails.prototype.setSite = function(value) {
-  jspb.Message.setProto3StringField(this, 11, value);
+  jspb.Message.setField(this, 11, value);
 };
 
 
@@ -760,7 +760,7 @@ proto.esnet.netbeam.v1.InterfaceDetails.prototype.getLhcone = function() {
 
 /** @param {boolean} value */
 proto.esnet.netbeam.v1.InterfaceDetails.prototype.setLhcone = function(value) {
-  jspb.Message.setProto3BooleanField(this, 12, value);
+  jspb.Message.setField(this, 12, value);
 };
 
 
@@ -777,7 +777,7 @@ proto.esnet.netbeam.v1.InterfaceDetails.prototype.getOscars = function() {
 
 /** @param {boolean} value */
 proto.esnet.netbeam.v1.InterfaceDetails.prototype.setOscars = function(value) {
-  jspb.Message.setProto3BooleanField(this, 13, value);
+  jspb.Message.setField(this, 13, value);
 };
 
 
@@ -794,7 +794,7 @@ proto.esnet.netbeam.v1.InterfaceDetails.prototype.getIntercloud = function() {
 
 /** @param {boolean} value */
 proto.esnet.netbeam.v1.InterfaceDetails.prototype.setIntercloud = function(value) {
-  jspb.Message.setProto3BooleanField(this, 14, value);
+  jspb.Message.setField(this, 14, value);
 };
 
 
@@ -811,7 +811,7 @@ proto.esnet.netbeam.v1.InterfaceDetails.prototype.getIntracloud = function() {
 
 /** @param {boolean} value */
 proto.esnet.netbeam.v1.InterfaceDetails.prototype.setIntracloud = function(value) {
-  jspb.Message.setProto3BooleanField(this, 15, value);
+  jspb.Message.setField(this, 15, value);
 };
 
 
@@ -1335,7 +1335,7 @@ proto.esnet.netbeam.v1.InterfaceMonthlyUtilization.prototype.getMonth = function
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceMonthlyUtilization.prototype.setMonth = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  jspb.Message.setField(this, 1, value);
 };
 
 
@@ -1350,7 +1350,7 @@ proto.esnet.netbeam.v1.InterfaceMonthlyUtilization.prototype.getDevice = functio
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceMonthlyUtilization.prototype.setDevice = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+  jspb.Message.setField(this, 2, value);
 };
 
 
@@ -1365,7 +1365,7 @@ proto.esnet.netbeam.v1.InterfaceMonthlyUtilization.prototype.getInterface = func
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceMonthlyUtilization.prototype.setInterface = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
+  jspb.Message.setField(this, 3, value);
 };
 
 
@@ -1574,7 +1574,7 @@ proto.esnet.netbeam.v1.InterfaceTileRequest.prototype.getIndex = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceTileRequest.prototype.setIndex = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  jspb.Message.setField(this, 1, value);
 };
 
 
@@ -1589,7 +1589,7 @@ proto.esnet.netbeam.v1.InterfaceTileRequest.prototype.getInterface = function() 
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceTileRequest.prototype.setInterface = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+  jspb.Message.setField(this, 2, value);
 };
 
 
@@ -1604,7 +1604,7 @@ proto.esnet.netbeam.v1.InterfaceTileRequest.prototype.getDevice = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceTileRequest.prototype.setDevice = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
+  jspb.Message.setField(this, 3, value);
 };
 
 
@@ -1619,7 +1619,7 @@ proto.esnet.netbeam.v1.InterfaceTileRequest.prototype.getAgg = function() {
 
 /** @param {!proto.esnet.netbeam.v1.AggregationType} value */
 proto.esnet.netbeam.v1.InterfaceTileRequest.prototype.setAgg = function(value) {
-  jspb.Message.setProto3EnumField(this, 4, value);
+  jspb.Message.setField(this, 4, value);
 };
 
 
@@ -1809,7 +1809,7 @@ proto.esnet.netbeam.v1.InterfaceTrafficRequest.prototype.getBegin = function() {
 
 /** @param {number} value */
 proto.esnet.netbeam.v1.InterfaceTrafficRequest.prototype.setBegin = function(value) {
-  jspb.Message.setProto3IntField(this, 1, value);
+  jspb.Message.setField(this, 1, value);
 };
 
 
@@ -1824,7 +1824,7 @@ proto.esnet.netbeam.v1.InterfaceTrafficRequest.prototype.getEnd = function() {
 
 /** @param {number} value */
 proto.esnet.netbeam.v1.InterfaceTrafficRequest.prototype.setEnd = function(value) {
-  jspb.Message.setProto3IntField(this, 2, value);
+  jspb.Message.setField(this, 2, value);
 };
 
 
@@ -1839,7 +1839,7 @@ proto.esnet.netbeam.v1.InterfaceTrafficRequest.prototype.getInterface = function
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceTrafficRequest.prototype.setInterface = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
+  jspb.Message.setField(this, 3, value);
 };
 
 
@@ -1854,7 +1854,7 @@ proto.esnet.netbeam.v1.InterfaceTrafficRequest.prototype.getDevice = function() 
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceTrafficRequest.prototype.setDevice = function(value) {
-  jspb.Message.setProto3StringField(this, 4, value);
+  jspb.Message.setField(this, 4, value);
 };
 
 
@@ -1869,7 +1869,7 @@ proto.esnet.netbeam.v1.InterfaceTrafficRequest.prototype.getAgg = function() {
 
 /** @param {!proto.esnet.netbeam.v1.AggregationType} value */
 proto.esnet.netbeam.v1.InterfaceTrafficRequest.prototype.setAgg = function(value) {
-  jspb.Message.setProto3EnumField(this, 5, value);
+  jspb.Message.setField(this, 5, value);
 };
 
 
@@ -2267,7 +2267,7 @@ proto.esnet.netbeam.v1.InterfaceUtilizationRequest.prototype.getMonth = function
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceUtilizationRequest.prototype.setMonth = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  jspb.Message.setField(this, 1, value);
 };
 
 
@@ -2282,7 +2282,7 @@ proto.esnet.netbeam.v1.InterfaceUtilizationRequest.prototype.getInterface = func
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceUtilizationRequest.prototype.setInterface = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+  jspb.Message.setField(this, 2, value);
 };
 
 
@@ -2297,7 +2297,7 @@ proto.esnet.netbeam.v1.InterfaceUtilizationRequest.prototype.getDevice = functio
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.InterfaceUtilizationRequest.prototype.setDevice = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
+  jspb.Message.setField(this, 3, value);
 };
 
 
@@ -2567,7 +2567,7 @@ proto.esnet.netbeam.v1.AuthorizeResponse.prototype.getError = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.AuthorizeResponse.prototype.setError = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+  jspb.Message.setField(this, 1, value);
 };
 
 
@@ -2582,7 +2582,7 @@ proto.esnet.netbeam.v1.AuthorizeResponse.prototype.getAccesstoken = function() {
 
 /** @param {string} value */
 proto.esnet.netbeam.v1.AuthorizeResponse.prototype.setAccesstoken = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
+  jspb.Message.setField(this, 2, value);
 };
 
 

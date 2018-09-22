@@ -218,42 +218,48 @@ export namespace TypedValue {
   }
 }
 
-export class FieldValue extends jspb.Message {
-  getField(): string;
-  setField(value: string): void;
+export class LabelPair extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  getValue(): string;
+  setValue(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): LabelPair.AsObject;
+  static toObject(includeInstance: boolean, msg: LabelPair): LabelPair.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: LabelPair, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): LabelPair;
+  static deserializeBinaryFromReader(message: LabelPair, reader: jspb.BinaryReader): LabelPair;
+}
+
+export namespace LabelPair {
+  export type AsObject = {
+    name: string,
+    value: string,
+  }
+}
+
+export class Event extends jspb.Message {
+  getName(): string;
+  setName(value: string): void;
+
+  hasKey(): boolean;
+  clearKey(): void;
+  getKey(): TypedKey | undefined;
+  setKey(value?: TypedKey): void;
 
   hasValue(): boolean;
   clearValue(): void;
   getValue(): TypedValue | undefined;
   setValue(value?: TypedValue): void;
 
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FieldValue.AsObject;
-  static toObject(includeInstance: boolean, msg: FieldValue): FieldValue.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: FieldValue, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FieldValue;
-  static deserializeBinaryFromReader(message: FieldValue, reader: jspb.BinaryReader): FieldValue;
-}
-
-export namespace FieldValue {
-  export type AsObject = {
-    field: string,
-    value?: TypedValue.AsObject,
-  }
-}
-
-export class Event extends jspb.Message {
-  hasKey(): boolean;
-  clearKey(): void;
-  getKey(): TypedKey | undefined;
-  setKey(value?: TypedKey): void;
-
-  clearFieldsList(): void;
-  getFieldsList(): Array<FieldValue>;
-  setFieldsList(value: Array<FieldValue>): void;
-  addFields(value?: FieldValue, index?: number): FieldValue;
+  clearLabelsList(): void;
+  getLabelsList(): Array<LabelPair>;
+  setLabelsList(value: Array<LabelPair>): void;
+  addLabels(value?: LabelPair, index?: number): LabelPair;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Event.AsObject;
@@ -267,8 +273,10 @@ export class Event extends jspb.Message {
 
 export namespace Event {
   export type AsObject = {
+    name: string,
     key?: TypedKey.AsObject,
-    fieldsList: Array<FieldValue.AsObject>,
+    value?: TypedValue.AsObject,
+    labelsList: Array<LabelPair.AsObject>,
   }
 }
 
@@ -291,30 +299,6 @@ export class Collection extends jspb.Message {
 export namespace Collection {
   export type AsObject = {
     eventsList: Array<Event.AsObject>,
-  }
-}
-
-export class TaggedValue extends jspb.Message {
-  getTag(): string;
-  setTag(value: string): void;
-
-  getValue(): string;
-  setValue(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): TaggedValue.AsObject;
-  static toObject(includeInstance: boolean, msg: TaggedValue): TaggedValue.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: TaggedValue, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): TaggedValue;
-  static deserializeBinaryFromReader(message: TaggedValue, reader: jspb.BinaryReader): TaggedValue;
-}
-
-export namespace TaggedValue {
-  export type AsObject = {
-    tag: string,
-    value: string,
   }
 }
 
@@ -347,10 +331,10 @@ export namespace Point {
 }
 
 export class TimeSeries extends jspb.Message {
-  clearMetaList(): void;
-  getMetaList(): Array<TaggedValue>;
-  setMetaList(value: Array<TaggedValue>): void;
-  addMeta(value?: TaggedValue, index?: number): TaggedValue;
+  clearLabelsList(): void;
+  getLabelsList(): Array<LabelPair>;
+  setLabelsList(value: Array<LabelPair>): void;
+  addLabels(value?: LabelPair, index?: number): LabelPair;
 
   clearColumnsList(): void;
   getColumnsList(): Array<string>;
@@ -374,7 +358,7 @@ export class TimeSeries extends jspb.Message {
 
 export namespace TimeSeries {
   export type AsObject = {
-    metaList: Array<TaggedValue.AsObject>,
+    labelsList: Array<LabelPair.AsObject>,
     columnsList: Array<string>,
     pointsList: Array<Point.AsObject>,
   }
