@@ -1,6 +1,6 @@
 {
     "name": "esnet-proto",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "main": "js/entry.js",
     "scripts": {
         "build": "./build.sh"
