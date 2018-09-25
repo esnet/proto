@@ -11,6 +11,6 @@
         "skipLibCheck": true
     },
     "exclude": ["node_modules"],
-    "include": ["js/*"],
+    "include": ["global.d.ts", "js/*"],
     "compileOnSave": false
 }

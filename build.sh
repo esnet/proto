@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
 JS_DEST=./js/proto
-
 mkdir -p ${JS_DEST}
 
-# JavaScript code generating
+# generate js codes via grpc-tools
 grpc_tools_node_protoc \
     --js_out=import_style=commonjs,binary:${JS_DEST} \
     --grpc_out=${JS_DEST} \
@@ -12,17 +11,15 @@ grpc_tools_node_protoc \
     -I ./proto \
     proto/*.proto proto/google/api/*.proto proto/google/protobuf/*.proto
 
-mkdir -p ${JS_DEST}
-
-grpc_tools_node_protoc \
-    --plugin=protoc-gen-ts=`which protoc-gen-ts` \
-    --ts_out=service=true:${JS_DEST} \
+# generate d.ts codes
+protoc \
+    --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts \
+    --ts_out=${JS_DEST} \
     -I ./proto \
     proto/*.proto proto/google/api/*.proto proto/google/protobuf/*.proto
 
 # TypeScript compiling
 tsc -d
-
 
 #
 # Golang builds
