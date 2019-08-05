@@ -1,4 +1,4 @@
-module github.com/proto/go/netbeam
+module github.com/esnet/proto/go/netbeam
 
 go 1.12
 

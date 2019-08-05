@@ -1,4 +1,4 @@
-module github.com/proto/go/pond
+module github.com/esnet/proto/go/pond
 
 go 1.12
 
