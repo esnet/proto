@@ -3,9 +3,11 @@
 
 package pond
 
-import proto "github.com/golang/protobuf/proto"
-import fmt "fmt"
-import math "math"
+import (
+	fmt "fmt"
+	proto "github.com/golang/protobuf/proto"
+	math "math"
+)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -16,7 +18,7 @@ var _ = math.Inf
 // is compatible with the proto package it is being compiled against.
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
-const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // a Timestamp is a point in time independent of any timezone or calendar
 type Timestamp struct {
@@ -33,16 +35,17 @@ func (m *Timestamp) Reset()         { *m = Timestamp{} }
 func (m *Timestamp) String() string { return proto.CompactTextString(m) }
 func (*Timestamp) ProtoMessage()    {}
 func (*Timestamp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pond_894a5f609e67e0b6, []int{0}
+	return fileDescriptor_4b471a2ab091c539, []int{0}
 }
+
 func (m *Timestamp) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Timestamp.Unmarshal(m, b)
 }
 func (m *Timestamp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Timestamp.Marshal(b, m, deterministic)
 }
-func (dst *Timestamp) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Timestamp.Merge(dst, src)
+func (m *Timestamp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Timestamp.Merge(m, src)
 }
 func (m *Timestamp) XXX_Size() int {
 	return xxx_messageInfo_Timestamp.Size(m)
@@ -83,16 +86,17 @@ func (m *TimeRange) Reset()         { *m = TimeRange{} }
 func (m *TimeRange) String() string { return proto.CompactTextString(m) }
 func (*TimeRange) ProtoMessage()    {}
 func (*TimeRange) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pond_894a5f609e67e0b6, []int{1}
+	return fileDescriptor_4b471a2ab091c539, []int{1}
 }
+
 func (m *TimeRange) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TimeRange.Unmarshal(m, b)
 }
 func (m *TimeRange) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_TimeRange.Marshal(b, m, deterministic)
 }
-func (dst *TimeRange) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TimeRange.Merge(dst, src)
+func (m *TimeRange) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TimeRange.Merge(m, src)
 }
 func (m *TimeRange) XXX_Size() int {
 	return xxx_messageInfo_TimeRange.Size(m)
@@ -132,16 +136,17 @@ func (m *Index) Reset()         { *m = Index{} }
 func (m *Index) String() string { return proto.CompactTextString(m) }
 func (*Index) ProtoMessage()    {}
 func (*Index) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pond_894a5f609e67e0b6, []int{2}
+	return fileDescriptor_4b471a2ab091c539, []int{2}
 }
+
 func (m *Index) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Index.Unmarshal(m, b)
 }
 func (m *Index) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Index.Marshal(b, m, deterministic)
 }
-func (dst *Index) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Index.Merge(dst, src)
+func (m *Index) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Index.Merge(m, src)
 }
 func (m *Index) XXX_Size() int {
 	return xxx_messageInfo_Index.Size(m)
@@ -179,16 +184,17 @@ func (m *Duration) Reset()         { *m = Duration{} }
 func (m *Duration) String() string { return proto.CompactTextString(m) }
 func (*Duration) ProtoMessage()    {}
 func (*Duration) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pond_894a5f609e67e0b6, []int{3}
+	return fileDescriptor_4b471a2ab091c539, []int{3}
 }
+
 func (m *Duration) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Duration.Unmarshal(m, b)
 }
 func (m *Duration) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Duration.Marshal(b, m, deterministic)
 }
-func (dst *Duration) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Duration.Merge(dst, src)
+func (m *Duration) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Duration.Merge(m, src)
 }
 func (m *Duration) XXX_Size() int {
 	return xxx_messageInfo_Duration.Size(m)
@@ -224,16 +230,17 @@ func (m *Period) Reset()         { *m = Period{} }
 func (m *Period) String() string { return proto.CompactTextString(m) }
 func (*Period) ProtoMessage()    {}
 func (*Period) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pond_894a5f609e67e0b6, []int{4}
+	return fileDescriptor_4b471a2ab091c539, []int{4}
 }
+
 func (m *Period) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Period.Unmarshal(m, b)
 }
 func (m *Period) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Period.Marshal(b, m, deterministic)
 }
-func (dst *Period) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Period.Merge(dst, src)
+func (m *Period) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Period.Merge(m, src)
 }
 func (m *Period) XXX_Size() int {
 	return xxx_messageInfo_Period.Size(m)
@@ -273,16 +280,17 @@ func (m *TypedKey) Reset()         { *m = TypedKey{} }
 func (m *TypedKey) String() string { return proto.CompactTextString(m) }
 func (*TypedKey) ProtoMessage()    {}
 func (*TypedKey) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pond_894a5f609e67e0b6, []int{5}
+	return fileDescriptor_4b471a2ab091c539, []int{5}
 }
+
 func (m *TypedKey) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TypedKey.Unmarshal(m, b)
 }
 func (m *TypedKey) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_TypedKey.Marshal(b, m, deterministic)
 }
-func (dst *TypedKey) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TypedKey.Merge(dst, src)
+func (m *TypedKey) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TypedKey.Merge(m, src)
 }
 func (m *TypedKey) XXX_Size() int {
 	return xxx_messageInfo_TypedKey.Size(m)
@@ -343,97 +351,13 @@ func (m *TypedKey) GetIndexKey() *Index {
 	return nil
 }
 
-// XXX_OneofFuncs is for the internal use of the proto package.
-func (*TypedKey) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
-	return _TypedKey_OneofMarshaler, _TypedKey_OneofUnmarshaler, _TypedKey_OneofSizer, []interface{}{
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*TypedKey) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
 		(*TypedKey_TimestampKey)(nil),
 		(*TypedKey_TimerangeKey)(nil),
 		(*TypedKey_IndexKey)(nil),
 	}
-}
-
-func _TypedKey_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
-	m := msg.(*TypedKey)
-	// key
-	switch x := m.Key.(type) {
-	case *TypedKey_TimestampKey:
-		b.EncodeVarint(1<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.TimestampKey); err != nil {
-			return err
-		}
-	case *TypedKey_TimerangeKey:
-		b.EncodeVarint(2<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.TimerangeKey); err != nil {
-			return err
-		}
-	case *TypedKey_IndexKey:
-		b.EncodeVarint(3<<3 | proto.WireBytes)
-		if err := b.EncodeMessage(x.IndexKey); err != nil {
-			return err
-		}
-	case nil:
-	default:
-		return fmt.Errorf("TypedKey.Key has unexpected type %T", x)
-	}
-	return nil
-}
-
-func _TypedKey_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
-	m := msg.(*TypedKey)
-	switch tag {
-	case 1: // key.timestamp_key
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(Timestamp)
-		err := b.DecodeMessage(msg)
-		m.Key = &TypedKey_TimestampKey{msg}
-		return true, err
-	case 2: // key.timerange_key
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(TimeRange)
-		err := b.DecodeMessage(msg)
-		m.Key = &TypedKey_TimerangeKey{msg}
-		return true, err
-	case 3: // key.index_key
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		msg := new(Index)
-		err := b.DecodeMessage(msg)
-		m.Key = &TypedKey_IndexKey{msg}
-		return true, err
-	default:
-		return false, nil
-	}
-}
-
-func _TypedKey_OneofSizer(msg proto.Message) (n int) {
-	m := msg.(*TypedKey)
-	// key
-	switch x := m.Key.(type) {
-	case *TypedKey_TimestampKey:
-		s := proto.Size(x.TimestampKey)
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case *TypedKey_TimerangeKey:
-		s := proto.Size(x.TimerangeKey)
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case *TypedKey_IndexKey:
-		s := proto.Size(x.IndexKey)
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(s))
-		n += s
-	case nil:
-	default:
-		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
-	}
-	return n
 }
 
 // A single strongly-typed value.
@@ -455,16 +379,17 @@ func (m *TypedValue) Reset()         { *m = TypedValue{} }
 func (m *TypedValue) String() string { return proto.CompactTextString(m) }
 func (*TypedValue) ProtoMessage()    {}
 func (*TypedValue) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pond_894a5f609e67e0b6, []int{6}
+	return fileDescriptor_4b471a2ab091c539, []int{6}
 }
+
 func (m *TypedValue) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TypedValue.Unmarshal(m, b)
 }
 func (m *TypedValue) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_TypedValue.Marshal(b, m, deterministic)
 }
-func (dst *TypedValue) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TypedValue.Merge(dst, src)
+func (m *TypedValue) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TypedValue.Merge(m, src)
 }
 func (m *TypedValue) XXX_Size() int {
 	return xxx_messageInfo_TypedValue.Size(m)
@@ -538,101 +463,14 @@ func (m *TypedValue) GetStringValue() string {
 	return ""
 }
 
-// XXX_OneofFuncs is for the internal use of the proto package.
-func (*TypedValue) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
-	return _TypedValue_OneofMarshaler, _TypedValue_OneofUnmarshaler, _TypedValue_OneofSizer, []interface{}{
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*TypedValue) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
 		(*TypedValue_BoolValue)(nil),
 		(*TypedValue_Int64Value)(nil),
 		(*TypedValue_DoubleValue)(nil),
 		(*TypedValue_StringValue)(nil),
 	}
-}
-
-func _TypedValue_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
-	m := msg.(*TypedValue)
-	// value
-	switch x := m.Value.(type) {
-	case *TypedValue_BoolValue:
-		t := uint64(0)
-		if x.BoolValue {
-			t = 1
-		}
-		b.EncodeVarint(1<<3 | proto.WireVarint)
-		b.EncodeVarint(t)
-	case *TypedValue_Int64Value:
-		b.EncodeVarint(2<<3 | proto.WireVarint)
-		b.EncodeVarint(uint64(x.Int64Value))
-	case *TypedValue_DoubleValue:
-		b.EncodeVarint(3<<3 | proto.WireFixed64)
-		b.EncodeFixed64(math.Float64bits(x.DoubleValue))
-	case *TypedValue_StringValue:
-		b.EncodeVarint(4<<3 | proto.WireBytes)
-		b.EncodeStringBytes(x.StringValue)
-	case nil:
-	default:
-		return fmt.Errorf("TypedValue.Value has unexpected type %T", x)
-	}
-	return nil
-}
-
-func _TypedValue_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
-	m := msg.(*TypedValue)
-	switch tag {
-	case 1: // value.bool_value
-		if wire != proto.WireVarint {
-			return true, proto.ErrInternalBadWireType
-		}
-		x, err := b.DecodeVarint()
-		m.Value = &TypedValue_BoolValue{x != 0}
-		return true, err
-	case 2: // value.int64_value
-		if wire != proto.WireVarint {
-			return true, proto.ErrInternalBadWireType
-		}
-		x, err := b.DecodeVarint()
-		m.Value = &TypedValue_Int64Value{int64(x)}
-		return true, err
-	case 3: // value.double_value
-		if wire != proto.WireFixed64 {
-			return true, proto.ErrInternalBadWireType
-		}
-		x, err := b.DecodeFixed64()
-		m.Value = &TypedValue_DoubleValue{math.Float64frombits(x)}
-		return true, err
-	case 4: // value.string_value
-		if wire != proto.WireBytes {
-			return true, proto.ErrInternalBadWireType
-		}
-		x, err := b.DecodeStringBytes()
-		m.Value = &TypedValue_StringValue{x}
-		return true, err
-	default:
-		return false, nil
-	}
-}
-
-func _TypedValue_OneofSizer(msg proto.Message) (n int) {
-	m := msg.(*TypedValue)
-	// value
-	switch x := m.Value.(type) {
-	case *TypedValue_BoolValue:
-		n += 1 // tag and wire
-		n += 1
-	case *TypedValue_Int64Value:
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(x.Int64Value))
-	case *TypedValue_DoubleValue:
-		n += 1 // tag and wire
-		n += 8
-	case *TypedValue_StringValue:
-		n += 1 // tag and wire
-		n += proto.SizeVarint(uint64(len(x.StringValue)))
-		n += len(x.StringValue)
-	case nil:
-	default:
-		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
-	}
-	return n
 }
 
 type LabelPair struct {
@@ -647,16 +485,17 @@ func (m *LabelPair) Reset()         { *m = LabelPair{} }
 func (m *LabelPair) String() string { return proto.CompactTextString(m) }
 func (*LabelPair) ProtoMessage()    {}
 func (*LabelPair) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pond_894a5f609e67e0b6, []int{7}
+	return fileDescriptor_4b471a2ab091c539, []int{7}
 }
+
 func (m *LabelPair) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_LabelPair.Unmarshal(m, b)
 }
 func (m *LabelPair) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_LabelPair.Marshal(b, m, deterministic)
 }
-func (dst *LabelPair) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_LabelPair.Merge(dst, src)
+func (m *LabelPair) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_LabelPair.Merge(m, src)
 }
 func (m *LabelPair) XXX_Size() int {
 	return xxx_messageInfo_LabelPair.Size(m)
@@ -710,16 +549,17 @@ func (m *Event) Reset()         { *m = Event{} }
 func (m *Event) String() string { return proto.CompactTextString(m) }
 func (*Event) ProtoMessage()    {}
 func (*Event) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pond_894a5f609e67e0b6, []int{8}
+	return fileDescriptor_4b471a2ab091c539, []int{8}
 }
+
 func (m *Event) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Event.Unmarshal(m, b)
 }
 func (m *Event) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Event.Marshal(b, m, deterministic)
 }
-func (dst *Event) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Event.Merge(dst, src)
+func (m *Event) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Event.Merge(m, src)
 }
 func (m *Event) XXX_Size() int {
 	return xxx_messageInfo_Event.Size(m)
@@ -775,16 +615,17 @@ func (m *Collection) Reset()         { *m = Collection{} }
 func (m *Collection) String() string { return proto.CompactTextString(m) }
 func (*Collection) ProtoMessage()    {}
 func (*Collection) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pond_894a5f609e67e0b6, []int{9}
+	return fileDescriptor_4b471a2ab091c539, []int{9}
 }
+
 func (m *Collection) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Collection.Unmarshal(m, b)
 }
 func (m *Collection) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Collection.Marshal(b, m, deterministic)
 }
-func (dst *Collection) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Collection.Merge(dst, src)
+func (m *Collection) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Collection.Merge(m, src)
 }
 func (m *Collection) XXX_Size() int {
 	return xxx_messageInfo_Collection.Size(m)
@@ -821,16 +662,17 @@ func (m *Point) Reset()         { *m = Point{} }
 func (m *Point) String() string { return proto.CompactTextString(m) }
 func (*Point) ProtoMessage()    {}
 func (*Point) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pond_894a5f609e67e0b6, []int{10}
+	return fileDescriptor_4b471a2ab091c539, []int{10}
 }
+
 func (m *Point) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Point.Unmarshal(m, b)
 }
 func (m *Point) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_Point.Marshal(b, m, deterministic)
 }
-func (dst *Point) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Point.Merge(dst, src)
+func (m *Point) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Point.Merge(m, src)
 }
 func (m *Point) XXX_Size() int {
 	return xxx_messageInfo_Point.Size(m)
@@ -882,16 +724,17 @@ func (m *TimeSeries) Reset()         { *m = TimeSeries{} }
 func (m *TimeSeries) String() string { return proto.CompactTextString(m) }
 func (*TimeSeries) ProtoMessage()    {}
 func (*TimeSeries) Descriptor() ([]byte, []int) {
-	return fileDescriptor_pond_894a5f609e67e0b6, []int{11}
+	return fileDescriptor_4b471a2ab091c539, []int{11}
 }
+
 func (m *TimeSeries) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TimeSeries.Unmarshal(m, b)
 }
 func (m *TimeSeries) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_TimeSeries.Marshal(b, m, deterministic)
 }
-func (dst *TimeSeries) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TimeSeries.Merge(dst, src)
+func (m *TimeSeries) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TimeSeries.Merge(m, src)
 }
 func (m *TimeSeries) XXX_Size() int {
 	return xxx_messageInfo_TimeSeries.Size(m)
@@ -938,9 +781,9 @@ func init() {
 	proto.RegisterType((*TimeSeries)(nil), "pond.TimeSeries")
 }
 
-func init() { proto.RegisterFile("pond.proto", fileDescriptor_pond_894a5f609e67e0b6) }
+func init() { proto.RegisterFile("pond.proto", fileDescriptor_4b471a2ab091c539) }
 
-var fileDescriptor_pond_894a5f609e67e0b6 = []byte{
+var fileDescriptor_4b471a2ab091c539 = []byte{
 	// 569 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x94, 0x4f, 0x6f, 0xd3, 0x4c,
 	0x10, 0xc6, 0xe3, 0x3a, 0x76, 0xed, 0x49, 0xdf, 0x17, 0xb4, 0x42, 0x28, 0xe2, 0x42, 0xd8, 0x4a,
