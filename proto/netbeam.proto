@@ -1,6 +1,9 @@
 syntax = "proto3";
 
+import "pond.proto";
+
 package netbeam;
+option go_package = "github.com/esnet/proto/go/netbeam";
 
 // The request message containing the user's name.
 message HelloRequest {
@@ -10,6 +13,7 @@ message HelloRequest {
 // The response message containing the greetings
 message HelloReply {
     string message = 1;
+    pond.Timestamp tstamp = 2;
 }
     
 service Netbeam {

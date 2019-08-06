@@ -28,6 +28,5 @@ protoc \
 mkdir -p go/netbeam
 mkdir -p go/pond
 
-protoc -I proto netbeam.proto --go_out=plugins=grpc:go/netbeam
-# protoc -I proto --go_out=go/netbeam --proto_path=./proto netbeam.proto
-protoc -I proto --go_out=go/pond --proto_path=./proto pond.proto
+protoc -I proto --go_out=paths=source_relative:./go/pond --proto_path=./proto pond.proto
+protoc -I proto --go_out=paths=source_relative:./go/netbeam --proto_path=./proto proto/netbeam.proto
