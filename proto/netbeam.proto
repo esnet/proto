@@ -19,4 +19,7 @@ message HelloReply {
 service Netbeam {
     // Sends a greeting
     rpc SayHello (HelloRequest) returns (HelloReply) {}
+
+    // Requests a tile from the netbeam core
+    rpc FetchTile (TileRequest) returns (pond.TimeSeries) {}
 }
