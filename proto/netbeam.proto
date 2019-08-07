@@ -16,6 +16,13 @@ message HelloReply {
     pond.Timestamp tstamp = 2;
 }
     
+message TileRequest {
+    string namespace = 1;
+    string resource = 2;
+    string metric = 3;
+    string index = 4;
+}
+
 service Netbeam {
     // Sends a greeting
     rpc SayHello (HelloRequest) returns (HelloReply) {}
