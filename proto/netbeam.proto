@@ -15,11 +15,32 @@ message HelloReply {
     string message = 1;
     pond.Timestamp tstamp = 2;
 }
-    
+
+// The namespace, which is made up of the organization and the collection e.g. { organization: "esnet", collection: "prod"}
+message Namespace {
+    // The organization this request is associated with e.g. "esnet"
+    string organization = 1;
+
+    // The collection within the organization's data the request is for. e.g. "prod"
+    string collection = 2;
+}
+
+// The full resource path e.g. ["devices", "chic-cr5", "interfaces", "1/1/1"]
+message Resource {
+    repeated string path = 1;
+}
+
 message TileRequest {
-    string namespace = 1;
-    string resource = 2;
+    // The namespace
+    Namespace namespace = 1;
+
+    // The resource as a path
+    Resource resource = 2;
+
+    // The metric to get the tile from, for example "traffic/in"
     string metric = 3;
+
+    // The tile index, for example "1d-1234"
     string index = 4;
 }
 
@@ -27,6 +48,6 @@ service Netbeam {
     // Sends a greeting
     rpc SayHello (HelloRequest) returns (HelloReply) {}
 
-    // Requests a tile from the netbeam core
+    // Requests a tile from the netbeam core for a specific metric
     rpc FetchTile (TileRequest) returns (pond.TimeSeries) {}
 }

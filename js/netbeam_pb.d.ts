@@ -55,12 +55,66 @@ export namespace HelloReply {
     }
 }
 
-export class TileRequest extends jspb.Message { 
-    getNamespace(): string;
-    setNamespace(value: string): void;
+export class Namespace extends jspb.Message { 
+    getOrganization(): string;
+    setOrganization(value: string): void;
 
-    getResource(): string;
-    setResource(value: string): void;
+    getCollection(): string;
+    setCollection(value: string): void;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Namespace.AsObject;
+    static toObject(includeInstance: boolean, msg: Namespace): Namespace.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Namespace, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Namespace;
+    static deserializeBinaryFromReader(message: Namespace, reader: jspb.BinaryReader): Namespace;
+}
+
+export namespace Namespace {
+    export type AsObject = {
+        organization: string,
+        collection: string,
+    }
+}
+
+export class Resource extends jspb.Message { 
+    clearPathList(): void;
+    getPathList(): Array<string>;
+    setPathList(value: Array<string>): void;
+    addPath(value: string, index?: number): string;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Resource.AsObject;
+    static toObject(includeInstance: boolean, msg: Resource): Resource.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Resource, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Resource;
+    static deserializeBinaryFromReader(message: Resource, reader: jspb.BinaryReader): Resource;
+}
+
+export namespace Resource {
+    export type AsObject = {
+        pathList: Array<string>,
+    }
+}
+
+export class TileRequest extends jspb.Message { 
+
+    hasNamespace(): boolean;
+    clearNamespace(): void;
+    getNamespace(): Namespace | undefined;
+    setNamespace(value?: Namespace): void;
+
+
+    hasResource(): boolean;
+    clearResource(): void;
+    getResource(): Resource | undefined;
+    setResource(value?: Resource): void;
 
     getMetric(): string;
     setMetric(value: string): void;
@@ -81,8 +135,8 @@ export class TileRequest extends jspb.Message {
 
 export namespace TileRequest {
     export type AsObject = {
-        namespace: string,
-        resource: string,
+        namespace?: Namespace.AsObject,
+        resource?: Resource.AsObject,
         metric: string,
         index: string,
     }
