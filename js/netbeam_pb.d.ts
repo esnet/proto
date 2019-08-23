@@ -141,3 +141,97 @@ export namespace TileRequest {
         index: string,
     }
 }
+
+export class Organization extends jspb.Message { 
+    getId(): number;
+    setId(value: number): void;
+
+    getName(): string;
+    setName(value: string): void;
+
+    getDescription(): string;
+    setDescription(value: string): void;
+
+    getCreated(): string;
+    setCreated(value: string): void;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Organization.AsObject;
+    static toObject(includeInstance: boolean, msg: Organization): Organization.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Organization, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Organization;
+    static deserializeBinaryFromReader(message: Organization, reader: jspb.BinaryReader): Organization;
+}
+
+export namespace Organization {
+    export type AsObject = {
+        id: number,
+        name: string,
+        description: string,
+        created: string,
+    }
+}
+
+export class OrganizationListRequest extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): OrganizationListRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: OrganizationListRequest): OrganizationListRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: OrganizationListRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): OrganizationListRequest;
+    static deserializeBinaryFromReader(message: OrganizationListRequest, reader: jspb.BinaryReader): OrganizationListRequest;
+}
+
+export namespace OrganizationListRequest {
+    export type AsObject = {
+    }
+}
+
+export class OrganizationList extends jspb.Message { 
+    clearOrganizationsList(): void;
+    getOrganizationsList(): Array<Organization>;
+    setOrganizationsList(value: Array<Organization>): void;
+    addOrganizations(value?: Organization, index?: number): Organization;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): OrganizationList.AsObject;
+    static toObject(includeInstance: boolean, msg: OrganizationList): OrganizationList.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: OrganizationList, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): OrganizationList;
+    static deserializeBinaryFromReader(message: OrganizationList, reader: jspb.BinaryReader): OrganizationList;
+}
+
+export namespace OrganizationList {
+    export type AsObject = {
+        organizationsList: Array<Organization.AsObject>,
+    }
+}
+
+export class OrganizationRequest extends jspb.Message { 
+    getName(): string;
+    setName(value: string): void;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): OrganizationRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: OrganizationRequest): OrganizationRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: OrganizationRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): OrganizationRequest;
+    static deserializeBinaryFromReader(message: OrganizationRequest, reader: jspb.BinaryReader): OrganizationRequest;
+}
+
+export namespace OrganizationRequest {
+    export type AsObject = {
+        name: string,
+    }
+}

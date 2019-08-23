@@ -270,41 +270,230 @@ func (m *TileRequest) GetIndex() string {
 	return ""
 }
 
+type Organization struct {
+	// The database ID of the organization
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The short name of the organization
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	// A longer more descriptive name for the organization
+	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	// Creation time
+	Created              string   `protobuf:"bytes,4,opt,name=created,proto3" json:"created,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Organization) Reset()         { *m = Organization{} }
+func (m *Organization) String() string { return proto.CompactTextString(m) }
+func (*Organization) ProtoMessage()    {}
+func (*Organization) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{5}
+}
+
+func (m *Organization) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Organization.Unmarshal(m, b)
+}
+func (m *Organization) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Organization.Marshal(b, m, deterministic)
+}
+func (m *Organization) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Organization.Merge(m, src)
+}
+func (m *Organization) XXX_Size() int {
+	return xxx_messageInfo_Organization.Size(m)
+}
+func (m *Organization) XXX_DiscardUnknown() {
+	xxx_messageInfo_Organization.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Organization proto.InternalMessageInfo
+
+func (m *Organization) GetId() int64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *Organization) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *Organization) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+func (m *Organization) GetCreated() string {
+	if m != nil {
+		return m.Created
+	}
+	return ""
+}
+
+type OrganizationListRequest struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *OrganizationListRequest) Reset()         { *m = OrganizationListRequest{} }
+func (m *OrganizationListRequest) String() string { return proto.CompactTextString(m) }
+func (*OrganizationListRequest) ProtoMessage()    {}
+func (*OrganizationListRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{6}
+}
+
+func (m *OrganizationListRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OrganizationListRequest.Unmarshal(m, b)
+}
+func (m *OrganizationListRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OrganizationListRequest.Marshal(b, m, deterministic)
+}
+func (m *OrganizationListRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OrganizationListRequest.Merge(m, src)
+}
+func (m *OrganizationListRequest) XXX_Size() int {
+	return xxx_messageInfo_OrganizationListRequest.Size(m)
+}
+func (m *OrganizationListRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_OrganizationListRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OrganizationListRequest proto.InternalMessageInfo
+
+type OrganizationList struct {
+	// The list of organizations
+	Organizations        []*Organization `protobuf:"bytes,1,rep,name=organizations,proto3" json:"organizations,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *OrganizationList) Reset()         { *m = OrganizationList{} }
+func (m *OrganizationList) String() string { return proto.CompactTextString(m) }
+func (*OrganizationList) ProtoMessage()    {}
+func (*OrganizationList) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{7}
+}
+
+func (m *OrganizationList) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OrganizationList.Unmarshal(m, b)
+}
+func (m *OrganizationList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OrganizationList.Marshal(b, m, deterministic)
+}
+func (m *OrganizationList) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OrganizationList.Merge(m, src)
+}
+func (m *OrganizationList) XXX_Size() int {
+	return xxx_messageInfo_OrganizationList.Size(m)
+}
+func (m *OrganizationList) XXX_DiscardUnknown() {
+	xxx_messageInfo_OrganizationList.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OrganizationList proto.InternalMessageInfo
+
+func (m *OrganizationList) GetOrganizations() []*Organization {
+	if m != nil {
+		return m.Organizations
+	}
+	return nil
+}
+
+type OrganizationRequest struct {
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *OrganizationRequest) Reset()         { *m = OrganizationRequest{} }
+func (m *OrganizationRequest) String() string { return proto.CompactTextString(m) }
+func (*OrganizationRequest) ProtoMessage()    {}
+func (*OrganizationRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{8}
+}
+
+func (m *OrganizationRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OrganizationRequest.Unmarshal(m, b)
+}
+func (m *OrganizationRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OrganizationRequest.Marshal(b, m, deterministic)
+}
+func (m *OrganizationRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OrganizationRequest.Merge(m, src)
+}
+func (m *OrganizationRequest) XXX_Size() int {
+	return xxx_messageInfo_OrganizationRequest.Size(m)
+}
+func (m *OrganizationRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_OrganizationRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OrganizationRequest proto.InternalMessageInfo
+
+func (m *OrganizationRequest) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*HelloRequest)(nil), "netbeam.HelloRequest")
 	proto.RegisterType((*HelloReply)(nil), "netbeam.HelloReply")
 	proto.RegisterType((*Namespace)(nil), "netbeam.Namespace")
 	proto.RegisterType((*Resource)(nil), "netbeam.Resource")
 	proto.RegisterType((*TileRequest)(nil), "netbeam.TileRequest")
+	proto.RegisterType((*Organization)(nil), "netbeam.Organization")
+	proto.RegisterType((*OrganizationListRequest)(nil), "netbeam.OrganizationListRequest")
+	proto.RegisterType((*OrganizationList)(nil), "netbeam.OrganizationList")
+	proto.RegisterType((*OrganizationRequest)(nil), "netbeam.OrganizationRequest")
 }
 
 func init() { proto.RegisterFile("netbeam.proto", fileDescriptor_38d69b4fdff410ff) }
 
 var fileDescriptor_38d69b4fdff410ff = []byte{
-	// 356 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x5c, 0x52, 0xc1, 0x6e, 0xea, 0x30,
-	0x10, 0x24, 0xc0, 0x03, 0xb2, 0xf0, 0xf4, 0x5e, 0x5d, 0x5a, 0x45, 0x1c, 0x10, 0x75, 0x0f, 0xe5,
-	0xd2, 0xa4, 0xa2, 0xaa, 0xd4, 0x73, 0x0f, 0x55, 0x4f, 0x20, 0x05, 0x4e, 0xbd, 0x99, 0xb0, 0x0a,
-	0x96, 0x62, 0x3b, 0x8d, 0x8d, 0x54, 0xf8, 0x96, 0x7e, 0x6c, 0x15, 0xe3, 0x04, 0xda, 0xdb, 0xce,
-	0x64, 0xb2, 0xb3, 0xb3, 0x6b, 0xf8, 0x2b, 0xd1, 0xac, 0x91, 0x89, 0x30, 0x2f, 0x94, 0x51, 0xa4,
-	0xeb, 0xe0, 0x08, 0x72, 0x25, 0x37, 0x47, 0x92, 0x52, 0x18, 0xbc, 0x61, 0x96, 0xa9, 0x18, 0x3f,
-	0x76, 0xa8, 0x0d, 0x21, 0xd0, 0x96, 0x4c, 0x60, 0xe0, 0x4d, 0xbc, 0xa9, 0x1f, 0xdb, 0x9a, 0x2e,
-	0x00, 0x9c, 0x26, 0xcf, 0xf6, 0x24, 0x80, 0xae, 0x40, 0xad, 0x59, 0x5a, 0x89, 0x2a, 0x48, 0xee,
-	0xa0, 0x63, 0xb4, 0x61, 0x22, 0x0f, 0x9a, 0x13, 0x6f, 0xda, 0x9f, 0xfd, 0x0b, 0xad, 0xd1, 0x8a,
-	0x0b, 0xb4, 0x74, 0xec, 0x3e, 0xd3, 0x05, 0xf8, 0x73, 0x26, 0x50, 0xe7, 0x2c, 0x41, 0x42, 0x61,
-	0xa0, 0x8a, 0x94, 0x49, 0x7e, 0x60, 0x86, 0x2b, 0xe9, 0x9a, 0xfe, 0xe0, 0xc8, 0x18, 0x20, 0x51,
-	0x59, 0x86, 0x89, 0x55, 0x34, 0xad, 0xe2, 0x8c, 0xa1, 0x63, 0xe8, 0xc5, 0xa8, 0xd5, 0xae, 0x48,
-	0xb0, 0x4c, 0x90, 0x33, 0xb3, 0x0d, 0xbc, 0x49, 0xab, 0x4c, 0x50, 0xd6, 0xf4, 0xcb, 0x83, 0xfe,
-	0x8a, 0x67, 0x58, 0xa5, 0x7c, 0x00, 0x5f, 0x56, 0x03, 0x58, 0xc3, 0xfe, 0x8c, 0x84, 0xd5, 0xb6,
-	0xea, 0xd1, 0xe2, 0x93, 0x88, 0xdc, 0x43, 0xaf, 0x70, 0x0e, 0x2e, 0xdd, 0x45, 0xfd, 0x43, 0x65,
-	0x1d, 0xd7, 0x12, 0x72, 0x0d, 0x1d, 0x81, 0xa6, 0xe0, 0x49, 0xd0, 0xb2, 0xc3, 0x3a, 0x44, 0x86,
-	0xf0, 0x87, 0xcb, 0x0d, 0x7e, 0x06, 0x6d, 0x4b, 0x1f, 0xc1, 0xec, 0x00, 0xdd, 0xf9, 0xb1, 0x17,
-	0x79, 0x86, 0xde, 0x92, 0xed, 0xed, 0xba, 0xc9, 0x55, 0xed, 0x70, 0x7e, 0xa2, 0xd1, 0xe5, 0x6f,
-	0x3a, 0xcf, 0xf6, 0xb4, 0x41, 0x9e, 0xc0, 0x7f, 0x45, 0x93, 0x6c, 0xcb, 0x9c, 0x64, 0x58, 0x6b,
-	0xce, 0x62, 0x8f, 0xfe, 0x9f, 0x0e, 0xb2, 0xc4, 0x82, 0xa3, 0xa6, 0x8d, 0x97, 0xdb, 0xf7, 0x9b,
-	0x94, 0x9b, 0xed, 0x6e, 0x1d, 0x26, 0x4a, 0x44, 0xa8, 0x25, 0x9a, 0xc8, 0x3e, 0x8d, 0x28, 0x55,
-	0x91, 0x6b, 0xb2, 0xee, 0x58, 0xe6, 0xf1, 0x3b, 0x00, 0x00, 0xff, 0xff, 0xc7, 0x8b, 0x07, 0x01,
-	0x52, 0x02, 0x00, 0x00,
+	// 486 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x53, 0x4d, 0x6f, 0xd3, 0x40,
+	0x10, 0x8d, 0x9d, 0x92, 0x8f, 0x71, 0x4a, 0xdb, 0x69, 0x01, 0x37, 0x42, 0x95, 0x59, 0x0e, 0x94,
+	0x03, 0x09, 0x0a, 0x42, 0x42, 0xe2, 0xc6, 0x01, 0x7a, 0x40, 0x8d, 0xe4, 0xf6, 0xc4, 0x6d, 0x63,
+	0x8f, 0x92, 0x95, 0x6c, 0xaf, 0xf1, 0x6e, 0x24, 0xc2, 0x2f, 0xe1, 0xc0, 0x8f, 0xad, 0xbc, 0x59,
+	0x3b, 0x9b, 0x2a, 0xbd, 0x79, 0xde, 0xbe, 0xdd, 0x37, 0xef, 0xcd, 0x18, 0x8e, 0x0b, 0xd2, 0x0b,
+	0xe2, 0xf9, 0xa4, 0xac, 0xa4, 0x96, 0xd8, 0xb7, 0xe5, 0x18, 0x4a, 0x59, 0xa4, 0x5b, 0x90, 0x31,
+	0x18, 0xdd, 0x50, 0x96, 0xc9, 0x98, 0x7e, 0xaf, 0x49, 0x69, 0x44, 0x38, 0x2a, 0x78, 0x4e, 0xa1,
+	0x17, 0x79, 0xd7, 0xc3, 0xd8, 0x7c, 0xb3, 0x39, 0x80, 0xe5, 0x94, 0xd9, 0x06, 0x43, 0xe8, 0xe7,
+	0xa4, 0x14, 0x5f, 0x36, 0xa4, 0xa6, 0xc4, 0x77, 0xd0, 0xd3, 0x4a, 0xf3, 0xbc, 0x0c, 0xfd, 0xc8,
+	0xbb, 0x0e, 0x66, 0x27, 0x13, 0x23, 0x74, 0x2f, 0x72, 0x32, 0x70, 0x6c, 0x8f, 0xd9, 0x1c, 0x86,
+	0xb7, 0x3c, 0x27, 0x55, 0xf2, 0x84, 0x90, 0xc1, 0x48, 0x56, 0x4b, 0x5e, 0x88, 0xbf, 0x5c, 0x0b,
+	0x59, 0xd8, 0x47, 0xf7, 0x30, 0xbc, 0x02, 0x48, 0x64, 0x96, 0x51, 0x62, 0x18, 0xbe, 0x61, 0x38,
+	0x08, 0xbb, 0x82, 0x41, 0x4c, 0x4a, 0xae, 0xab, 0x84, 0x6a, 0x07, 0x25, 0xd7, 0xab, 0xd0, 0x8b,
+	0xba, 0xb5, 0x83, 0xfa, 0x9b, 0xfd, 0xf7, 0x20, 0xb8, 0x17, 0x19, 0x35, 0x2e, 0x3f, 0xc2, 0xb0,
+	0x68, 0x1a, 0x30, 0x82, 0xc1, 0x0c, 0x27, 0x4d, 0x5a, 0x6d, 0x6b, 0xf1, 0x8e, 0x84, 0x1f, 0x60,
+	0x50, 0x59, 0x05, 0xeb, 0xee, 0xac, 0xbd, 0xd0, 0x48, 0xc7, 0x2d, 0x05, 0x5f, 0x42, 0x2f, 0x27,
+	0x5d, 0x89, 0x24, 0xec, 0x9a, 0x66, 0x6d, 0x85, 0x17, 0xf0, 0x4c, 0x14, 0x29, 0xfd, 0x09, 0x8f,
+	0x0c, 0xbc, 0x2d, 0x58, 0x01, 0xa3, 0xb9, 0x6b, 0xf7, 0x39, 0xf8, 0x22, 0x35, 0x7d, 0x75, 0x63,
+	0x5f, 0xa4, 0xed, 0x50, 0xfc, 0xdd, 0x50, 0x30, 0x82, 0x20, 0x25, 0x95, 0x54, 0xa2, 0x34, 0x99,
+	0x6c, 0x65, 0x5c, 0xa8, 0x1e, 0x54, 0x52, 0x11, 0xd7, 0x94, 0x5a, 0xb5, 0xa6, 0x64, 0x97, 0xf0,
+	0xca, 0xd5, 0xfb, 0x29, 0x94, 0xb6, 0xc9, 0xb0, 0x39, 0x9c, 0x3e, 0x3e, 0xc2, 0xaf, 0x70, 0xec,
+	0x4e, 0x43, 0x99, 0x68, 0x83, 0xd9, 0x8b, 0x36, 0x00, 0xf7, 0x46, 0xbc, 0xcf, 0x65, 0xef, 0xe1,
+	0x7c, 0xef, 0xf8, 0xe9, 0x3d, 0x9b, 0xfd, 0xf3, 0xa1, 0x7f, 0xbb, 0x7d, 0x12, 0xbf, 0xc0, 0xe0,
+	0x8e, 0x6f, 0xcc, 0xda, 0xe1, 0x4e, 0xc8, 0x5d, 0xd5, 0xf1, 0xf9, 0x63, 0xb8, 0xcc, 0x36, 0xac,
+	0x83, 0x9f, 0x61, 0xf8, 0x9d, 0x74, 0xb2, 0xaa, 0xe7, 0x8d, 0x17, 0x2d, 0xc7, 0x19, 0xff, 0xf8,
+	0x74, 0xb7, 0x98, 0x77, 0x54, 0x09, 0x52, 0xac, 0x83, 0x31, 0x9c, 0xd5, 0x66, 0xdd, 0x5e, 0x15,
+	0x46, 0x07, 0x2d, 0x3a, 0x79, 0x8d, 0x2f, 0x9f, 0x64, 0xb0, 0x0e, 0xde, 0xc0, 0xc9, 0x0f, 0xda,
+	0x7b, 0x12, 0x5f, 0x1f, 0x0e, 0xcd, 0xbe, 0x76, 0x38, 0x52, 0xd6, 0xf9, 0xf6, 0xf6, 0xd7, 0x9b,
+	0xa5, 0xd0, 0xab, 0xf5, 0x62, 0x92, 0xc8, 0x7c, 0x4a, 0xaa, 0x20, 0x3d, 0x35, 0x3f, 0xf0, 0x74,
+	0x29, 0xa7, 0xf6, 0xce, 0xa2, 0x67, 0x90, 0x4f, 0x0f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x44, 0x31,
+	0xa8, 0x9c, 0xf8, 0x03, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -323,6 +512,10 @@ type NetbeamClient interface {
 	SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error)
 	// Requests a tile from the netbeam core for a specific metric
 	FetchTile(ctx context.Context, in *TileRequest, opts ...grpc.CallOption) (*pond.TimeSeries, error)
+	// Request the list of Organizations registered with netbeam
+	ListOrganizations(ctx context.Context, in *OrganizationListRequest, opts ...grpc.CallOption) (*OrganizationList, error)
+	// Get a specific Organization by supplying it's short name
+	GetOrganization(ctx context.Context, in *OrganizationRequest, opts ...grpc.CallOption) (*Organization, error)
 }
 
 type netbeamClient struct {
@@ -351,12 +544,34 @@ func (c *netbeamClient) FetchTile(ctx context.Context, in *TileRequest, opts ...
 	return out, nil
 }
 
+func (c *netbeamClient) ListOrganizations(ctx context.Context, in *OrganizationListRequest, opts ...grpc.CallOption) (*OrganizationList, error) {
+	out := new(OrganizationList)
+	err := c.cc.Invoke(ctx, "/netbeam.Netbeam/ListOrganizations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *netbeamClient) GetOrganization(ctx context.Context, in *OrganizationRequest, opts ...grpc.CallOption) (*Organization, error) {
+	out := new(Organization)
+	err := c.cc.Invoke(ctx, "/netbeam.Netbeam/GetOrganization", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NetbeamServer is the server API for Netbeam service.
 type NetbeamServer interface {
 	// Sends a greeting
 	SayHello(context.Context, *HelloRequest) (*HelloReply, error)
 	// Requests a tile from the netbeam core for a specific metric
 	FetchTile(context.Context, *TileRequest) (*pond.TimeSeries, error)
+	// Request the list of Organizations registered with netbeam
+	ListOrganizations(context.Context, *OrganizationListRequest) (*OrganizationList, error)
+	// Get a specific Organization by supplying it's short name
+	GetOrganization(context.Context, *OrganizationRequest) (*Organization, error)
 }
 
 // UnimplementedNetbeamServer can be embedded to have forward compatible implementations.
@@ -368,6 +583,12 @@ func (*UnimplementedNetbeamServer) SayHello(ctx context.Context, req *HelloReque
 }
 func (*UnimplementedNetbeamServer) FetchTile(ctx context.Context, req *TileRequest) (*pond.TimeSeries, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FetchTile not implemented")
+}
+func (*UnimplementedNetbeamServer) ListOrganizations(ctx context.Context, req *OrganizationListRequest) (*OrganizationList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListOrganizations not implemented")
+}
+func (*UnimplementedNetbeamServer) GetOrganization(ctx context.Context, req *OrganizationRequest) (*Organization, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganization not implemented")
 }
 
 func RegisterNetbeamServer(s *grpc.Server, srv NetbeamServer) {
@@ -410,6 +631,42 @@ func _Netbeam_FetchTile_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Netbeam_ListOrganizations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OrganizationListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetbeamServer).ListOrganizations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/netbeam.Netbeam/ListOrganizations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetbeamServer).ListOrganizations(ctx, req.(*OrganizationListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Netbeam_GetOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(OrganizationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetbeamServer).GetOrganization(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/netbeam.Netbeam/GetOrganization",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetbeamServer).GetOrganization(ctx, req.(*OrganizationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Netbeam_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "netbeam.Netbeam",
 	HandlerType: (*NetbeamServer)(nil),
@@ -421,6 +678,14 @@ var _Netbeam_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FetchTile",
 			Handler:    _Netbeam_FetchTile_Handler,
+		},
+		{
+			MethodName: "ListOrganizations",
+			Handler:    _Netbeam_ListOrganizations_Handler,
+		},
+		{
+			MethodName: "GetOrganization",
+			Handler:    _Netbeam_GetOrganization_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

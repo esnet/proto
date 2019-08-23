@@ -44,10 +44,42 @@ message TileRequest {
     string index = 4;
 }
 
+message Organization {
+    // The database ID of the organization
+    int64 id = 1;
+
+    // The short name of the organization
+    string name = 2;
+
+    // A longer more descriptive name for the organization
+    string description = 3;
+
+    // Creation time
+    string created = 4;
+}
+
+message OrganizationListRequest {
+}
+
+message OrganizationList {
+    // The list of organizations
+    repeated Organization organizations = 1;
+}
+
+message OrganizationRequest {
+    string name = 1;
+}
+
 service Netbeam {
     // Sends a greeting
     rpc SayHello (HelloRequest) returns (HelloReply) {}
 
     // Requests a tile from the netbeam core for a specific metric
     rpc FetchTile (TileRequest) returns (pond.TimeSeries) {}
+
+    // Request the list of Organizations registered with netbeam
+    rpc ListOrganizations (OrganizationListRequest) returns (OrganizationList) {}
+
+    // Get a specific Organization by supplying it's short name
+    rpc GetOrganization (OrganizationRequest) returns (Organization) {}
 }
