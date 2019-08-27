@@ -5,6 +5,9 @@ import "pond.proto";
 package netbeam;
 option go_package = "github.com/esnet/proto/go/netbeam";
 
+message Empty {
+}
+
 // The request message containing the user's name.
 message HelloRequest {
     string name = 1;
@@ -46,19 +49,13 @@ message TileRequest {
 
 message Organization {
     // The database ID of the organization
-    int64 id = 1;
+    int32 id = 1;
 
     // The short name of the organization
     string name = 2;
 
     // A longer more descriptive name for the organization
     string description = 3;
-
-    // Creation time
-    string created = 4;
-}
-
-message OrganizationListRequest {
 }
 
 message OrganizationList {
@@ -66,20 +63,162 @@ message OrganizationList {
     repeated Organization organizations = 1;
 }
 
+message Collection {
+    // The database ID of the Collection
+    int32 id = 1;
+
+    // The namespace of anything within this Collection, contains both the Organization name
+    // and the Collection name e.g. {organization: "esnet", collection: "prod"}
+    Namespace namespace = 2;
+
+    // A longer more human readable name or description for the Collection
+    string description = 3;
+}
+
+message CollectionList {
+    // A list of Collections
+    repeated Collection collections = 1;
+}
+
+message Source {
+    // The database ID of the Source
+    int32 id = 1;
+
+    // The namespace that contains the Source e.g. {organization: "esnet", collection: "prod"}
+    Namespace namespace = 2;
+
+    // The index of the Source, which is how the Source is referred to within ingest Events
+    int32 index = 3;
+
+     // Priority, which determines which Events will be used if the same Event comes from multiple sources
+    int32 priority = 4;
+
+    // Description of the Source and what it represents
+    string description = 5;
+}
+
+message SourceList {
+    // The list of Sources
+    repeated Source sources = 1;
+}
+
+//
+// Service Request objects
+//
+
+message OrganizationListRequest {
+}
+
 message OrganizationRequest {
     string name = 1;
 }
 
+message CollectionListRequest {
+    // The short name of the Organization containing the Collections
+    string organization = 1;
+}
+
+message CollectionRequest {
+    // The Organization to look up the Collection in
+    string organization = 1;
+
+    // The short name of the Collection
+    string name = 2;
+}
+
+message CreateSourceRequest {
+    // The namespace containing the Source
+    Namespace namespace = 1;
+
+    // The index of the Source, which should be unique, and is how the source is referred to within ingest events
+    int32 index = 2;
+
+    // The relative priority of the Source used to merge events
+    int32 priority = 3;
+
+    // A human friendly escription of the Source and what it represents
+    string description = 4;
+}
+
+message ChangeSourcePriorityRequest {
+    // The namespace containing the Source
+    Namespace namespace = 1;
+
+    // The index of the Source to update
+    int32 index = 2;
+
+    // The new relative priority of the Source
+    int32 priority = 3;
+}
+
+message SourceListRequest {
+    Namespace namespace = 1;
+}
+
+message SourceRequest {
+    // The Organization and Collection of the source
+    Namespace namespace = 1;
+
+    // The index of the Source
+    string index = 2;
+}
+
+message DeleteSourceRequest {
+    // The namespace containing the Source
+    Namespace namespace = 1;
+
+    // The index of the Source to delete
+    int32 index = 2;
+}
+
+//
+// Netbeam gRPC API Service description
+//
+
 service Netbeam {
-    // Sends a greeting
+    // Say hello to netbeam
     rpc SayHello (HelloRequest) returns (HelloReply) {}
+
+    //
+    // Queries
+    //
 
     // Requests a tile from the netbeam core for a specific metric
     rpc FetchTile (TileRequest) returns (pond.TimeSeries) {}
+
+    //
+    // Admin: Organizations
+    //
 
     // Request the list of Organizations registered with netbeam
     rpc ListOrganizations (OrganizationListRequest) returns (OrganizationList) {}
 
     // Get a specific Organization by supplying it's short name
     rpc GetOrganization (OrganizationRequest) returns (Organization) {}
+
+    //
+    // Admin: Collections
+    //
+
+    // Request the list of Collections within an Organization registered with netbeam
+    rpc ListCollections (CollectionListRequest) returns (CollectionList) {}
+
+    // Get a specific Collection by supplying the Organization it is in as well as the Collection short name
+    rpc GetCollection (CollectionRequest) returns (Collection) {}
+
+    //
+    // Admin: Sources
+    //
+
+    // Request the list of all Sources within a Collection. The list will be returned in order of priority.
+    rpc ListSources (SourceListRequest) returns (SourceList) {}
+
+    // Registers a new Source with the Collection
+    rpc CreateSource (CreateSourceRequest) returns (Source) {}
+
+    // Update the Source priority
+    rpc UpdateSourcePriority (ChangeSourcePriorityRequest) returns (Source) {}
+
+    // Delete the Source
+    rpc DeleteSource (DeleteSourceRequest) returns (Empty) {}
 }

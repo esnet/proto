@@ -25,6 +25,37 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type Empty struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Empty) Reset()         { *m = Empty{} }
+func (m *Empty) String() string { return proto.CompactTextString(m) }
+func (*Empty) ProtoMessage()    {}
+func (*Empty) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{0}
+}
+
+func (m *Empty) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Empty.Unmarshal(m, b)
+}
+func (m *Empty) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Empty.Marshal(b, m, deterministic)
+}
+func (m *Empty) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Empty.Merge(m, src)
+}
+func (m *Empty) XXX_Size() int {
+	return xxx_messageInfo_Empty.Size(m)
+}
+func (m *Empty) XXX_DiscardUnknown() {
+	xxx_messageInfo_Empty.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Empty proto.InternalMessageInfo
+
 // The request message containing the user's name.
 type HelloRequest struct {
 	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
@@ -37,7 +68,7 @@ func (m *HelloRequest) Reset()         { *m = HelloRequest{} }
 func (m *HelloRequest) String() string { return proto.CompactTextString(m) }
 func (*HelloRequest) ProtoMessage()    {}
 func (*HelloRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{0}
+	return fileDescriptor_38d69b4fdff410ff, []int{1}
 }
 
 func (m *HelloRequest) XXX_Unmarshal(b []byte) error {
@@ -78,7 +109,7 @@ func (m *HelloReply) Reset()         { *m = HelloReply{} }
 func (m *HelloReply) String() string { return proto.CompactTextString(m) }
 func (*HelloReply) ProtoMessage()    {}
 func (*HelloReply) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{1}
+	return fileDescriptor_38d69b4fdff410ff, []int{2}
 }
 
 func (m *HelloReply) XXX_Unmarshal(b []byte) error {
@@ -128,7 +159,7 @@ func (m *Namespace) Reset()         { *m = Namespace{} }
 func (m *Namespace) String() string { return proto.CompactTextString(m) }
 func (*Namespace) ProtoMessage()    {}
 func (*Namespace) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{2}
+	return fileDescriptor_38d69b4fdff410ff, []int{3}
 }
 
 func (m *Namespace) XXX_Unmarshal(b []byte) error {
@@ -175,7 +206,7 @@ func (m *Resource) Reset()         { *m = Resource{} }
 func (m *Resource) String() string { return proto.CompactTextString(m) }
 func (*Resource) ProtoMessage()    {}
 func (*Resource) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{3}
+	return fileDescriptor_38d69b4fdff410ff, []int{4}
 }
 
 func (m *Resource) XXX_Unmarshal(b []byte) error {
@@ -221,7 +252,7 @@ func (m *TileRequest) Reset()         { *m = TileRequest{} }
 func (m *TileRequest) String() string { return proto.CompactTextString(m) }
 func (*TileRequest) ProtoMessage()    {}
 func (*TileRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{4}
+	return fileDescriptor_38d69b4fdff410ff, []int{5}
 }
 
 func (m *TileRequest) XXX_Unmarshal(b []byte) error {
@@ -272,13 +303,11 @@ func (m *TileRequest) GetIndex() string {
 
 type Organization struct {
 	// The database ID of the organization
-	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	// The short name of the organization
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// A longer more descriptive name for the organization
-	Description string `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	// Creation time
-	Created              string   `protobuf:"bytes,4,opt,name=created,proto3" json:"created,omitempty"`
+	Description          string   `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -288,7 +317,7 @@ func (m *Organization) Reset()         { *m = Organization{} }
 func (m *Organization) String() string { return proto.CompactTextString(m) }
 func (*Organization) ProtoMessage()    {}
 func (*Organization) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{5}
+	return fileDescriptor_38d69b4fdff410ff, []int{6}
 }
 
 func (m *Organization) XXX_Unmarshal(b []byte) error {
@@ -309,7 +338,7 @@ func (m *Organization) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Organization proto.InternalMessageInfo
 
-func (m *Organization) GetId() int64 {
+func (m *Organization) GetId() int32 {
 	if m != nil {
 		return m.Id
 	}
@@ -329,44 +358,6 @@ func (m *Organization) GetDescription() string {
 	}
 	return ""
 }
-
-func (m *Organization) GetCreated() string {
-	if m != nil {
-		return m.Created
-	}
-	return ""
-}
-
-type OrganizationListRequest struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *OrganizationListRequest) Reset()         { *m = OrganizationListRequest{} }
-func (m *OrganizationListRequest) String() string { return proto.CompactTextString(m) }
-func (*OrganizationListRequest) ProtoMessage()    {}
-func (*OrganizationListRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{6}
-}
-
-func (m *OrganizationListRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_OrganizationListRequest.Unmarshal(m, b)
-}
-func (m *OrganizationListRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_OrganizationListRequest.Marshal(b, m, deterministic)
-}
-func (m *OrganizationListRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_OrganizationListRequest.Merge(m, src)
-}
-func (m *OrganizationListRequest) XXX_Size() int {
-	return xxx_messageInfo_OrganizationListRequest.Size(m)
-}
-func (m *OrganizationListRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_OrganizationListRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_OrganizationListRequest proto.InternalMessageInfo
 
 type OrganizationList struct {
 	// The list of organizations
@@ -408,6 +399,252 @@ func (m *OrganizationList) GetOrganizations() []*Organization {
 	return nil
 }
 
+type Collection struct {
+	// The database ID of the Collection
+	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The namespace of anything within this Collection, contains both the Organization name
+	// and the Collection name e.g. {organization: "esnet", collection: "prod"}
+	Namespace *Namespace `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// A longer more human readable name or description for the Collection
+	Description          string   `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Collection) Reset()         { *m = Collection{} }
+func (m *Collection) String() string { return proto.CompactTextString(m) }
+func (*Collection) ProtoMessage()    {}
+func (*Collection) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{8}
+}
+
+func (m *Collection) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Collection.Unmarshal(m, b)
+}
+func (m *Collection) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Collection.Marshal(b, m, deterministic)
+}
+func (m *Collection) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Collection.Merge(m, src)
+}
+func (m *Collection) XXX_Size() int {
+	return xxx_messageInfo_Collection.Size(m)
+}
+func (m *Collection) XXX_DiscardUnknown() {
+	xxx_messageInfo_Collection.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Collection proto.InternalMessageInfo
+
+func (m *Collection) GetId() int32 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *Collection) GetNamespace() *Namespace {
+	if m != nil {
+		return m.Namespace
+	}
+	return nil
+}
+
+func (m *Collection) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+type CollectionList struct {
+	// A list of Collections
+	Collections          []*Collection `protobuf:"bytes,1,rep,name=collections,proto3" json:"collections,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *CollectionList) Reset()         { *m = CollectionList{} }
+func (m *CollectionList) String() string { return proto.CompactTextString(m) }
+func (*CollectionList) ProtoMessage()    {}
+func (*CollectionList) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{9}
+}
+
+func (m *CollectionList) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CollectionList.Unmarshal(m, b)
+}
+func (m *CollectionList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CollectionList.Marshal(b, m, deterministic)
+}
+func (m *CollectionList) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CollectionList.Merge(m, src)
+}
+func (m *CollectionList) XXX_Size() int {
+	return xxx_messageInfo_CollectionList.Size(m)
+}
+func (m *CollectionList) XXX_DiscardUnknown() {
+	xxx_messageInfo_CollectionList.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CollectionList proto.InternalMessageInfo
+
+func (m *CollectionList) GetCollections() []*Collection {
+	if m != nil {
+		return m.Collections
+	}
+	return nil
+}
+
+type Source struct {
+	// The database ID of the Source
+	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The namespace that contains the Source e.g. {organization: "esnet", collection: "prod"}
+	Namespace *Namespace `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// The index of the Source, which is how the Source is referred to within ingest Events
+	Index int32 `protobuf:"varint,3,opt,name=index,proto3" json:"index,omitempty"`
+	// Priority, which determines which Events will be used if the same Event comes from multiple sources
+	Priority int32 `protobuf:"varint,4,opt,name=priority,proto3" json:"priority,omitempty"`
+	// Description of the Source and what it represents
+	Description          string   `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Source) Reset()         { *m = Source{} }
+func (m *Source) String() string { return proto.CompactTextString(m) }
+func (*Source) ProtoMessage()    {}
+func (*Source) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{10}
+}
+
+func (m *Source) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Source.Unmarshal(m, b)
+}
+func (m *Source) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Source.Marshal(b, m, deterministic)
+}
+func (m *Source) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Source.Merge(m, src)
+}
+func (m *Source) XXX_Size() int {
+	return xxx_messageInfo_Source.Size(m)
+}
+func (m *Source) XXX_DiscardUnknown() {
+	xxx_messageInfo_Source.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Source proto.InternalMessageInfo
+
+func (m *Source) GetId() int32 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *Source) GetNamespace() *Namespace {
+	if m != nil {
+		return m.Namespace
+	}
+	return nil
+}
+
+func (m *Source) GetIndex() int32 {
+	if m != nil {
+		return m.Index
+	}
+	return 0
+}
+
+func (m *Source) GetPriority() int32 {
+	if m != nil {
+		return m.Priority
+	}
+	return 0
+}
+
+func (m *Source) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+type SourceList struct {
+	// The list of Sources
+	Sources              []*Source `protobuf:"bytes,1,rep,name=sources,proto3" json:"sources,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
+	XXX_unrecognized     []byte    `json:"-"`
+	XXX_sizecache        int32     `json:"-"`
+}
+
+func (m *SourceList) Reset()         { *m = SourceList{} }
+func (m *SourceList) String() string { return proto.CompactTextString(m) }
+func (*SourceList) ProtoMessage()    {}
+func (*SourceList) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{11}
+}
+
+func (m *SourceList) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SourceList.Unmarshal(m, b)
+}
+func (m *SourceList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SourceList.Marshal(b, m, deterministic)
+}
+func (m *SourceList) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SourceList.Merge(m, src)
+}
+func (m *SourceList) XXX_Size() int {
+	return xxx_messageInfo_SourceList.Size(m)
+}
+func (m *SourceList) XXX_DiscardUnknown() {
+	xxx_messageInfo_SourceList.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SourceList proto.InternalMessageInfo
+
+func (m *SourceList) GetSources() []*Source {
+	if m != nil {
+		return m.Sources
+	}
+	return nil
+}
+
+type OrganizationListRequest struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *OrganizationListRequest) Reset()         { *m = OrganizationListRequest{} }
+func (m *OrganizationListRequest) String() string { return proto.CompactTextString(m) }
+func (*OrganizationListRequest) ProtoMessage()    {}
+func (*OrganizationListRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{12}
+}
+
+func (m *OrganizationListRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OrganizationListRequest.Unmarshal(m, b)
+}
+func (m *OrganizationListRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OrganizationListRequest.Marshal(b, m, deterministic)
+}
+func (m *OrganizationListRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OrganizationListRequest.Merge(m, src)
+}
+func (m *OrganizationListRequest) XXX_Size() int {
+	return xxx_messageInfo_OrganizationListRequest.Size(m)
+}
+func (m *OrganizationListRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_OrganizationListRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OrganizationListRequest proto.InternalMessageInfo
+
 type OrganizationRequest struct {
 	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -419,7 +656,7 @@ func (m *OrganizationRequest) Reset()         { *m = OrganizationRequest{} }
 func (m *OrganizationRequest) String() string { return proto.CompactTextString(m) }
 func (*OrganizationRequest) ProtoMessage()    {}
 func (*OrganizationRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{8}
+	return fileDescriptor_38d69b4fdff410ff, []int{13}
 }
 
 func (m *OrganizationRequest) XXX_Unmarshal(b []byte) error {
@@ -447,53 +684,434 @@ func (m *OrganizationRequest) GetName() string {
 	return ""
 }
 
+type CollectionListRequest struct {
+	// The short name of the Organization containing the Collections
+	Organization         string   `protobuf:"bytes,1,opt,name=organization,proto3" json:"organization,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CollectionListRequest) Reset()         { *m = CollectionListRequest{} }
+func (m *CollectionListRequest) String() string { return proto.CompactTextString(m) }
+func (*CollectionListRequest) ProtoMessage()    {}
+func (*CollectionListRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{14}
+}
+
+func (m *CollectionListRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CollectionListRequest.Unmarshal(m, b)
+}
+func (m *CollectionListRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CollectionListRequest.Marshal(b, m, deterministic)
+}
+func (m *CollectionListRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CollectionListRequest.Merge(m, src)
+}
+func (m *CollectionListRequest) XXX_Size() int {
+	return xxx_messageInfo_CollectionListRequest.Size(m)
+}
+func (m *CollectionListRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CollectionListRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CollectionListRequest proto.InternalMessageInfo
+
+func (m *CollectionListRequest) GetOrganization() string {
+	if m != nil {
+		return m.Organization
+	}
+	return ""
+}
+
+type CollectionRequest struct {
+	// The Organization to look up the Collection in
+	Organization string `protobuf:"bytes,1,opt,name=organization,proto3" json:"organization,omitempty"`
+	// The short name of the Collection
+	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CollectionRequest) Reset()         { *m = CollectionRequest{} }
+func (m *CollectionRequest) String() string { return proto.CompactTextString(m) }
+func (*CollectionRequest) ProtoMessage()    {}
+func (*CollectionRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{15}
+}
+
+func (m *CollectionRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CollectionRequest.Unmarshal(m, b)
+}
+func (m *CollectionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CollectionRequest.Marshal(b, m, deterministic)
+}
+func (m *CollectionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CollectionRequest.Merge(m, src)
+}
+func (m *CollectionRequest) XXX_Size() int {
+	return xxx_messageInfo_CollectionRequest.Size(m)
+}
+func (m *CollectionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CollectionRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CollectionRequest proto.InternalMessageInfo
+
+func (m *CollectionRequest) GetOrganization() string {
+	if m != nil {
+		return m.Organization
+	}
+	return ""
+}
+
+func (m *CollectionRequest) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+type CreateSourceRequest struct {
+	// The namespace containing the Source
+	Namespace *Namespace `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// The index of the Source, which should be unique, and is how the source is referred to within ingest events
+	Index int32 `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
+	// The relative priority of the Source used to merge events
+	Priority int32 `protobuf:"varint,3,opt,name=priority,proto3" json:"priority,omitempty"`
+	// A human friendly escription of the Source and what it represents
+	Description          string   `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateSourceRequest) Reset()         { *m = CreateSourceRequest{} }
+func (m *CreateSourceRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateSourceRequest) ProtoMessage()    {}
+func (*CreateSourceRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{16}
+}
+
+func (m *CreateSourceRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateSourceRequest.Unmarshal(m, b)
+}
+func (m *CreateSourceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateSourceRequest.Marshal(b, m, deterministic)
+}
+func (m *CreateSourceRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateSourceRequest.Merge(m, src)
+}
+func (m *CreateSourceRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateSourceRequest.Size(m)
+}
+func (m *CreateSourceRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateSourceRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateSourceRequest proto.InternalMessageInfo
+
+func (m *CreateSourceRequest) GetNamespace() *Namespace {
+	if m != nil {
+		return m.Namespace
+	}
+	return nil
+}
+
+func (m *CreateSourceRequest) GetIndex() int32 {
+	if m != nil {
+		return m.Index
+	}
+	return 0
+}
+
+func (m *CreateSourceRequest) GetPriority() int32 {
+	if m != nil {
+		return m.Priority
+	}
+	return 0
+}
+
+func (m *CreateSourceRequest) GetDescription() string {
+	if m != nil {
+		return m.Description
+	}
+	return ""
+}
+
+type ChangeSourcePriorityRequest struct {
+	// The namespace containing the Source
+	Namespace *Namespace `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// The index of the Source to update
+	Index int32 `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
+	// The new relative priority of the Source
+	Priority             int32    `protobuf:"varint,3,opt,name=priority,proto3" json:"priority,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ChangeSourcePriorityRequest) Reset()         { *m = ChangeSourcePriorityRequest{} }
+func (m *ChangeSourcePriorityRequest) String() string { return proto.CompactTextString(m) }
+func (*ChangeSourcePriorityRequest) ProtoMessage()    {}
+func (*ChangeSourcePriorityRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{17}
+}
+
+func (m *ChangeSourcePriorityRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ChangeSourcePriorityRequest.Unmarshal(m, b)
+}
+func (m *ChangeSourcePriorityRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ChangeSourcePriorityRequest.Marshal(b, m, deterministic)
+}
+func (m *ChangeSourcePriorityRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ChangeSourcePriorityRequest.Merge(m, src)
+}
+func (m *ChangeSourcePriorityRequest) XXX_Size() int {
+	return xxx_messageInfo_ChangeSourcePriorityRequest.Size(m)
+}
+func (m *ChangeSourcePriorityRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ChangeSourcePriorityRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ChangeSourcePriorityRequest proto.InternalMessageInfo
+
+func (m *ChangeSourcePriorityRequest) GetNamespace() *Namespace {
+	if m != nil {
+		return m.Namespace
+	}
+	return nil
+}
+
+func (m *ChangeSourcePriorityRequest) GetIndex() int32 {
+	if m != nil {
+		return m.Index
+	}
+	return 0
+}
+
+func (m *ChangeSourcePriorityRequest) GetPriority() int32 {
+	if m != nil {
+		return m.Priority
+	}
+	return 0
+}
+
+type SourceListRequest struct {
+	Namespace            *Namespace `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
+}
+
+func (m *SourceListRequest) Reset()         { *m = SourceListRequest{} }
+func (m *SourceListRequest) String() string { return proto.CompactTextString(m) }
+func (*SourceListRequest) ProtoMessage()    {}
+func (*SourceListRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{18}
+}
+
+func (m *SourceListRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SourceListRequest.Unmarshal(m, b)
+}
+func (m *SourceListRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SourceListRequest.Marshal(b, m, deterministic)
+}
+func (m *SourceListRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SourceListRequest.Merge(m, src)
+}
+func (m *SourceListRequest) XXX_Size() int {
+	return xxx_messageInfo_SourceListRequest.Size(m)
+}
+func (m *SourceListRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SourceListRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SourceListRequest proto.InternalMessageInfo
+
+func (m *SourceListRequest) GetNamespace() *Namespace {
+	if m != nil {
+		return m.Namespace
+	}
+	return nil
+}
+
+type SourceRequest struct {
+	// The Organization and Collection of the source
+	Namespace *Namespace `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// The index of the Source
+	Index                string   `protobuf:"bytes,2,opt,name=index,proto3" json:"index,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SourceRequest) Reset()         { *m = SourceRequest{} }
+func (m *SourceRequest) String() string { return proto.CompactTextString(m) }
+func (*SourceRequest) ProtoMessage()    {}
+func (*SourceRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{19}
+}
+
+func (m *SourceRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SourceRequest.Unmarshal(m, b)
+}
+func (m *SourceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SourceRequest.Marshal(b, m, deterministic)
+}
+func (m *SourceRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SourceRequest.Merge(m, src)
+}
+func (m *SourceRequest) XXX_Size() int {
+	return xxx_messageInfo_SourceRequest.Size(m)
+}
+func (m *SourceRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SourceRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SourceRequest proto.InternalMessageInfo
+
+func (m *SourceRequest) GetNamespace() *Namespace {
+	if m != nil {
+		return m.Namespace
+	}
+	return nil
+}
+
+func (m *SourceRequest) GetIndex() string {
+	if m != nil {
+		return m.Index
+	}
+	return ""
+}
+
+type DeleteSourceRequest struct {
+	// The namespace containing the Source
+	Namespace *Namespace `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// The index of the Source to delete
+	Index                int32    `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeleteSourceRequest) Reset()         { *m = DeleteSourceRequest{} }
+func (m *DeleteSourceRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteSourceRequest) ProtoMessage()    {}
+func (*DeleteSourceRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{20}
+}
+
+func (m *DeleteSourceRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteSourceRequest.Unmarshal(m, b)
+}
+func (m *DeleteSourceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteSourceRequest.Marshal(b, m, deterministic)
+}
+func (m *DeleteSourceRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteSourceRequest.Merge(m, src)
+}
+func (m *DeleteSourceRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteSourceRequest.Size(m)
+}
+func (m *DeleteSourceRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteSourceRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteSourceRequest proto.InternalMessageInfo
+
+func (m *DeleteSourceRequest) GetNamespace() *Namespace {
+	if m != nil {
+		return m.Namespace
+	}
+	return nil
+}
+
+func (m *DeleteSourceRequest) GetIndex() int32 {
+	if m != nil {
+		return m.Index
+	}
+	return 0
+}
+
 func init() {
+	proto.RegisterType((*Empty)(nil), "netbeam.Empty")
 	proto.RegisterType((*HelloRequest)(nil), "netbeam.HelloRequest")
 	proto.RegisterType((*HelloReply)(nil), "netbeam.HelloReply")
 	proto.RegisterType((*Namespace)(nil), "netbeam.Namespace")
 	proto.RegisterType((*Resource)(nil), "netbeam.Resource")
 	proto.RegisterType((*TileRequest)(nil), "netbeam.TileRequest")
 	proto.RegisterType((*Organization)(nil), "netbeam.Organization")
-	proto.RegisterType((*OrganizationListRequest)(nil), "netbeam.OrganizationListRequest")
 	proto.RegisterType((*OrganizationList)(nil), "netbeam.OrganizationList")
+	proto.RegisterType((*Collection)(nil), "netbeam.Collection")
+	proto.RegisterType((*CollectionList)(nil), "netbeam.CollectionList")
+	proto.RegisterType((*Source)(nil), "netbeam.Source")
+	proto.RegisterType((*SourceList)(nil), "netbeam.SourceList")
+	proto.RegisterType((*OrganizationListRequest)(nil), "netbeam.OrganizationListRequest")
 	proto.RegisterType((*OrganizationRequest)(nil), "netbeam.OrganizationRequest")
+	proto.RegisterType((*CollectionListRequest)(nil), "netbeam.CollectionListRequest")
+	proto.RegisterType((*CollectionRequest)(nil), "netbeam.CollectionRequest")
+	proto.RegisterType((*CreateSourceRequest)(nil), "netbeam.CreateSourceRequest")
+	proto.RegisterType((*ChangeSourcePriorityRequest)(nil), "netbeam.ChangeSourcePriorityRequest")
+	proto.RegisterType((*SourceListRequest)(nil), "netbeam.SourceListRequest")
+	proto.RegisterType((*SourceRequest)(nil), "netbeam.SourceRequest")
+	proto.RegisterType((*DeleteSourceRequest)(nil), "netbeam.DeleteSourceRequest")
 }
 
 func init() { proto.RegisterFile("netbeam.proto", fileDescriptor_38d69b4fdff410ff) }
 
 var fileDescriptor_38d69b4fdff410ff = []byte{
-	// 486 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x53, 0x4d, 0x6f, 0xd3, 0x40,
-	0x10, 0x8d, 0x9d, 0x92, 0x8f, 0x71, 0x4a, 0xdb, 0x69, 0x01, 0x37, 0x42, 0x95, 0x59, 0x0e, 0x94,
-	0x03, 0x09, 0x0a, 0x42, 0x42, 0xe2, 0xc6, 0x01, 0x7a, 0x40, 0x8d, 0xe4, 0xf6, 0xc4, 0x6d, 0x63,
-	0x8f, 0x92, 0x95, 0x6c, 0xaf, 0xf1, 0x6e, 0x24, 0xc2, 0x2f, 0xe1, 0xc0, 0x8f, 0xad, 0xbc, 0x59,
-	0x3b, 0x9b, 0x2a, 0xbd, 0x79, 0xde, 0xbe, 0xdd, 0x37, 0xef, 0xcd, 0x18, 0x8e, 0x0b, 0xd2, 0x0b,
-	0xe2, 0xf9, 0xa4, 0xac, 0xa4, 0x96, 0xd8, 0xb7, 0xe5, 0x18, 0x4a, 0x59, 0xa4, 0x5b, 0x90, 0x31,
-	0x18, 0xdd, 0x50, 0x96, 0xc9, 0x98, 0x7e, 0xaf, 0x49, 0x69, 0x44, 0x38, 0x2a, 0x78, 0x4e, 0xa1,
-	0x17, 0x79, 0xd7, 0xc3, 0xd8, 0x7c, 0xb3, 0x39, 0x80, 0xe5, 0x94, 0xd9, 0x06, 0x43, 0xe8, 0xe7,
-	0xa4, 0x14, 0x5f, 0x36, 0xa4, 0xa6, 0xc4, 0x77, 0xd0, 0xd3, 0x4a, 0xf3, 0xbc, 0x0c, 0xfd, 0xc8,
-	0xbb, 0x0e, 0x66, 0x27, 0x13, 0x23, 0x74, 0x2f, 0x72, 0x32, 0x70, 0x6c, 0x8f, 0xd9, 0x1c, 0x86,
-	0xb7, 0x3c, 0x27, 0x55, 0xf2, 0x84, 0x90, 0xc1, 0x48, 0x56, 0x4b, 0x5e, 0x88, 0xbf, 0x5c, 0x0b,
-	0x59, 0xd8, 0x47, 0xf7, 0x30, 0xbc, 0x02, 0x48, 0x64, 0x96, 0x51, 0x62, 0x18, 0xbe, 0x61, 0x38,
-	0x08, 0xbb, 0x82, 0x41, 0x4c, 0x4a, 0xae, 0xab, 0x84, 0x6a, 0x07, 0x25, 0xd7, 0xab, 0xd0, 0x8b,
-	0xba, 0xb5, 0x83, 0xfa, 0x9b, 0xfd, 0xf7, 0x20, 0xb8, 0x17, 0x19, 0x35, 0x2e, 0x3f, 0xc2, 0xb0,
-	0x68, 0x1a, 0x30, 0x82, 0xc1, 0x0c, 0x27, 0x4d, 0x5a, 0x6d, 0x6b, 0xf1, 0x8e, 0x84, 0x1f, 0x60,
-	0x50, 0x59, 0x05, 0xeb, 0xee, 0xac, 0xbd, 0xd0, 0x48, 0xc7, 0x2d, 0x05, 0x5f, 0x42, 0x2f, 0x27,
-	0x5d, 0x89, 0x24, 0xec, 0x9a, 0x66, 0x6d, 0x85, 0x17, 0xf0, 0x4c, 0x14, 0x29, 0xfd, 0x09, 0x8f,
-	0x0c, 0xbc, 0x2d, 0x58, 0x01, 0xa3, 0xb9, 0x6b, 0xf7, 0x39, 0xf8, 0x22, 0x35, 0x7d, 0x75, 0x63,
-	0x5f, 0xa4, 0xed, 0x50, 0xfc, 0xdd, 0x50, 0x30, 0x82, 0x20, 0x25, 0x95, 0x54, 0xa2, 0x34, 0x99,
-	0x6c, 0x65, 0x5c, 0xa8, 0x1e, 0x54, 0x52, 0x11, 0xd7, 0x94, 0x5a, 0xb5, 0xa6, 0x64, 0x97, 0xf0,
-	0xca, 0xd5, 0xfb, 0x29, 0x94, 0xb6, 0xc9, 0xb0, 0x39, 0x9c, 0x3e, 0x3e, 0xc2, 0xaf, 0x70, 0xec,
-	0x4e, 0x43, 0x99, 0x68, 0x83, 0xd9, 0x8b, 0x36, 0x00, 0xf7, 0x46, 0xbc, 0xcf, 0x65, 0xef, 0xe1,
-	0x7c, 0xef, 0xf8, 0xe9, 0x3d, 0x9b, 0xfd, 0xf3, 0xa1, 0x7f, 0xbb, 0x7d, 0x12, 0xbf, 0xc0, 0xe0,
-	0x8e, 0x6f, 0xcc, 0xda, 0xe1, 0x4e, 0xc8, 0x5d, 0xd5, 0xf1, 0xf9, 0x63, 0xb8, 0xcc, 0x36, 0xac,
-	0x83, 0x9f, 0x61, 0xf8, 0x9d, 0x74, 0xb2, 0xaa, 0xe7, 0x8d, 0x17, 0x2d, 0xc7, 0x19, 0xff, 0xf8,
-	0x74, 0xb7, 0x98, 0x77, 0x54, 0x09, 0x52, 0xac, 0x83, 0x31, 0x9c, 0xd5, 0x66, 0xdd, 0x5e, 0x15,
-	0x46, 0x07, 0x2d, 0x3a, 0x79, 0x8d, 0x2f, 0x9f, 0x64, 0xb0, 0x0e, 0xde, 0xc0, 0xc9, 0x0f, 0xda,
-	0x7b, 0x12, 0x5f, 0x1f, 0x0e, 0xcd, 0xbe, 0x76, 0x38, 0x52, 0xd6, 0xf9, 0xf6, 0xf6, 0xd7, 0x9b,
-	0xa5, 0xd0, 0xab, 0xf5, 0x62, 0x92, 0xc8, 0x7c, 0x4a, 0xaa, 0x20, 0x3d, 0x35, 0x3f, 0xf0, 0x74,
-	0x29, 0xa7, 0xf6, 0xce, 0xa2, 0x67, 0x90, 0x4f, 0x0f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x44, 0x31,
-	0xa8, 0x9c, 0xf8, 0x03, 0x00, 0x00,
+	// 783 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x56, 0xdb, 0x6e, 0xd3, 0x4c,
+	0x10, 0xb6, 0x93, 0xe6, 0x34, 0x49, 0x9a, 0x66, 0xd2, 0xfe, 0x4d, 0xfd, 0xa3, 0x2a, 0x2c, 0x48,
+	0xb4, 0x17, 0x24, 0x28, 0xa8, 0x02, 0xa9, 0x12, 0xa0, 0x96, 0xd2, 0x4a, 0x54, 0x0d, 0x72, 0x8b,
+	0x90, 0x90, 0xb8, 0x70, 0x9d, 0x55, 0x62, 0xc9, 0x27, 0xec, 0xad, 0x44, 0xb8, 0xe3, 0x39, 0x40,
+	0x3c, 0x0a, 0xcf, 0x86, 0xb2, 0xb6, 0xd7, 0x9b, 0xc4, 0x29, 0x55, 0x39, 0xdc, 0x79, 0x67, 0xbf,
+	0x9d, 0xc3, 0xf7, 0xcd, 0xce, 0x1a, 0xea, 0x2e, 0x65, 0x97, 0xd4, 0x70, 0xba, 0x7e, 0xe0, 0x31,
+	0x0f, 0x4b, 0xf1, 0x52, 0x03, 0xdf, 0x73, 0x87, 0x91, 0x91, 0x94, 0xa0, 0x70, 0xe4, 0xf8, 0x6c,
+	0x42, 0x08, 0xd4, 0x4e, 0xa8, 0x6d, 0x7b, 0x3a, 0xfd, 0x78, 0x45, 0x43, 0x86, 0x08, 0x2b, 0xae,
+	0xe1, 0xd0, 0xb6, 0xda, 0x51, 0x77, 0x2a, 0x3a, 0xff, 0x26, 0x03, 0x80, 0x18, 0xe3, 0xdb, 0x13,
+	0x6c, 0x43, 0xc9, 0xa1, 0x61, 0x68, 0x8c, 0x12, 0x50, 0xb2, 0xc4, 0x07, 0x50, 0x64, 0x21, 0x33,
+	0x1c, 0xbf, 0x9d, 0xeb, 0xa8, 0x3b, 0xd5, 0x7e, 0xa3, 0xcb, 0x23, 0x5e, 0x58, 0x0e, 0xe5, 0x66,
+	0x3d, 0xde, 0x26, 0x03, 0xa8, 0x9c, 0x19, 0x0e, 0x0d, 0x7d, 0xc3, 0xa4, 0x48, 0xa0, 0xe6, 0x05,
+	0x23, 0xc3, 0xb5, 0x3e, 0x1b, 0xcc, 0xf2, 0xdc, 0xd8, 0xe9, 0x8c, 0x0d, 0xb7, 0x01, 0x4c, 0xcf,
+	0xb6, 0xa9, 0xc9, 0x11, 0x39, 0x8e, 0x90, 0x2c, 0x64, 0x1b, 0xca, 0x3a, 0x0d, 0xbd, 0xab, 0xc0,
+	0xa4, 0xd3, 0x0a, 0x7c, 0x83, 0x8d, 0xdb, 0x6a, 0x27, 0x3f, 0xad, 0x60, 0xfa, 0x4d, 0xbe, 0xa9,
+	0x50, 0xbd, 0xb0, 0x6c, 0x9a, 0x54, 0xf9, 0x08, 0x2a, 0x6e, 0x92, 0x00, 0x0f, 0x58, 0xed, 0x63,
+	0x37, 0xa1, 0x4d, 0xa4, 0xa6, 0xa7, 0x20, 0x7c, 0x08, 0xe5, 0x20, 0x8e, 0x10, 0x57, 0xd7, 0x14,
+	0x07, 0x92, 0xd0, 0xba, 0x80, 0xe0, 0x7f, 0x50, 0x74, 0x28, 0x0b, 0x2c, 0xb3, 0x9d, 0xe7, 0xc9,
+	0xc6, 0x2b, 0x5c, 0x87, 0x82, 0xe5, 0x0e, 0xe9, 0xa7, 0xf6, 0x0a, 0x37, 0x47, 0x0b, 0x72, 0x01,
+	0xb5, 0x81, 0x5c, 0xee, 0x2a, 0xe4, 0xac, 0x21, 0xcf, 0xab, 0xa0, 0xe7, 0xac, 0xa1, 0x10, 0x25,
+	0x97, 0x8a, 0x82, 0x1d, 0xa8, 0x0e, 0x69, 0x68, 0x06, 0x96, 0xcf, 0x39, 0x89, 0xc2, 0xc8, 0x26,
+	0x32, 0x80, 0x35, 0xd9, 0xeb, 0xa9, 0x15, 0x32, 0xdc, 0x87, 0xba, 0x4c, 0x6c, 0xc8, 0x59, 0xaa,
+	0xf6, 0x37, 0x44, 0x2d, 0xf2, 0x09, 0x7d, 0x16, 0x4b, 0x7c, 0x80, 0x43, 0xc1, 0xf9, 0x42, 0x92,
+	0x33, 0x9c, 0xe6, 0x6e, 0xc2, 0xe9, 0xaf, 0x4b, 0x38, 0x86, 0xd5, 0x34, 0x22, 0x2f, 0x60, 0x0f,
+	0xaa, 0xa9, 0xee, 0x49, 0xfa, 0x2d, 0x11, 0x27, 0x45, 0xeb, 0x32, 0x8e, 0x7c, 0x57, 0xa1, 0x78,
+	0x1e, 0x49, 0xf3, 0xfb, 0x79, 0x0b, 0x11, 0xf3, 0xdc, 0x49, 0xb4, 0x40, 0x0d, 0xca, 0x7e, 0x60,
+	0x79, 0x81, 0xc5, 0x26, 0x5c, 0xdd, 0x82, 0x2e, 0xd6, 0xf3, 0x95, 0x16, 0x16, 0x2b, 0x7d, 0x02,
+	0x10, 0xe5, 0xc7, 0xab, 0xdc, 0x85, 0x52, 0xd4, 0x48, 0x49, 0x85, 0x0d, 0x91, 0x51, 0x84, 0xd2,
+	0x93, 0x7d, 0xb2, 0x05, 0x9b, 0xf3, 0x2a, 0xc7, 0x5d, 0x4e, 0x76, 0xa1, 0x35, 0x23, 0xe7, 0x35,
+	0x57, 0x7c, 0x1f, 0x36, 0x66, 0x89, 0x4e, 0xc0, 0x37, 0xb8, 0x9d, 0xe4, 0x35, 0x34, 0x25, 0xde,
+	0x6f, 0x7e, 0x30, 0xab, 0xaf, 0xc9, 0x57, 0x15, 0x5a, 0x87, 0x01, 0x35, 0x18, 0x8d, 0x2b, 0xbd,
+	0xf5, 0x95, 0x15, 0x32, 0xe5, 0x96, 0xc9, 0x94, 0xbf, 0x5e, 0xa6, 0x95, 0x45, 0x99, 0xbe, 0xa8,
+	0xf0, 0xff, 0xe1, 0xd8, 0x70, 0x47, 0x71, 0x76, 0x6f, 0xe2, 0xa3, 0xff, 0x30, 0x4b, 0x72, 0x04,
+	0xcd, 0xb4, 0x55, 0x6e, 0x1d, 0x98, 0xbc, 0x83, 0xfa, 0x1f, 0x65, 0x58, 0x4c, 0xb3, 0x0f, 0xd0,
+	0x7a, 0x49, 0x6d, 0xfa, 0x97, 0x04, 0xec, 0xff, 0x28, 0x40, 0xe9, 0x2c, 0x3a, 0x86, 0x4f, 0xa1,
+	0x7c, 0x6e, 0x4c, 0xf8, 0xe3, 0x84, 0xe9, 0x0c, 0x93, 0x1f, 0x34, 0xad, 0x35, 0x6f, 0xf6, 0xed,
+	0x09, 0x51, 0x70, 0x0f, 0x2a, 0xaf, 0x28, 0x33, 0xc7, 0xd3, 0x57, 0x01, 0xd7, 0x05, 0x46, 0x7a,
+	0x24, 0xb4, 0xb5, 0xf4, 0xf9, 0x3a, 0xa7, 0x81, 0x45, 0x43, 0xa2, 0xa0, 0x0e, 0xcd, 0x29, 0xeb,
+	0xf2, 0xb5, 0x0a, 0xb1, 0x93, 0x39, 0x3d, 0x25, 0x75, 0xb4, 0xad, 0xa5, 0x08, 0xa2, 0xe0, 0x09,
+	0x34, 0x8e, 0xe9, 0x8c, 0x4b, 0xbc, 0x93, 0x3d, 0x8f, 0x63, 0x6f, 0xd9, 0xd3, 0x9a, 0x28, 0x78,
+	0x0a, 0x8d, 0xa9, 0xcf, 0xf4, 0x32, 0x86, 0xb8, 0x9d, 0x31, 0x1a, 0xe5, 0xcc, 0x36, 0x97, 0xec,
+	0x13, 0x05, 0x0f, 0xa0, 0x7e, 0x4c, 0x25, 0x67, 0xa8, 0x65, 0x8d, 0xd9, 0x05, 0x9a, 0xd3, 0x3d,
+	0xa2, 0xe0, 0x0b, 0xa8, 0x4e, 0xbd, 0x45, 0x9d, 0x10, 0x4a, 0x1e, 0x16, 0x3a, 0x58, 0xf2, 0x90,
+	0xee, 0x11, 0x05, 0x9f, 0x43, 0x4d, 0x1e, 0x07, 0x12, 0x35, 0x19, 0x53, 0x42, 0x9b, 0x9f, 0x93,
+	0x44, 0xc1, 0x01, 0xac, 0xbf, 0xf5, 0x87, 0x02, 0x99, 0xdc, 0x58, 0xbc, 0x9f, 0x3a, 0x5a, 0x7e,
+	0xa1, 0xb3, 0x1c, 0x3e, 0x83, 0x9a, 0xdc, 0xdf, 0x52, 0x46, 0x19, 0x6d, 0xaf, 0xad, 0x8a, 0xdd,
+	0xe8, 0x87, 0x4b, 0x39, 0xb8, 0xf7, 0xfe, 0xee, 0xc8, 0x62, 0xe3, 0xab, 0xcb, 0xae, 0xe9, 0x39,
+	0x3d, 0x1a, 0xba, 0x94, 0xf5, 0xf8, 0x5f, 0x59, 0x6f, 0xe4, 0xf5, 0x62, 0xf0, 0x65, 0x91, 0x5b,
+	0x1e, 0xff, 0x0c, 0x00, 0x00, 0xff, 0xff, 0x67, 0x68, 0x8f, 0x02, 0xcd, 0x09, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -508,7 +1126,7 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type NetbeamClient interface {
-	// Sends a greeting
+	// Say hello to netbeam
 	SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error)
 	// Requests a tile from the netbeam core for a specific metric
 	FetchTile(ctx context.Context, in *TileRequest, opts ...grpc.CallOption) (*pond.TimeSeries, error)
@@ -516,6 +1134,18 @@ type NetbeamClient interface {
 	ListOrganizations(ctx context.Context, in *OrganizationListRequest, opts ...grpc.CallOption) (*OrganizationList, error)
 	// Get a specific Organization by supplying it's short name
 	GetOrganization(ctx context.Context, in *OrganizationRequest, opts ...grpc.CallOption) (*Organization, error)
+	// Request the list of Collections within an Organization registered with netbeam
+	ListCollections(ctx context.Context, in *CollectionListRequest, opts ...grpc.CallOption) (*CollectionList, error)
+	// Get a specific Collection by supplying the Organization it is in as well as the Collection short name
+	GetCollection(ctx context.Context, in *CollectionRequest, opts ...grpc.CallOption) (*Collection, error)
+	// Request the list of all Sources within a Collection. The list will be returned in order of priority.
+	ListSources(ctx context.Context, in *SourceListRequest, opts ...grpc.CallOption) (*SourceList, error)
+	// Registers a new Source with the Collection
+	CreateSource(ctx context.Context, in *CreateSourceRequest, opts ...grpc.CallOption) (*Source, error)
+	// Update the Source priority
+	UpdateSourcePriority(ctx context.Context, in *ChangeSourcePriorityRequest, opts ...grpc.CallOption) (*Source, error)
+	// Delete the Source
+	DeleteSource(ctx context.Context, in *DeleteSourceRequest, opts ...grpc.CallOption) (*Empty, error)
 }
 
 type netbeamClient struct {
@@ -562,9 +1192,63 @@ func (c *netbeamClient) GetOrganization(ctx context.Context, in *OrganizationReq
 	return out, nil
 }
 
+func (c *netbeamClient) ListCollections(ctx context.Context, in *CollectionListRequest, opts ...grpc.CallOption) (*CollectionList, error) {
+	out := new(CollectionList)
+	err := c.cc.Invoke(ctx, "/netbeam.Netbeam/ListCollections", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *netbeamClient) GetCollection(ctx context.Context, in *CollectionRequest, opts ...grpc.CallOption) (*Collection, error) {
+	out := new(Collection)
+	err := c.cc.Invoke(ctx, "/netbeam.Netbeam/GetCollection", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *netbeamClient) ListSources(ctx context.Context, in *SourceListRequest, opts ...grpc.CallOption) (*SourceList, error) {
+	out := new(SourceList)
+	err := c.cc.Invoke(ctx, "/netbeam.Netbeam/ListSources", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *netbeamClient) CreateSource(ctx context.Context, in *CreateSourceRequest, opts ...grpc.CallOption) (*Source, error) {
+	out := new(Source)
+	err := c.cc.Invoke(ctx, "/netbeam.Netbeam/CreateSource", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *netbeamClient) UpdateSourcePriority(ctx context.Context, in *ChangeSourcePriorityRequest, opts ...grpc.CallOption) (*Source, error) {
+	out := new(Source)
+	err := c.cc.Invoke(ctx, "/netbeam.Netbeam/UpdateSourcePriority", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *netbeamClient) DeleteSource(ctx context.Context, in *DeleteSourceRequest, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, "/netbeam.Netbeam/DeleteSource", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NetbeamServer is the server API for Netbeam service.
 type NetbeamServer interface {
-	// Sends a greeting
+	// Say hello to netbeam
 	SayHello(context.Context, *HelloRequest) (*HelloReply, error)
 	// Requests a tile from the netbeam core for a specific metric
 	FetchTile(context.Context, *TileRequest) (*pond.TimeSeries, error)
@@ -572,6 +1256,18 @@ type NetbeamServer interface {
 	ListOrganizations(context.Context, *OrganizationListRequest) (*OrganizationList, error)
 	// Get a specific Organization by supplying it's short name
 	GetOrganization(context.Context, *OrganizationRequest) (*Organization, error)
+	// Request the list of Collections within an Organization registered with netbeam
+	ListCollections(context.Context, *CollectionListRequest) (*CollectionList, error)
+	// Get a specific Collection by supplying the Organization it is in as well as the Collection short name
+	GetCollection(context.Context, *CollectionRequest) (*Collection, error)
+	// Request the list of all Sources within a Collection. The list will be returned in order of priority.
+	ListSources(context.Context, *SourceListRequest) (*SourceList, error)
+	// Registers a new Source with the Collection
+	CreateSource(context.Context, *CreateSourceRequest) (*Source, error)
+	// Update the Source priority
+	UpdateSourcePriority(context.Context, *ChangeSourcePriorityRequest) (*Source, error)
+	// Delete the Source
+	DeleteSource(context.Context, *DeleteSourceRequest) (*Empty, error)
 }
 
 // UnimplementedNetbeamServer can be embedded to have forward compatible implementations.
@@ -589,6 +1285,24 @@ func (*UnimplementedNetbeamServer) ListOrganizations(ctx context.Context, req *O
 }
 func (*UnimplementedNetbeamServer) GetOrganization(ctx context.Context, req *OrganizationRequest) (*Organization, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrganization not implemented")
+}
+func (*UnimplementedNetbeamServer) ListCollections(ctx context.Context, req *CollectionListRequest) (*CollectionList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListCollections not implemented")
+}
+func (*UnimplementedNetbeamServer) GetCollection(ctx context.Context, req *CollectionRequest) (*Collection, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCollection not implemented")
+}
+func (*UnimplementedNetbeamServer) ListSources(ctx context.Context, req *SourceListRequest) (*SourceList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSources not implemented")
+}
+func (*UnimplementedNetbeamServer) CreateSource(ctx context.Context, req *CreateSourceRequest) (*Source, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSource not implemented")
+}
+func (*UnimplementedNetbeamServer) UpdateSourcePriority(ctx context.Context, req *ChangeSourcePriorityRequest) (*Source, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSourcePriority not implemented")
+}
+func (*UnimplementedNetbeamServer) DeleteSource(ctx context.Context, req *DeleteSourceRequest) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSource not implemented")
 }
 
 func RegisterNetbeamServer(s *grpc.Server, srv NetbeamServer) {
@@ -667,6 +1381,114 @@ func _Netbeam_GetOrganization_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Netbeam_ListCollections_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CollectionListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetbeamServer).ListCollections(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/netbeam.Netbeam/ListCollections",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetbeamServer).ListCollections(ctx, req.(*CollectionListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Netbeam_GetCollection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CollectionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetbeamServer).GetCollection(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/netbeam.Netbeam/GetCollection",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetbeamServer).GetCollection(ctx, req.(*CollectionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Netbeam_ListSources_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SourceListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetbeamServer).ListSources(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/netbeam.Netbeam/ListSources",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetbeamServer).ListSources(ctx, req.(*SourceListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Netbeam_CreateSource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateSourceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetbeamServer).CreateSource(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/netbeam.Netbeam/CreateSource",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetbeamServer).CreateSource(ctx, req.(*CreateSourceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Netbeam_UpdateSourcePriority_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeSourcePriorityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetbeamServer).UpdateSourcePriority(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/netbeam.Netbeam/UpdateSourcePriority",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetbeamServer).UpdateSourcePriority(ctx, req.(*ChangeSourcePriorityRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Netbeam_DeleteSource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSourceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetbeamServer).DeleteSource(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/netbeam.Netbeam/DeleteSource",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetbeamServer).DeleteSource(ctx, req.(*DeleteSourceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Netbeam_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "netbeam.Netbeam",
 	HandlerType: (*NetbeamServer)(nil),
@@ -686,6 +1508,30 @@ var _Netbeam_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOrganization",
 			Handler:    _Netbeam_GetOrganization_Handler,
+		},
+		{
+			MethodName: "ListCollections",
+			Handler:    _Netbeam_ListCollections_Handler,
+		},
+		{
+			MethodName: "GetCollection",
+			Handler:    _Netbeam_GetCollection_Handler,
+		},
+		{
+			MethodName: "ListSources",
+			Handler:    _Netbeam_ListSources_Handler,
+		},
+		{
+			MethodName: "CreateSource",
+			Handler:    _Netbeam_CreateSource_Handler,
+		},
+		{
+			MethodName: "UpdateSourcePriority",
+			Handler:    _Netbeam_UpdateSourcePriority_Handler,
+		},
+		{
+			MethodName: "DeleteSource",
+			Handler:    _Netbeam_DeleteSource_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
