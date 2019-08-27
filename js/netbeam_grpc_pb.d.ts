@@ -18,6 +18,11 @@ interface INetbeamService extends grpc.ServiceDefinition<grpc.UntypedServiceImpl
     createSource: INetbeamService_ICreateSource;
     updateSourcePriority: INetbeamService_IUpdateSourcePriority;
     deleteSource: INetbeamService_IDeleteSource;
+    listMetricsSpecs: INetbeamService_IListMetricsSpecs;
+    registerByteMetric: INetbeamService_IRegisterByteMetric;
+    registerCounterMetric: INetbeamService_IRegisterCounterMetric;
+    registerGaugeMetric: INetbeamService_IRegisterGaugeMetric;
+    registerStringMetric: INetbeamService_IRegisterStringMetric;
 }
 
 interface INetbeamService_ISayHello extends grpc.MethodDefinition<netbeam_pb.HelloRequest, netbeam_pb.HelloReply> {
@@ -110,6 +115,51 @@ interface INetbeamService_IDeleteSource extends grpc.MethodDefinition<netbeam_pb
     responseSerialize: grpc.serialize<netbeam_pb.Empty>;
     responseDeserialize: grpc.deserialize<netbeam_pb.Empty>;
 }
+interface INetbeamService_IListMetricsSpecs extends grpc.MethodDefinition<netbeam_pb.MetricSpecsRequest, netbeam_pb.MetricSpecList> {
+    path: string; // "/netbeam.Netbeam/ListMetricsSpecs"
+    requestStream: boolean; // false
+    responseStream: boolean; // false
+    requestSerialize: grpc.serialize<netbeam_pb.MetricSpecsRequest>;
+    requestDeserialize: grpc.deserialize<netbeam_pb.MetricSpecsRequest>;
+    responseSerialize: grpc.serialize<netbeam_pb.MetricSpecList>;
+    responseDeserialize: grpc.deserialize<netbeam_pb.MetricSpecList>;
+}
+interface INetbeamService_IRegisterByteMetric extends grpc.MethodDefinition<netbeam_pb.RegisterMetricSpecRequest, netbeam_pb.MetricSpec> {
+    path: string; // "/netbeam.Netbeam/RegisterByteMetric"
+    requestStream: boolean; // false
+    responseStream: boolean; // false
+    requestSerialize: grpc.serialize<netbeam_pb.RegisterMetricSpecRequest>;
+    requestDeserialize: grpc.deserialize<netbeam_pb.RegisterMetricSpecRequest>;
+    responseSerialize: grpc.serialize<netbeam_pb.MetricSpec>;
+    responseDeserialize: grpc.deserialize<netbeam_pb.MetricSpec>;
+}
+interface INetbeamService_IRegisterCounterMetric extends grpc.MethodDefinition<netbeam_pb.RegisterMetricSpecRequest, netbeam_pb.MetricSpec> {
+    path: string; // "/netbeam.Netbeam/RegisterCounterMetric"
+    requestStream: boolean; // false
+    responseStream: boolean; // false
+    requestSerialize: grpc.serialize<netbeam_pb.RegisterMetricSpecRequest>;
+    requestDeserialize: grpc.deserialize<netbeam_pb.RegisterMetricSpecRequest>;
+    responseSerialize: grpc.serialize<netbeam_pb.MetricSpec>;
+    responseDeserialize: grpc.deserialize<netbeam_pb.MetricSpec>;
+}
+interface INetbeamService_IRegisterGaugeMetric extends grpc.MethodDefinition<netbeam_pb.RegisterMetricSpecRequest, netbeam_pb.MetricSpec> {
+    path: string; // "/netbeam.Netbeam/RegisterGaugeMetric"
+    requestStream: boolean; // false
+    responseStream: boolean; // false
+    requestSerialize: grpc.serialize<netbeam_pb.RegisterMetricSpecRequest>;
+    requestDeserialize: grpc.deserialize<netbeam_pb.RegisterMetricSpecRequest>;
+    responseSerialize: grpc.serialize<netbeam_pb.MetricSpec>;
+    responseDeserialize: grpc.deserialize<netbeam_pb.MetricSpec>;
+}
+interface INetbeamService_IRegisterStringMetric extends grpc.MethodDefinition<netbeam_pb.RegisterMetricSpecRequest, netbeam_pb.MetricSpec> {
+    path: string; // "/netbeam.Netbeam/RegisterStringMetric"
+    requestStream: boolean; // false
+    responseStream: boolean; // false
+    requestSerialize: grpc.serialize<netbeam_pb.RegisterMetricSpecRequest>;
+    requestDeserialize: grpc.deserialize<netbeam_pb.RegisterMetricSpecRequest>;
+    responseSerialize: grpc.serialize<netbeam_pb.MetricSpec>;
+    responseDeserialize: grpc.deserialize<netbeam_pb.MetricSpec>;
+}
 
 export const NetbeamService: INetbeamService;
 
@@ -124,6 +174,11 @@ export interface INetbeamServer {
     createSource: grpc.handleUnaryCall<netbeam_pb.CreateSourceRequest, netbeam_pb.Source>;
     updateSourcePriority: grpc.handleUnaryCall<netbeam_pb.ChangeSourcePriorityRequest, netbeam_pb.Source>;
     deleteSource: grpc.handleUnaryCall<netbeam_pb.DeleteSourceRequest, netbeam_pb.Empty>;
+    listMetricsSpecs: grpc.handleUnaryCall<netbeam_pb.MetricSpecsRequest, netbeam_pb.MetricSpecList>;
+    registerByteMetric: grpc.handleUnaryCall<netbeam_pb.RegisterMetricSpecRequest, netbeam_pb.MetricSpec>;
+    registerCounterMetric: grpc.handleUnaryCall<netbeam_pb.RegisterMetricSpecRequest, netbeam_pb.MetricSpec>;
+    registerGaugeMetric: grpc.handleUnaryCall<netbeam_pb.RegisterMetricSpecRequest, netbeam_pb.MetricSpec>;
+    registerStringMetric: grpc.handleUnaryCall<netbeam_pb.RegisterMetricSpecRequest, netbeam_pb.MetricSpec>;
 }
 
 export interface INetbeamClient {
@@ -157,6 +212,21 @@ export interface INetbeamClient {
     deleteSource(request: netbeam_pb.DeleteSourceRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Empty) => void): grpc.ClientUnaryCall;
     deleteSource(request: netbeam_pb.DeleteSourceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Empty) => void): grpc.ClientUnaryCall;
     deleteSource(request: netbeam_pb.DeleteSourceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Empty) => void): grpc.ClientUnaryCall;
+    listMetricsSpecs(request: netbeam_pb.MetricSpecsRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpecList) => void): grpc.ClientUnaryCall;
+    listMetricsSpecs(request: netbeam_pb.MetricSpecsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpecList) => void): grpc.ClientUnaryCall;
+    listMetricsSpecs(request: netbeam_pb.MetricSpecsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpecList) => void): grpc.ClientUnaryCall;
+    registerByteMetric(request: netbeam_pb.RegisterMetricSpecRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    registerByteMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    registerByteMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    registerCounterMetric(request: netbeam_pb.RegisterMetricSpecRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    registerCounterMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    registerCounterMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    registerGaugeMetric(request: netbeam_pb.RegisterMetricSpecRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    registerGaugeMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    registerGaugeMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    registerStringMetric(request: netbeam_pb.RegisterMetricSpecRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    registerStringMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    registerStringMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
 }
 
 export class NetbeamClient extends grpc.Client implements INetbeamClient {
@@ -191,4 +261,19 @@ export class NetbeamClient extends grpc.Client implements INetbeamClient {
     public deleteSource(request: netbeam_pb.DeleteSourceRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Empty) => void): grpc.ClientUnaryCall;
     public deleteSource(request: netbeam_pb.DeleteSourceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Empty) => void): grpc.ClientUnaryCall;
     public deleteSource(request: netbeam_pb.DeleteSourceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Empty) => void): grpc.ClientUnaryCall;
+    public listMetricsSpecs(request: netbeam_pb.MetricSpecsRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpecList) => void): grpc.ClientUnaryCall;
+    public listMetricsSpecs(request: netbeam_pb.MetricSpecsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpecList) => void): grpc.ClientUnaryCall;
+    public listMetricsSpecs(request: netbeam_pb.MetricSpecsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpecList) => void): grpc.ClientUnaryCall;
+    public registerByteMetric(request: netbeam_pb.RegisterMetricSpecRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    public registerByteMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    public registerByteMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    public registerCounterMetric(request: netbeam_pb.RegisterMetricSpecRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    public registerCounterMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    public registerCounterMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    public registerGaugeMetric(request: netbeam_pb.RegisterMetricSpecRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    public registerGaugeMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    public registerGaugeMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    public registerStringMetric(request: netbeam_pb.RegisterMetricSpecRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    public registerStringMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
+    public registerStringMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
 }

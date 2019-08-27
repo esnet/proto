@@ -8,17 +8,6 @@ option go_package = "github.com/esnet/proto/go/netbeam";
 message Empty {
 }
 
-// The request message containing the user's name.
-message HelloRequest {
-    string name = 1;
-}
-    
-// The response message containing the greetings
-message HelloReply {
-    string message = 1;
-    pond.Timestamp tstamp = 2;
-}
-
 // The namespace, which is made up of the organization and the collection e.g. { organization: "esnet", collection: "prod"}
 message Namespace {
     // The organization this request is associated with e.g. "esnet"
@@ -31,20 +20,6 @@ message Namespace {
 // The full resource path e.g. ["devices", "chic-cr5", "interfaces", "1/1/1"]
 message Resource {
     repeated string path = 1;
-}
-
-message TileRequest {
-    // The namespace
-    Namespace namespace = 1;
-
-    // The resource as a path
-    Resource resource = 2;
-
-    // The metric to get the tile from, for example "traffic/in"
-    string metric = 3;
-
-    // The tile index, for example "1d-1234"
-    string index = 4;
 }
 
 message Organization {
@@ -102,9 +77,56 @@ message SourceList {
     repeated Source sources = 1;
 }
 
+message MetricSpec {
+    // The namespace to register the Metric within
+    Namespace namespace = 1;
+
+    // The scope wildcard which determines which Resources the Metric will apply to
+    string scope = 2;
+
+    // The base name of the metric e.g. "traffic"
+    string name = 3;
+
+    // The suffic of the metric e.g. "in" or "out"
+    string suffix = 4;
+
+    // The alignment of the data to periodic boundaries
+    string align = 5;
+}
+
+message MetricSpecList {
+    // The list of Metric Specs
+    repeated MetricSpec specs = 1;
+}
+
 //
 // Service Request objects
 //
+
+// The request message containing the user's name.
+message HelloRequest {
+    string name = 1;
+}
+    
+// The response message containing the greetings
+message HelloReply {
+    string message = 1;
+    pond.Timestamp tstamp = 2;
+}
+
+message TileRequest {
+    // The namespace
+    Namespace namespace = 1;
+
+    // The resource as a path
+    Resource resource = 2;
+
+    // The metric to get the tile from, for example "traffic/in"
+    string metric = 3;
+
+    // The tile index, for example "1d-1234"
+    string index = 4;
+}
 
 message OrganizationListRequest {
 }
@@ -171,6 +193,29 @@ message DeleteSourceRequest {
     int32 index = 2;
 }
 
+message MetricSpecsRequest {
+    // The namespace to request the Metrics Specs within
+    Namespace namespace = 1;
+}
+
+message RegisterMetricSpecRequest {
+    // The namespace to register the Metric Spec within
+    Namespace namespace = 1;
+
+    // The scope wildcard which determines which Resources the Metric will apply to.
+    // e.g. "devices/*/interfaces/*"
+    string scope = 2;
+
+    // The base name of the metric e.g. "traffic"
+    string name = 3;
+
+    // The suffic of the metric e.g. "in" or "out"
+    string suffix = 4;
+
+    // The alignment of the data to periodic boundaries e.g. "30s" or "5m"
+    string align = 5;
+}
+
 //
 // Netbeam gRPC API Service description
 //
@@ -221,4 +266,23 @@ service Netbeam {
 
     // Delete the Source
     rpc DeleteSource (DeleteSourceRequest) returns (Empty) {}
+
+    //
+    // Admin: Metrics
+    //
+
+    // Request a list of all Metrics Specs registered to the Collection
+    rpc ListMetricsSpecs (MetricSpecsRequest) returns (MetricSpecList) {}
+
+    // Register a Byte Counter Metric with netbeam
+    rpc RegisterByteMetric (RegisterMetricSpecRequest) returns (MetricSpec) {}
+
+    // Register a Counter Metric with netbeam
+    rpc RegisterCounterMetric (RegisterMetricSpecRequest) returns (MetricSpec) {}
+
+    // Register a Gauge Metric with netbeam
+    rpc RegisterGaugeMetric (RegisterMetricSpecRequest) returns (MetricSpec) {}
+
+    // Register a String Metric with netbeam
+    rpc RegisterStringMetric (RegisterMetricSpecRequest) returns (MetricSpec) {}
 }

@@ -56,94 +56,6 @@ func (m *Empty) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Empty proto.InternalMessageInfo
 
-// The request message containing the user's name.
-type HelloRequest struct {
-	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *HelloRequest) Reset()         { *m = HelloRequest{} }
-func (m *HelloRequest) String() string { return proto.CompactTextString(m) }
-func (*HelloRequest) ProtoMessage()    {}
-func (*HelloRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{1}
-}
-
-func (m *HelloRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_HelloRequest.Unmarshal(m, b)
-}
-func (m *HelloRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_HelloRequest.Marshal(b, m, deterministic)
-}
-func (m *HelloRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HelloRequest.Merge(m, src)
-}
-func (m *HelloRequest) XXX_Size() int {
-	return xxx_messageInfo_HelloRequest.Size(m)
-}
-func (m *HelloRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_HelloRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_HelloRequest proto.InternalMessageInfo
-
-func (m *HelloRequest) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-// The response message containing the greetings
-type HelloReply struct {
-	Message              string          `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
-	Tstamp               *pond.Timestamp `protobuf:"bytes,2,opt,name=tstamp,proto3" json:"tstamp,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
-}
-
-func (m *HelloReply) Reset()         { *m = HelloReply{} }
-func (m *HelloReply) String() string { return proto.CompactTextString(m) }
-func (*HelloReply) ProtoMessage()    {}
-func (*HelloReply) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{2}
-}
-
-func (m *HelloReply) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_HelloReply.Unmarshal(m, b)
-}
-func (m *HelloReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_HelloReply.Marshal(b, m, deterministic)
-}
-func (m *HelloReply) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HelloReply.Merge(m, src)
-}
-func (m *HelloReply) XXX_Size() int {
-	return xxx_messageInfo_HelloReply.Size(m)
-}
-func (m *HelloReply) XXX_DiscardUnknown() {
-	xxx_messageInfo_HelloReply.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_HelloReply proto.InternalMessageInfo
-
-func (m *HelloReply) GetMessage() string {
-	if m != nil {
-		return m.Message
-	}
-	return ""
-}
-
-func (m *HelloReply) GetTstamp() *pond.Timestamp {
-	if m != nil {
-		return m.Tstamp
-	}
-	return nil
-}
-
 // The namespace, which is made up of the organization and the collection e.g. { organization: "esnet", collection: "prod"}
 type Namespace struct {
 	// The organization this request is associated with e.g. "esnet"
@@ -159,7 +71,7 @@ func (m *Namespace) Reset()         { *m = Namespace{} }
 func (m *Namespace) String() string { return proto.CompactTextString(m) }
 func (*Namespace) ProtoMessage()    {}
 func (*Namespace) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{3}
+	return fileDescriptor_38d69b4fdff410ff, []int{1}
 }
 
 func (m *Namespace) XXX_Unmarshal(b []byte) error {
@@ -206,7 +118,7 @@ func (m *Resource) Reset()         { *m = Resource{} }
 func (m *Resource) String() string { return proto.CompactTextString(m) }
 func (*Resource) ProtoMessage()    {}
 func (*Resource) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{4}
+	return fileDescriptor_38d69b4fdff410ff, []int{2}
 }
 
 func (m *Resource) XXX_Unmarshal(b []byte) error {
@@ -234,73 +146,6 @@ func (m *Resource) GetPath() []string {
 	return nil
 }
 
-type TileRequest struct {
-	// The namespace
-	Namespace *Namespace `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	// The resource as a path
-	Resource *Resource `protobuf:"bytes,2,opt,name=resource,proto3" json:"resource,omitempty"`
-	// The metric to get the tile from, for example "traffic/in"
-	Metric string `protobuf:"bytes,3,opt,name=metric,proto3" json:"metric,omitempty"`
-	// The tile index, for example "1d-1234"
-	Index                string   `protobuf:"bytes,4,opt,name=index,proto3" json:"index,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *TileRequest) Reset()         { *m = TileRequest{} }
-func (m *TileRequest) String() string { return proto.CompactTextString(m) }
-func (*TileRequest) ProtoMessage()    {}
-func (*TileRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{5}
-}
-
-func (m *TileRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_TileRequest.Unmarshal(m, b)
-}
-func (m *TileRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_TileRequest.Marshal(b, m, deterministic)
-}
-func (m *TileRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TileRequest.Merge(m, src)
-}
-func (m *TileRequest) XXX_Size() int {
-	return xxx_messageInfo_TileRequest.Size(m)
-}
-func (m *TileRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_TileRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_TileRequest proto.InternalMessageInfo
-
-func (m *TileRequest) GetNamespace() *Namespace {
-	if m != nil {
-		return m.Namespace
-	}
-	return nil
-}
-
-func (m *TileRequest) GetResource() *Resource {
-	if m != nil {
-		return m.Resource
-	}
-	return nil
-}
-
-func (m *TileRequest) GetMetric() string {
-	if m != nil {
-		return m.Metric
-	}
-	return ""
-}
-
-func (m *TileRequest) GetIndex() string {
-	if m != nil {
-		return m.Index
-	}
-	return ""
-}
-
 type Organization struct {
 	// The database ID of the organization
 	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -317,7 +162,7 @@ func (m *Organization) Reset()         { *m = Organization{} }
 func (m *Organization) String() string { return proto.CompactTextString(m) }
 func (*Organization) ProtoMessage()    {}
 func (*Organization) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{6}
+	return fileDescriptor_38d69b4fdff410ff, []int{3}
 }
 
 func (m *Organization) XXX_Unmarshal(b []byte) error {
@@ -371,7 +216,7 @@ func (m *OrganizationList) Reset()         { *m = OrganizationList{} }
 func (m *OrganizationList) String() string { return proto.CompactTextString(m) }
 func (*OrganizationList) ProtoMessage()    {}
 func (*OrganizationList) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{7}
+	return fileDescriptor_38d69b4fdff410ff, []int{4}
 }
 
 func (m *OrganizationList) XXX_Unmarshal(b []byte) error {
@@ -416,7 +261,7 @@ func (m *Collection) Reset()         { *m = Collection{} }
 func (m *Collection) String() string { return proto.CompactTextString(m) }
 func (*Collection) ProtoMessage()    {}
 func (*Collection) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{8}
+	return fileDescriptor_38d69b4fdff410ff, []int{5}
 }
 
 func (m *Collection) XXX_Unmarshal(b []byte) error {
@@ -470,7 +315,7 @@ func (m *CollectionList) Reset()         { *m = CollectionList{} }
 func (m *CollectionList) String() string { return proto.CompactTextString(m) }
 func (*CollectionList) ProtoMessage()    {}
 func (*CollectionList) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{9}
+	return fileDescriptor_38d69b4fdff410ff, []int{6}
 }
 
 func (m *CollectionList) XXX_Unmarshal(b []byte) error {
@@ -518,7 +363,7 @@ func (m *Source) Reset()         { *m = Source{} }
 func (m *Source) String() string { return proto.CompactTextString(m) }
 func (*Source) ProtoMessage()    {}
 func (*Source) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{10}
+	return fileDescriptor_38d69b4fdff410ff, []int{7}
 }
 
 func (m *Source) XXX_Unmarshal(b []byte) error {
@@ -586,7 +431,7 @@ func (m *SourceList) Reset()         { *m = SourceList{} }
 func (m *SourceList) String() string { return proto.CompactTextString(m) }
 func (*SourceList) ProtoMessage()    {}
 func (*SourceList) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{11}
+	return fileDescriptor_38d69b4fdff410ff, []int{8}
 }
 
 func (m *SourceList) XXX_Unmarshal(b []byte) error {
@@ -614,6 +459,277 @@ func (m *SourceList) GetSources() []*Source {
 	return nil
 }
 
+type MetricSpec struct {
+	// The namespace to register the Metric within
+	Namespace *Namespace `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// The scope wildcard which determines which Resources the Metric will apply to
+	Scope string `protobuf:"bytes,2,opt,name=scope,proto3" json:"scope,omitempty"`
+	// The base name of the metric e.g. "traffic"
+	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	// The suffic of the metric e.g. "in" or "out"
+	Suffix string `protobuf:"bytes,4,opt,name=suffix,proto3" json:"suffix,omitempty"`
+	// The alignment of the data to periodic boundaries
+	Align                string   `protobuf:"bytes,5,opt,name=align,proto3" json:"align,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *MetricSpec) Reset()         { *m = MetricSpec{} }
+func (m *MetricSpec) String() string { return proto.CompactTextString(m) }
+func (*MetricSpec) ProtoMessage()    {}
+func (*MetricSpec) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{9}
+}
+
+func (m *MetricSpec) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_MetricSpec.Unmarshal(m, b)
+}
+func (m *MetricSpec) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_MetricSpec.Marshal(b, m, deterministic)
+}
+func (m *MetricSpec) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MetricSpec.Merge(m, src)
+}
+func (m *MetricSpec) XXX_Size() int {
+	return xxx_messageInfo_MetricSpec.Size(m)
+}
+func (m *MetricSpec) XXX_DiscardUnknown() {
+	xxx_messageInfo_MetricSpec.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MetricSpec proto.InternalMessageInfo
+
+func (m *MetricSpec) GetNamespace() *Namespace {
+	if m != nil {
+		return m.Namespace
+	}
+	return nil
+}
+
+func (m *MetricSpec) GetScope() string {
+	if m != nil {
+		return m.Scope
+	}
+	return ""
+}
+
+func (m *MetricSpec) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *MetricSpec) GetSuffix() string {
+	if m != nil {
+		return m.Suffix
+	}
+	return ""
+}
+
+func (m *MetricSpec) GetAlign() string {
+	if m != nil {
+		return m.Align
+	}
+	return ""
+}
+
+type MetricSpecList struct {
+	// The list of Metric Specs
+	Specs                []*MetricSpec `protobuf:"bytes,1,rep,name=specs,proto3" json:"specs,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *MetricSpecList) Reset()         { *m = MetricSpecList{} }
+func (m *MetricSpecList) String() string { return proto.CompactTextString(m) }
+func (*MetricSpecList) ProtoMessage()    {}
+func (*MetricSpecList) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{10}
+}
+
+func (m *MetricSpecList) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_MetricSpecList.Unmarshal(m, b)
+}
+func (m *MetricSpecList) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_MetricSpecList.Marshal(b, m, deterministic)
+}
+func (m *MetricSpecList) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MetricSpecList.Merge(m, src)
+}
+func (m *MetricSpecList) XXX_Size() int {
+	return xxx_messageInfo_MetricSpecList.Size(m)
+}
+func (m *MetricSpecList) XXX_DiscardUnknown() {
+	xxx_messageInfo_MetricSpecList.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MetricSpecList proto.InternalMessageInfo
+
+func (m *MetricSpecList) GetSpecs() []*MetricSpec {
+	if m != nil {
+		return m.Specs
+	}
+	return nil
+}
+
+// The request message containing the user's name.
+type HelloRequest struct {
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *HelloRequest) Reset()         { *m = HelloRequest{} }
+func (m *HelloRequest) String() string { return proto.CompactTextString(m) }
+func (*HelloRequest) ProtoMessage()    {}
+func (*HelloRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{11}
+}
+
+func (m *HelloRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_HelloRequest.Unmarshal(m, b)
+}
+func (m *HelloRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_HelloRequest.Marshal(b, m, deterministic)
+}
+func (m *HelloRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HelloRequest.Merge(m, src)
+}
+func (m *HelloRequest) XXX_Size() int {
+	return xxx_messageInfo_HelloRequest.Size(m)
+}
+func (m *HelloRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_HelloRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_HelloRequest proto.InternalMessageInfo
+
+func (m *HelloRequest) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+// The response message containing the greetings
+type HelloReply struct {
+	Message              string          `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	Tstamp               *pond.Timestamp `protobuf:"bytes,2,opt,name=tstamp,proto3" json:"tstamp,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *HelloReply) Reset()         { *m = HelloReply{} }
+func (m *HelloReply) String() string { return proto.CompactTextString(m) }
+func (*HelloReply) ProtoMessage()    {}
+func (*HelloReply) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{12}
+}
+
+func (m *HelloReply) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_HelloReply.Unmarshal(m, b)
+}
+func (m *HelloReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_HelloReply.Marshal(b, m, deterministic)
+}
+func (m *HelloReply) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HelloReply.Merge(m, src)
+}
+func (m *HelloReply) XXX_Size() int {
+	return xxx_messageInfo_HelloReply.Size(m)
+}
+func (m *HelloReply) XXX_DiscardUnknown() {
+	xxx_messageInfo_HelloReply.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_HelloReply proto.InternalMessageInfo
+
+func (m *HelloReply) GetMessage() string {
+	if m != nil {
+		return m.Message
+	}
+	return ""
+}
+
+func (m *HelloReply) GetTstamp() *pond.Timestamp {
+	if m != nil {
+		return m.Tstamp
+	}
+	return nil
+}
+
+type TileRequest struct {
+	// The namespace
+	Namespace *Namespace `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// The resource as a path
+	Resource *Resource `protobuf:"bytes,2,opt,name=resource,proto3" json:"resource,omitempty"`
+	// The metric to get the tile from, for example "traffic/in"
+	Metric string `protobuf:"bytes,3,opt,name=metric,proto3" json:"metric,omitempty"`
+	// The tile index, for example "1d-1234"
+	Index                string   `protobuf:"bytes,4,opt,name=index,proto3" json:"index,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TileRequest) Reset()         { *m = TileRequest{} }
+func (m *TileRequest) String() string { return proto.CompactTextString(m) }
+func (*TileRequest) ProtoMessage()    {}
+func (*TileRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{13}
+}
+
+func (m *TileRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TileRequest.Unmarshal(m, b)
+}
+func (m *TileRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TileRequest.Marshal(b, m, deterministic)
+}
+func (m *TileRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TileRequest.Merge(m, src)
+}
+func (m *TileRequest) XXX_Size() int {
+	return xxx_messageInfo_TileRequest.Size(m)
+}
+func (m *TileRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_TileRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TileRequest proto.InternalMessageInfo
+
+func (m *TileRequest) GetNamespace() *Namespace {
+	if m != nil {
+		return m.Namespace
+	}
+	return nil
+}
+
+func (m *TileRequest) GetResource() *Resource {
+	if m != nil {
+		return m.Resource
+	}
+	return nil
+}
+
+func (m *TileRequest) GetMetric() string {
+	if m != nil {
+		return m.Metric
+	}
+	return ""
+}
+
+func (m *TileRequest) GetIndex() string {
+	if m != nil {
+		return m.Index
+	}
+	return ""
+}
+
 type OrganizationListRequest struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -624,7 +740,7 @@ func (m *OrganizationListRequest) Reset()         { *m = OrganizationListRequest
 func (m *OrganizationListRequest) String() string { return proto.CompactTextString(m) }
 func (*OrganizationListRequest) ProtoMessage()    {}
 func (*OrganizationListRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{12}
+	return fileDescriptor_38d69b4fdff410ff, []int{14}
 }
 
 func (m *OrganizationListRequest) XXX_Unmarshal(b []byte) error {
@@ -656,7 +772,7 @@ func (m *OrganizationRequest) Reset()         { *m = OrganizationRequest{} }
 func (m *OrganizationRequest) String() string { return proto.CompactTextString(m) }
 func (*OrganizationRequest) ProtoMessage()    {}
 func (*OrganizationRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{13}
+	return fileDescriptor_38d69b4fdff410ff, []int{15}
 }
 
 func (m *OrganizationRequest) XXX_Unmarshal(b []byte) error {
@@ -696,7 +812,7 @@ func (m *CollectionListRequest) Reset()         { *m = CollectionListRequest{} }
 func (m *CollectionListRequest) String() string { return proto.CompactTextString(m) }
 func (*CollectionListRequest) ProtoMessage()    {}
 func (*CollectionListRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{14}
+	return fileDescriptor_38d69b4fdff410ff, []int{16}
 }
 
 func (m *CollectionListRequest) XXX_Unmarshal(b []byte) error {
@@ -738,7 +854,7 @@ func (m *CollectionRequest) Reset()         { *m = CollectionRequest{} }
 func (m *CollectionRequest) String() string { return proto.CompactTextString(m) }
 func (*CollectionRequest) ProtoMessage()    {}
 func (*CollectionRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{15}
+	return fileDescriptor_38d69b4fdff410ff, []int{17}
 }
 
 func (m *CollectionRequest) XXX_Unmarshal(b []byte) error {
@@ -791,7 +907,7 @@ func (m *CreateSourceRequest) Reset()         { *m = CreateSourceRequest{} }
 func (m *CreateSourceRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateSourceRequest) ProtoMessage()    {}
 func (*CreateSourceRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{16}
+	return fileDescriptor_38d69b4fdff410ff, []int{18}
 }
 
 func (m *CreateSourceRequest) XXX_Unmarshal(b []byte) error {
@@ -856,7 +972,7 @@ func (m *ChangeSourcePriorityRequest) Reset()         { *m = ChangeSourcePriorit
 func (m *ChangeSourcePriorityRequest) String() string { return proto.CompactTextString(m) }
 func (*ChangeSourcePriorityRequest) ProtoMessage()    {}
 func (*ChangeSourcePriorityRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{17}
+	return fileDescriptor_38d69b4fdff410ff, []int{19}
 }
 
 func (m *ChangeSourcePriorityRequest) XXX_Unmarshal(b []byte) error {
@@ -909,7 +1025,7 @@ func (m *SourceListRequest) Reset()         { *m = SourceListRequest{} }
 func (m *SourceListRequest) String() string { return proto.CompactTextString(m) }
 func (*SourceListRequest) ProtoMessage()    {}
 func (*SourceListRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{18}
+	return fileDescriptor_38d69b4fdff410ff, []int{20}
 }
 
 func (m *SourceListRequest) XXX_Unmarshal(b []byte) error {
@@ -951,7 +1067,7 @@ func (m *SourceRequest) Reset()         { *m = SourceRequest{} }
 func (m *SourceRequest) String() string { return proto.CompactTextString(m) }
 func (*SourceRequest) ProtoMessage()    {}
 func (*SourceRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{19}
+	return fileDescriptor_38d69b4fdff410ff, []int{21}
 }
 
 func (m *SourceRequest) XXX_Unmarshal(b []byte) error {
@@ -1000,7 +1116,7 @@ func (m *DeleteSourceRequest) Reset()         { *m = DeleteSourceRequest{} }
 func (m *DeleteSourceRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteSourceRequest) ProtoMessage()    {}
 func (*DeleteSourceRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_38d69b4fdff410ff, []int{20}
+	return fileDescriptor_38d69b4fdff410ff, []int{22}
 }
 
 func (m *DeleteSourceRequest) XXX_Unmarshal(b []byte) error {
@@ -1035,19 +1151,138 @@ func (m *DeleteSourceRequest) GetIndex() int32 {
 	return 0
 }
 
+type MetricSpecsRequest struct {
+	// The namespace to request the Metrics Specs within
+	Namespace            *Namespace `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
+}
+
+func (m *MetricSpecsRequest) Reset()         { *m = MetricSpecsRequest{} }
+func (m *MetricSpecsRequest) String() string { return proto.CompactTextString(m) }
+func (*MetricSpecsRequest) ProtoMessage()    {}
+func (*MetricSpecsRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{23}
+}
+
+func (m *MetricSpecsRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_MetricSpecsRequest.Unmarshal(m, b)
+}
+func (m *MetricSpecsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_MetricSpecsRequest.Marshal(b, m, deterministic)
+}
+func (m *MetricSpecsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MetricSpecsRequest.Merge(m, src)
+}
+func (m *MetricSpecsRequest) XXX_Size() int {
+	return xxx_messageInfo_MetricSpecsRequest.Size(m)
+}
+func (m *MetricSpecsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_MetricSpecsRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MetricSpecsRequest proto.InternalMessageInfo
+
+func (m *MetricSpecsRequest) GetNamespace() *Namespace {
+	if m != nil {
+		return m.Namespace
+	}
+	return nil
+}
+
+type RegisterMetricSpecRequest struct {
+	// The namespace to register the Metric Spec within
+	Namespace *Namespace `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
+	// The scope wildcard which determines which Resources the Metric will apply to.
+	// e.g. "devices/*/interfaces/*"
+	Scope string `protobuf:"bytes,2,opt,name=scope,proto3" json:"scope,omitempty"`
+	// The base name of the metric e.g. "traffic"
+	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	// The suffic of the metric e.g. "in" or "out"
+	Suffix string `protobuf:"bytes,4,opt,name=suffix,proto3" json:"suffix,omitempty"`
+	// The alignment of the data to periodic boundaries e.g. "30s" or "5m"
+	Align                string   `protobuf:"bytes,5,opt,name=align,proto3" json:"align,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *RegisterMetricSpecRequest) Reset()         { *m = RegisterMetricSpecRequest{} }
+func (m *RegisterMetricSpecRequest) String() string { return proto.CompactTextString(m) }
+func (*RegisterMetricSpecRequest) ProtoMessage()    {}
+func (*RegisterMetricSpecRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_38d69b4fdff410ff, []int{24}
+}
+
+func (m *RegisterMetricSpecRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RegisterMetricSpecRequest.Unmarshal(m, b)
+}
+func (m *RegisterMetricSpecRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RegisterMetricSpecRequest.Marshal(b, m, deterministic)
+}
+func (m *RegisterMetricSpecRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RegisterMetricSpecRequest.Merge(m, src)
+}
+func (m *RegisterMetricSpecRequest) XXX_Size() int {
+	return xxx_messageInfo_RegisterMetricSpecRequest.Size(m)
+}
+func (m *RegisterMetricSpecRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_RegisterMetricSpecRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RegisterMetricSpecRequest proto.InternalMessageInfo
+
+func (m *RegisterMetricSpecRequest) GetNamespace() *Namespace {
+	if m != nil {
+		return m.Namespace
+	}
+	return nil
+}
+
+func (m *RegisterMetricSpecRequest) GetScope() string {
+	if m != nil {
+		return m.Scope
+	}
+	return ""
+}
+
+func (m *RegisterMetricSpecRequest) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *RegisterMetricSpecRequest) GetSuffix() string {
+	if m != nil {
+		return m.Suffix
+	}
+	return ""
+}
+
+func (m *RegisterMetricSpecRequest) GetAlign() string {
+	if m != nil {
+		return m.Align
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*Empty)(nil), "netbeam.Empty")
-	proto.RegisterType((*HelloRequest)(nil), "netbeam.HelloRequest")
-	proto.RegisterType((*HelloReply)(nil), "netbeam.HelloReply")
 	proto.RegisterType((*Namespace)(nil), "netbeam.Namespace")
 	proto.RegisterType((*Resource)(nil), "netbeam.Resource")
-	proto.RegisterType((*TileRequest)(nil), "netbeam.TileRequest")
 	proto.RegisterType((*Organization)(nil), "netbeam.Organization")
 	proto.RegisterType((*OrganizationList)(nil), "netbeam.OrganizationList")
 	proto.RegisterType((*Collection)(nil), "netbeam.Collection")
 	proto.RegisterType((*CollectionList)(nil), "netbeam.CollectionList")
 	proto.RegisterType((*Source)(nil), "netbeam.Source")
 	proto.RegisterType((*SourceList)(nil), "netbeam.SourceList")
+	proto.RegisterType((*MetricSpec)(nil), "netbeam.MetricSpec")
+	proto.RegisterType((*MetricSpecList)(nil), "netbeam.MetricSpecList")
+	proto.RegisterType((*HelloRequest)(nil), "netbeam.HelloRequest")
+	proto.RegisterType((*HelloReply)(nil), "netbeam.HelloReply")
+	proto.RegisterType((*TileRequest)(nil), "netbeam.TileRequest")
 	proto.RegisterType((*OrganizationListRequest)(nil), "netbeam.OrganizationListRequest")
 	proto.RegisterType((*OrganizationRequest)(nil), "netbeam.OrganizationRequest")
 	proto.RegisterType((*CollectionListRequest)(nil), "netbeam.CollectionListRequest")
@@ -1057,61 +1292,74 @@ func init() {
 	proto.RegisterType((*SourceListRequest)(nil), "netbeam.SourceListRequest")
 	proto.RegisterType((*SourceRequest)(nil), "netbeam.SourceRequest")
 	proto.RegisterType((*DeleteSourceRequest)(nil), "netbeam.DeleteSourceRequest")
+	proto.RegisterType((*MetricSpecsRequest)(nil), "netbeam.MetricSpecsRequest")
+	proto.RegisterType((*RegisterMetricSpecRequest)(nil), "netbeam.RegisterMetricSpecRequest")
 }
 
 func init() { proto.RegisterFile("netbeam.proto", fileDescriptor_38d69b4fdff410ff) }
 
 var fileDescriptor_38d69b4fdff410ff = []byte{
-	// 783 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x56, 0xdb, 0x6e, 0xd3, 0x4c,
-	0x10, 0xb6, 0x93, 0xe6, 0x34, 0x49, 0x9a, 0x66, 0xd2, 0xfe, 0x4d, 0xfd, 0xa3, 0x2a, 0x2c, 0x48,
-	0xb4, 0x17, 0x24, 0x28, 0xa8, 0x02, 0xa9, 0x12, 0xa0, 0x96, 0xd2, 0x4a, 0x54, 0x0d, 0x72, 0x8b,
-	0x90, 0x90, 0xb8, 0x70, 0x9d, 0x55, 0x62, 0xc9, 0x27, 0xec, 0xad, 0x44, 0xb8, 0xe3, 0x39, 0x40,
-	0x3c, 0x0a, 0xcf, 0x86, 0xb2, 0xb6, 0xd7, 0x9b, 0xc4, 0x29, 0x55, 0x39, 0xdc, 0x79, 0x67, 0xbf,
-	0x9d, 0xc3, 0xf7, 0xcd, 0xce, 0x1a, 0xea, 0x2e, 0x65, 0x97, 0xd4, 0x70, 0xba, 0x7e, 0xe0, 0x31,
-	0x0f, 0x4b, 0xf1, 0x52, 0x03, 0xdf, 0x73, 0x87, 0x91, 0x91, 0x94, 0xa0, 0x70, 0xe4, 0xf8, 0x6c,
-	0x42, 0x08, 0xd4, 0x4e, 0xa8, 0x6d, 0x7b, 0x3a, 0xfd, 0x78, 0x45, 0x43, 0x86, 0x08, 0x2b, 0xae,
-	0xe1, 0xd0, 0xb6, 0xda, 0x51, 0x77, 0x2a, 0x3a, 0xff, 0x26, 0x03, 0x80, 0x18, 0xe3, 0xdb, 0x13,
-	0x6c, 0x43, 0xc9, 0xa1, 0x61, 0x68, 0x8c, 0x12, 0x50, 0xb2, 0xc4, 0x07, 0x50, 0x64, 0x21, 0x33,
-	0x1c, 0xbf, 0x9d, 0xeb, 0xa8, 0x3b, 0xd5, 0x7e, 0xa3, 0xcb, 0x23, 0x5e, 0x58, 0x0e, 0xe5, 0x66,
-	0x3d, 0xde, 0x26, 0x03, 0xa8, 0x9c, 0x19, 0x0e, 0x0d, 0x7d, 0xc3, 0xa4, 0x48, 0xa0, 0xe6, 0x05,
-	0x23, 0xc3, 0xb5, 0x3e, 0x1b, 0xcc, 0xf2, 0xdc, 0xd8, 0xe9, 0x8c, 0x0d, 0xb7, 0x01, 0x4c, 0xcf,
-	0xb6, 0xa9, 0xc9, 0x11, 0x39, 0x8e, 0x90, 0x2c, 0x64, 0x1b, 0xca, 0x3a, 0x0d, 0xbd, 0xab, 0xc0,
-	0xa4, 0xd3, 0x0a, 0x7c, 0x83, 0x8d, 0xdb, 0x6a, 0x27, 0x3f, 0xad, 0x60, 0xfa, 0x4d, 0xbe, 0xa9,
-	0x50, 0xbd, 0xb0, 0x6c, 0x9a, 0x54, 0xf9, 0x08, 0x2a, 0x6e, 0x92, 0x00, 0x0f, 0x58, 0xed, 0x63,
-	0x37, 0xa1, 0x4d, 0xa4, 0xa6, 0xa7, 0x20, 0x7c, 0x08, 0xe5, 0x20, 0x8e, 0x10, 0x57, 0xd7, 0x14,
-	0x07, 0x92, 0xd0, 0xba, 0x80, 0xe0, 0x7f, 0x50, 0x74, 0x28, 0x0b, 0x2c, 0xb3, 0x9d, 0xe7, 0xc9,
-	0xc6, 0x2b, 0x5c, 0x87, 0x82, 0xe5, 0x0e, 0xe9, 0xa7, 0xf6, 0x0a, 0x37, 0x47, 0x0b, 0x72, 0x01,
-	0xb5, 0x81, 0x5c, 0xee, 0x2a, 0xe4, 0xac, 0x21, 0xcf, 0xab, 0xa0, 0xe7, 0xac, 0xa1, 0x10, 0x25,
-	0x97, 0x8a, 0x82, 0x1d, 0xa8, 0x0e, 0x69, 0x68, 0x06, 0x96, 0xcf, 0x39, 0x89, 0xc2, 0xc8, 0x26,
-	0x32, 0x80, 0x35, 0xd9, 0xeb, 0xa9, 0x15, 0x32, 0xdc, 0x87, 0xba, 0x4c, 0x6c, 0xc8, 0x59, 0xaa,
-	0xf6, 0x37, 0x44, 0x2d, 0xf2, 0x09, 0x7d, 0x16, 0x4b, 0x7c, 0x80, 0x43, 0xc1, 0xf9, 0x42, 0x92,
-	0x33, 0x9c, 0xe6, 0x6e, 0xc2, 0xe9, 0xaf, 0x4b, 0x38, 0x86, 0xd5, 0x34, 0x22, 0x2f, 0x60, 0x0f,
-	0xaa, 0xa9, 0xee, 0x49, 0xfa, 0x2d, 0x11, 0x27, 0x45, 0xeb, 0x32, 0x8e, 0x7c, 0x57, 0xa1, 0x78,
-	0x1e, 0x49, 0xf3, 0xfb, 0x79, 0x0b, 0x11, 0xf3, 0xdc, 0x49, 0xb4, 0x40, 0x0d, 0xca, 0x7e, 0x60,
-	0x79, 0x81, 0xc5, 0x26, 0x5c, 0xdd, 0x82, 0x2e, 0xd6, 0xf3, 0x95, 0x16, 0x16, 0x2b, 0x7d, 0x02,
-	0x10, 0xe5, 0xc7, 0xab, 0xdc, 0x85, 0x52, 0xd4, 0x48, 0x49, 0x85, 0x0d, 0x91, 0x51, 0x84, 0xd2,
-	0x93, 0x7d, 0xb2, 0x05, 0x9b, 0xf3, 0x2a, 0xc7, 0x5d, 0x4e, 0x76, 0xa1, 0x35, 0x23, 0xe7, 0x35,
-	0x57, 0x7c, 0x1f, 0x36, 0x66, 0x89, 0x4e, 0xc0, 0x37, 0xb8, 0x9d, 0xe4, 0x35, 0x34, 0x25, 0xde,
-	0x6f, 0x7e, 0x30, 0xab, 0xaf, 0xc9, 0x57, 0x15, 0x5a, 0x87, 0x01, 0x35, 0x18, 0x8d, 0x2b, 0xbd,
-	0xf5, 0x95, 0x15, 0x32, 0xe5, 0x96, 0xc9, 0x94, 0xbf, 0x5e, 0xa6, 0x95, 0x45, 0x99, 0xbe, 0xa8,
-	0xf0, 0xff, 0xe1, 0xd8, 0x70, 0x47, 0x71, 0x76, 0x6f, 0xe2, 0xa3, 0xff, 0x30, 0x4b, 0x72, 0x04,
-	0xcd, 0xb4, 0x55, 0x6e, 0x1d, 0x98, 0xbc, 0x83, 0xfa, 0x1f, 0x65, 0x58, 0x4c, 0xb3, 0x0f, 0xd0,
-	0x7a, 0x49, 0x6d, 0xfa, 0x97, 0x04, 0xec, 0xff, 0x28, 0x40, 0xe9, 0x2c, 0x3a, 0x86, 0x4f, 0xa1,
-	0x7c, 0x6e, 0x4c, 0xf8, 0xe3, 0x84, 0xe9, 0x0c, 0x93, 0x1f, 0x34, 0xad, 0x35, 0x6f, 0xf6, 0xed,
-	0x09, 0x51, 0x70, 0x0f, 0x2a, 0xaf, 0x28, 0x33, 0xc7, 0xd3, 0x57, 0x01, 0xd7, 0x05, 0x46, 0x7a,
-	0x24, 0xb4, 0xb5, 0xf4, 0xf9, 0x3a, 0xa7, 0x81, 0x45, 0x43, 0xa2, 0xa0, 0x0e, 0xcd, 0x29, 0xeb,
-	0xf2, 0xb5, 0x0a, 0xb1, 0x93, 0x39, 0x3d, 0x25, 0x75, 0xb4, 0xad, 0xa5, 0x08, 0xa2, 0xe0, 0x09,
-	0x34, 0x8e, 0xe9, 0x8c, 0x4b, 0xbc, 0x93, 0x3d, 0x8f, 0x63, 0x6f, 0xd9, 0xd3, 0x9a, 0x28, 0x78,
-	0x0a, 0x8d, 0xa9, 0xcf, 0xf4, 0x32, 0x86, 0xb8, 0x9d, 0x31, 0x1a, 0xe5, 0xcc, 0x36, 0x97, 0xec,
-	0x13, 0x05, 0x0f, 0xa0, 0x7e, 0x4c, 0x25, 0x67, 0xa8, 0x65, 0x8d, 0xd9, 0x05, 0x9a, 0xd3, 0x3d,
-	0xa2, 0xe0, 0x0b, 0xa8, 0x4e, 0xbd, 0x45, 0x9d, 0x10, 0x4a, 0x1e, 0x16, 0x3a, 0x58, 0xf2, 0x90,
-	0xee, 0x11, 0x05, 0x9f, 0x43, 0x4d, 0x1e, 0x07, 0x12, 0x35, 0x19, 0x53, 0x42, 0x9b, 0x9f, 0x93,
-	0x44, 0xc1, 0x01, 0xac, 0xbf, 0xf5, 0x87, 0x02, 0x99, 0xdc, 0x58, 0xbc, 0x9f, 0x3a, 0x5a, 0x7e,
-	0xa1, 0xb3, 0x1c, 0x3e, 0x83, 0x9a, 0xdc, 0xdf, 0x52, 0x46, 0x19, 0x6d, 0xaf, 0xad, 0x8a, 0xdd,
-	0xe8, 0x87, 0x4b, 0x39, 0xb8, 0xf7, 0xfe, 0xee, 0xc8, 0x62, 0xe3, 0xab, 0xcb, 0xae, 0xe9, 0x39,
-	0x3d, 0x1a, 0xba, 0x94, 0xf5, 0xf8, 0x5f, 0x59, 0x6f, 0xe4, 0xf5, 0x62, 0xf0, 0x65, 0x91, 0x5b,
-	0x1e, 0xff, 0x0c, 0x00, 0x00, 0xff, 0xff, 0x67, 0x68, 0x8f, 0x02, 0xcd, 0x09, 0x00, 0x00,
+	// 948 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x57, 0x5f, 0x6f, 0x1b, 0x45,
+	0x10, 0xbf, 0x4b, 0xe2, 0xd8, 0x1e, 0x3b, 0xff, 0xd6, 0x09, 0x4d, 0xae, 0x28, 0x0a, 0x0b, 0x12,
+	0xed, 0x03, 0x09, 0x0a, 0xaa, 0x40, 0x8a, 0x04, 0x28, 0xa1, 0x4d, 0x05, 0xa5, 0x2e, 0xe7, 0x20,
+	0x24, 0x24, 0x1e, 0x2e, 0xe7, 0xe9, 0x65, 0xa5, 0xfb, 0xc7, 0xed, 0x5a, 0xaa, 0x79, 0xe3, 0x4b,
+	0xf0, 0x02, 0xe2, 0x8d, 0x6f, 0xc4, 0x07, 0x42, 0xb7, 0xb7, 0x7b, 0xbb, 0x8e, 0xcf, 0x55, 0x48,
+	0xda, 0xbe, 0x79, 0x76, 0xfe, 0xec, 0x6f, 0x66, 0x67, 0x7e, 0x37, 0x86, 0xb5, 0x14, 0xc5, 0x25,
+	0x06, 0xc9, 0x61, 0x5e, 0x64, 0x22, 0x23, 0x6d, 0x25, 0x7a, 0x90, 0x67, 0xe9, 0xb8, 0x3a, 0xa4,
+	0x6d, 0x68, 0x3d, 0x4e, 0x72, 0x31, 0xa5, 0x43, 0xe8, 0x3e, 0x0f, 0x12, 0xe4, 0x79, 0x10, 0x22,
+	0xa1, 0xd0, 0xcf, 0x8a, 0x28, 0x48, 0xd9, 0x6f, 0x81, 0x60, 0x59, 0xba, 0xeb, 0x1e, 0xb8, 0x0f,
+	0xba, 0xfe, 0xcc, 0x19, 0xd9, 0x07, 0x08, 0xb3, 0x38, 0xc6, 0x50, 0x5a, 0x2c, 0x49, 0x0b, 0xeb,
+	0x84, 0xee, 0x43, 0xc7, 0x47, 0x9e, 0x4d, 0x8a, 0x10, 0x09, 0x81, 0x95, 0x3c, 0x10, 0x57, 0xbb,
+	0xee, 0xc1, 0xf2, 0x83, 0xae, 0x2f, 0x7f, 0xd3, 0x0b, 0xe8, 0x0f, 0xed, 0x78, 0xeb, 0xb0, 0xc4,
+	0xc6, 0xf2, 0xa6, 0x96, 0xbf, 0xc4, 0xc6, 0xa5, 0x4f, 0x1a, 0x24, 0xa8, 0x22, 0xcb, 0xdf, 0xe4,
+	0x00, 0x7a, 0x63, 0xe4, 0x61, 0xc1, 0x72, 0x79, 0xe9, 0xb2, 0x54, 0xd9, 0x47, 0x74, 0x08, 0x9b,
+	0x76, 0xd4, 0x67, 0x8c, 0x0b, 0x72, 0x02, 0x6b, 0x36, 0x72, 0x2e, 0x61, 0xf4, 0x8e, 0x77, 0x0e,
+	0x75, 0x7d, 0x6c, 0x0f, 0x7f, 0xd6, 0x96, 0xe6, 0x00, 0x67, 0x75, 0x52, 0x73, 0x20, 0x3f, 0x85,
+	0x6e, 0xaa, 0xab, 0x26, 0x91, 0xf6, 0x8e, 0x49, 0x1d, 0xb6, 0xae, 0xa7, 0x6f, 0x8c, 0x6e, 0x90,
+	0xc2, 0x39, 0xac, 0x9b, 0x1b, 0x65, 0x02, 0x8f, 0xa0, 0x67, 0x0a, 0xab, 0xe1, 0x0f, 0xea, 0x7b,
+	0x8c, 0xb5, 0x6f, 0xdb, 0xd1, 0xbf, 0x5d, 0x58, 0x1d, 0x55, 0x0f, 0x70, 0x77, 0xdc, 0xdb, 0xd0,
+	0x62, 0xe9, 0x18, 0x5f, 0x49, 0xc4, 0x2d, 0xbf, 0x12, 0x88, 0x07, 0x9d, 0xbc, 0x60, 0x59, 0xc1,
+	0xc4, 0x74, 0x77, 0x45, 0x2a, 0x6a, 0xf9, 0x7a, 0xa6, 0xad, 0xf9, 0x4c, 0x3f, 0x07, 0xa8, 0xf0,
+	0xc9, 0x2c, 0x1f, 0x42, 0xbb, 0x6a, 0x17, 0x9d, 0xe1, 0x46, 0x8d, 0xa8, 0xb2, 0xf2, 0xb5, 0x9e,
+	0xfe, 0xe1, 0x02, 0x7c, 0x8f, 0xa2, 0x60, 0xe1, 0x28, 0xc7, 0x70, 0x36, 0x1b, 0xf7, 0x86, 0xd9,
+	0xf0, 0x30, 0xcb, 0x75, 0x77, 0x55, 0x42, 0xdd, 0x72, 0xcb, 0x56, 0xcb, 0xbd, 0x07, 0xab, 0x7c,
+	0xf2, 0xf2, 0x25, 0x7b, 0x25, 0xf3, 0xeb, 0xfa, 0x4a, 0x2a, 0x23, 0x04, 0x31, 0x8b, 0x74, 0x5e,
+	0x95, 0x40, 0x4f, 0x60, 0xdd, 0xe0, 0x52, 0x59, 0xb5, 0x78, 0x8e, 0xe1, 0xfc, 0xab, 0x19, 0x3b,
+	0xbf, 0xb2, 0xa0, 0x14, 0xfa, 0x4f, 0x31, 0x8e, 0x33, 0x1f, 0x7f, 0x9d, 0x20, 0x17, 0x35, 0x1c,
+	0xd7, 0xc0, 0xa1, 0x43, 0x00, 0x65, 0x93, 0xc7, 0x53, 0xb2, 0x0b, 0xed, 0x04, 0x39, 0x0f, 0x22,
+	0x6d, 0xa4, 0x45, 0xf2, 0x31, 0xac, 0x0a, 0x2e, 0x82, 0x24, 0x57, 0xaf, 0xbb, 0x71, 0x28, 0x87,
+	0xfe, 0x82, 0x25, 0x28, 0x8f, 0x7d, 0xa5, 0xa6, 0x7f, 0xb9, 0xd0, 0xbb, 0x60, 0x31, 0xea, 0x4b,
+	0xff, 0x7f, 0x2d, 0x3f, 0x81, 0x4e, 0xa1, 0x06, 0x5d, 0x5d, 0xb6, 0x55, 0x3b, 0x68, 0x06, 0xf0,
+	0x6b, 0x93, 0xb2, 0xa0, 0x89, 0x4c, 0x5d, 0x95, 0x59, 0x49, 0xa6, 0xc1, 0xaa, 0x3a, 0x57, 0x02,
+	0xdd, 0x83, 0x7b, 0xd7, 0xe7, 0x59, 0x21, 0xa5, 0x0f, 0x61, 0x30, 0x33, 0xb8, 0xaf, 0xa9, 0xda,
+	0x09, 0xec, 0xcc, 0x8e, 0x94, 0x36, 0xbe, 0x01, 0xd1, 0xd1, 0xef, 0x60, 0xcb, 0x9a, 0xb0, 0x9b,
+	0x3b, 0x36, 0x31, 0x18, 0xfd, 0xd3, 0x85, 0xc1, 0x59, 0x81, 0x81, 0x40, 0xd5, 0xd3, 0xb7, 0x2e,
+	0x7b, 0x5d, 0xaf, 0xa5, 0x45, 0x03, 0xb9, 0xfc, 0xfa, 0x81, 0x5c, 0x99, 0x1f, 0xc8, 0xdf, 0x5d,
+	0xb8, 0x7f, 0x76, 0x15, 0xa4, 0x91, 0x42, 0xf7, 0x42, 0xb9, 0xbe, 0x43, 0x94, 0xf4, 0x31, 0x6c,
+	0x19, 0x52, 0xb8, 0xf5, 0xc5, 0xf4, 0x27, 0x58, 0x7b, 0xa3, 0x15, 0xae, 0x3b, 0xf2, 0x17, 0x18,
+	0x7c, 0x83, 0x31, 0xbe, 0xa5, 0x07, 0xa4, 0x4f, 0x80, 0x18, 0x66, 0xe0, 0xb7, 0xcf, 0xff, 0x1f,
+	0x17, 0xf6, 0x7c, 0x8c, 0x18, 0x17, 0x58, 0x58, 0x54, 0x73, 0x17, 0xb4, 0x6f, 0x83, 0x31, 0x8f,
+	0xff, 0xed, 0x40, 0xfb, 0x79, 0x75, 0x31, 0xf9, 0x02, 0x3a, 0xa3, 0x60, 0x2a, 0xf9, 0x8d, 0x98,
+	0xaf, 0xb3, 0xcd, 0x89, 0xde, 0xe0, 0xfa, 0x71, 0x1e, 0x4f, 0xa9, 0x43, 0x1e, 0x41, 0xf7, 0x09,
+	0x8a, 0xf0, 0xaa, 0x64, 0x32, 0xb2, 0x5d, 0xdb, 0x58, 0xc4, 0xe6, 0x6d, 0x1a, 0x06, 0x1c, 0x61,
+	0xc1, 0x90, 0x53, 0x87, 0xf8, 0xb0, 0x55, 0x76, 0x99, 0x4d, 0x23, 0x9c, 0x1c, 0x34, 0xee, 0x05,
+	0x56, 0x37, 0x7a, 0x7b, 0x0b, 0x2d, 0xa8, 0x43, 0x9e, 0xc2, 0xc6, 0x39, 0xce, 0x84, 0x24, 0xef,
+	0x37, 0x6f, 0x1a, 0x2a, 0x5a, 0xf3, 0x1e, 0x42, 0x1d, 0xf2, 0x0c, 0x36, 0xca, 0x98, 0x86, 0x7c,
+	0x38, 0xd9, 0x6f, 0xf8, 0xe8, 0xdb, 0xc8, 0xee, 0x2d, 0xd0, 0x53, 0x87, 0x9c, 0xc2, 0xda, 0x39,
+	0x5a, 0xc1, 0x88, 0xd7, 0xb4, 0x40, 0xcc, 0x95, 0xd9, 0xe8, 0xa8, 0x43, 0xbe, 0x86, 0x5e, 0x19,
+	0xad, 0xea, 0x7c, 0x6e, 0x45, 0x98, 0x9b, 0x58, 0x2b, 0x82, 0xd1, 0x51, 0x87, 0x7c, 0x05, 0x7d,
+	0x9b, 0xfe, 0xac, 0xd2, 0x34, 0xb0, 0xa2, 0x77, 0x7d, 0x03, 0xa0, 0x0e, 0x19, 0xc2, 0xf6, 0x8f,
+	0xf9, 0xb8, 0xb6, 0xd4, 0x0c, 0x45, 0x3e, 0x32, 0x81, 0x16, 0x13, 0x58, 0x53, 0xc0, 0x2f, 0xa1,
+	0x6f, 0xcf, 0xb3, 0x85, 0xa8, 0x61, 0xcc, 0xbd, 0xf5, 0x5a, 0x5b, 0xad, 0xcd, 0x0e, 0xf9, 0x16,
+	0x36, 0xcb, 0xdc, 0xaa, 0x19, 0xe3, 0x72, 0x6a, 0xc9, 0xfd, 0x86, 0xaf, 0x3c, 0x9f, 0x7f, 0xa3,
+	0xd9, 0x55, 0x41, 0x26, 0x47, 0xf4, 0xcc, 0x9e, 0x4e, 0x05, 0x56, 0x7a, 0x42, 0xad, 0xcf, 0xe9,
+	0x82, 0x81, 0xf6, 0x9a, 0xf6, 0x0a, 0xd9, 0xe0, 0x3b, 0xda, 0xe7, 0x2c, 0x9b, 0xa4, 0xb5, 0xeb,
+	0x5d, 0x62, 0xbe, 0x80, 0x81, 0xf6, 0x39, 0x0f, 0x26, 0xd1, 0x1b, 0x40, 0xf9, 0x03, 0x6c, 0x6b,
+	0x9f, 0x91, 0x28, 0x58, 0x1a, 0xdd, 0x39, 0xe4, 0xe9, 0x87, 0x3f, 0x7f, 0x10, 0x31, 0x71, 0x35,
+	0xb9, 0x3c, 0x0c, 0xb3, 0xe4, 0x08, 0x79, 0x8a, 0xe2, 0x48, 0xfe, 0xe3, 0x39, 0x8a, 0xb2, 0x23,
+	0xe5, 0x71, 0xb9, 0x2a, 0x4f, 0x3e, 0xfb, 0x2f, 0x00, 0x00, 0xff, 0xff, 0x56, 0x3c, 0x48, 0xad,
+	0x29, 0x0d, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1146,6 +1394,16 @@ type NetbeamClient interface {
 	UpdateSourcePriority(ctx context.Context, in *ChangeSourcePriorityRequest, opts ...grpc.CallOption) (*Source, error)
 	// Delete the Source
 	DeleteSource(ctx context.Context, in *DeleteSourceRequest, opts ...grpc.CallOption) (*Empty, error)
+	// Request a list of all Metrics Specs registered to the Collection
+	ListMetricsSpecs(ctx context.Context, in *MetricSpecsRequest, opts ...grpc.CallOption) (*MetricSpecList, error)
+	// Register a Byte Counter Metric with netbeam
+	RegisterByteMetric(ctx context.Context, in *RegisterMetricSpecRequest, opts ...grpc.CallOption) (*MetricSpec, error)
+	// Register a Counter Metric with netbeam
+	RegisterCounterMetric(ctx context.Context, in *RegisterMetricSpecRequest, opts ...grpc.CallOption) (*MetricSpec, error)
+	// Register a Gauge Metric with netbeam
+	RegisterGaugeMetric(ctx context.Context, in *RegisterMetricSpecRequest, opts ...grpc.CallOption) (*MetricSpec, error)
+	// Register a String Metric with netbeam
+	RegisterStringMetric(ctx context.Context, in *RegisterMetricSpecRequest, opts ...grpc.CallOption) (*MetricSpec, error)
 }
 
 type netbeamClient struct {
@@ -1246,6 +1504,51 @@ func (c *netbeamClient) DeleteSource(ctx context.Context, in *DeleteSourceReques
 	return out, nil
 }
 
+func (c *netbeamClient) ListMetricsSpecs(ctx context.Context, in *MetricSpecsRequest, opts ...grpc.CallOption) (*MetricSpecList, error) {
+	out := new(MetricSpecList)
+	err := c.cc.Invoke(ctx, "/netbeam.Netbeam/ListMetricsSpecs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *netbeamClient) RegisterByteMetric(ctx context.Context, in *RegisterMetricSpecRequest, opts ...grpc.CallOption) (*MetricSpec, error) {
+	out := new(MetricSpec)
+	err := c.cc.Invoke(ctx, "/netbeam.Netbeam/RegisterByteMetric", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *netbeamClient) RegisterCounterMetric(ctx context.Context, in *RegisterMetricSpecRequest, opts ...grpc.CallOption) (*MetricSpec, error) {
+	out := new(MetricSpec)
+	err := c.cc.Invoke(ctx, "/netbeam.Netbeam/RegisterCounterMetric", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *netbeamClient) RegisterGaugeMetric(ctx context.Context, in *RegisterMetricSpecRequest, opts ...grpc.CallOption) (*MetricSpec, error) {
+	out := new(MetricSpec)
+	err := c.cc.Invoke(ctx, "/netbeam.Netbeam/RegisterGaugeMetric", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *netbeamClient) RegisterStringMetric(ctx context.Context, in *RegisterMetricSpecRequest, opts ...grpc.CallOption) (*MetricSpec, error) {
+	out := new(MetricSpec)
+	err := c.cc.Invoke(ctx, "/netbeam.Netbeam/RegisterStringMetric", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // NetbeamServer is the server API for Netbeam service.
 type NetbeamServer interface {
 	// Say hello to netbeam
@@ -1268,6 +1571,16 @@ type NetbeamServer interface {
 	UpdateSourcePriority(context.Context, *ChangeSourcePriorityRequest) (*Source, error)
 	// Delete the Source
 	DeleteSource(context.Context, *DeleteSourceRequest) (*Empty, error)
+	// Request a list of all Metrics Specs registered to the Collection
+	ListMetricsSpecs(context.Context, *MetricSpecsRequest) (*MetricSpecList, error)
+	// Register a Byte Counter Metric with netbeam
+	RegisterByteMetric(context.Context, *RegisterMetricSpecRequest) (*MetricSpec, error)
+	// Register a Counter Metric with netbeam
+	RegisterCounterMetric(context.Context, *RegisterMetricSpecRequest) (*MetricSpec, error)
+	// Register a Gauge Metric with netbeam
+	RegisterGaugeMetric(context.Context, *RegisterMetricSpecRequest) (*MetricSpec, error)
+	// Register a String Metric with netbeam
+	RegisterStringMetric(context.Context, *RegisterMetricSpecRequest) (*MetricSpec, error)
 }
 
 // UnimplementedNetbeamServer can be embedded to have forward compatible implementations.
@@ -1303,6 +1616,21 @@ func (*UnimplementedNetbeamServer) UpdateSourcePriority(ctx context.Context, req
 }
 func (*UnimplementedNetbeamServer) DeleteSource(ctx context.Context, req *DeleteSourceRequest) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteSource not implemented")
+}
+func (*UnimplementedNetbeamServer) ListMetricsSpecs(ctx context.Context, req *MetricSpecsRequest) (*MetricSpecList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMetricsSpecs not implemented")
+}
+func (*UnimplementedNetbeamServer) RegisterByteMetric(ctx context.Context, req *RegisterMetricSpecRequest) (*MetricSpec, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterByteMetric not implemented")
+}
+func (*UnimplementedNetbeamServer) RegisterCounterMetric(ctx context.Context, req *RegisterMetricSpecRequest) (*MetricSpec, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterCounterMetric not implemented")
+}
+func (*UnimplementedNetbeamServer) RegisterGaugeMetric(ctx context.Context, req *RegisterMetricSpecRequest) (*MetricSpec, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterGaugeMetric not implemented")
+}
+func (*UnimplementedNetbeamServer) RegisterStringMetric(ctx context.Context, req *RegisterMetricSpecRequest) (*MetricSpec, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisterStringMetric not implemented")
 }
 
 func RegisterNetbeamServer(s *grpc.Server, srv NetbeamServer) {
@@ -1489,6 +1817,96 @@ func _Netbeam_DeleteSource_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Netbeam_ListMetricsSpecs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MetricSpecsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetbeamServer).ListMetricsSpecs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/netbeam.Netbeam/ListMetricsSpecs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetbeamServer).ListMetricsSpecs(ctx, req.(*MetricSpecsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Netbeam_RegisterByteMetric_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterMetricSpecRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetbeamServer).RegisterByteMetric(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/netbeam.Netbeam/RegisterByteMetric",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetbeamServer).RegisterByteMetric(ctx, req.(*RegisterMetricSpecRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Netbeam_RegisterCounterMetric_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterMetricSpecRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetbeamServer).RegisterCounterMetric(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/netbeam.Netbeam/RegisterCounterMetric",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetbeamServer).RegisterCounterMetric(ctx, req.(*RegisterMetricSpecRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Netbeam_RegisterGaugeMetric_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterMetricSpecRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetbeamServer).RegisterGaugeMetric(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/netbeam.Netbeam/RegisterGaugeMetric",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetbeamServer).RegisterGaugeMetric(ctx, req.(*RegisterMetricSpecRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Netbeam_RegisterStringMetric_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RegisterMetricSpecRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetbeamServer).RegisterStringMetric(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/netbeam.Netbeam/RegisterStringMetric",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetbeamServer).RegisterStringMetric(ctx, req.(*RegisterMetricSpecRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Netbeam_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "netbeam.Netbeam",
 	HandlerType: (*NetbeamServer)(nil),
@@ -1532,6 +1950,26 @@ var _Netbeam_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteSource",
 			Handler:    _Netbeam_DeleteSource_Handler,
+		},
+		{
+			MethodName: "ListMetricsSpecs",
+			Handler:    _Netbeam_ListMetricsSpecs_Handler,
+		},
+		{
+			MethodName: "RegisterByteMetric",
+			Handler:    _Netbeam_RegisterByteMetric_Handler,
+		},
+		{
+			MethodName: "RegisterCounterMetric",
+			Handler:    _Netbeam_RegisterCounterMetric_Handler,
+		},
+		{
+			MethodName: "RegisterGaugeMetric",
+			Handler:    _Netbeam_RegisterGaugeMetric_Handler,
+		},
+		{
+			MethodName: "RegisterStringMetric",
+			Handler:    _Netbeam_RegisterStringMetric_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
