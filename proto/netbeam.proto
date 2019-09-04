@@ -303,7 +303,7 @@ service Netbeam {
     rpc ListMetricsSpecs (MetricSpecsRequest) returns (MetricSpecList) {}
 
     // Get a specific Source by supplying the Organization, Collection and the Source index
-    rpc GetMetric (MetricSpecRequest) returns (Source) {}
+    rpc GetMetricSpec (MetricSpecRequest) returns (MetricSpec) {}
 
     // Register a Byte Counter Metric with netbeam
     rpc RegisterByteMetric (RegisterMetricSpecRequest) returns (MetricSpec) {}
