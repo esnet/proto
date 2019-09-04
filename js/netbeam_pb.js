@@ -2129,13 +2129,14 @@ proto.netbeam.MetricSpec.prototype.toObject = function(opt_includeInstance) {
  */
 proto.netbeam.MetricSpec.toObject = function(includeInstance, msg) {
   var f, obj = {
+    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
     namespace: (f = msg.getNamespace()) && proto.netbeam.Namespace.toObject(includeInstance, f),
-    type: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    scope: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    name: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    suffix: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    align: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    units: jspb.Message.getFieldWithDefault(msg, 7, "")
+    type: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    scope: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    name: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    suffix: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    align: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    units: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -2173,31 +2174,35 @@ proto.netbeam.MetricSpec.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {number} */ (reader.readInt32());
+      msg.setId(value);
+      break;
+    case 2:
       var value = new proto.netbeam.Namespace;
       reader.readMessage(value,proto.netbeam.Namespace.deserializeBinaryFromReader);
       msg.setNamespace(value);
       break;
-    case 2:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setType(value);
       break;
-    case 3:
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setScope(value);
       break;
-    case 4:
+    case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
       break;
-    case 5:
+    case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setSuffix(value);
       break;
-    case 6:
+    case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setAlign(value);
       break;
-    case 7:
+    case 8:
       var value = /** @type {string} */ (reader.readString());
       msg.setUnits(value);
       break;
@@ -2230,10 +2235,17 @@ proto.netbeam.MetricSpec.prototype.serializeBinary = function() {
  */
 proto.netbeam.MetricSpec.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getId();
+  if (f !== 0) {
+    writer.writeInt32(
+      1,
+      f
+    );
+  }
   f = message.getNamespace();
   if (f != null) {
     writer.writeMessage(
-      1,
+      2,
       f,
       proto.netbeam.Namespace.serializeBinaryToWriter
     );
@@ -2241,42 +2253,42 @@ proto.netbeam.MetricSpec.serializeBinaryToWriter = function(message, writer) {
   f = message.getType();
   if (f.length > 0) {
     writer.writeString(
-      2,
+      3,
       f
     );
   }
   f = message.getScope();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      4,
       f
     );
   }
   f = message.getName();
   if (f.length > 0) {
     writer.writeString(
-      4,
+      5,
       f
     );
   }
   f = message.getSuffix();
   if (f.length > 0) {
     writer.writeString(
-      5,
+      6,
       f
     );
   }
   f = message.getAlign();
   if (f.length > 0) {
     writer.writeString(
-      6,
+      7,
       f
     );
   }
   f = message.getUnits();
   if (f.length > 0) {
     writer.writeString(
-      7,
+      8,
       f
     );
   }
@@ -2284,18 +2296,33 @@ proto.netbeam.MetricSpec.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional Namespace namespace = 1;
+ * optional int32 id = 1;
+ * @return {number}
+ */
+proto.netbeam.MetricSpec.prototype.getId = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/** @param {number} value */
+proto.netbeam.MetricSpec.prototype.setId = function(value) {
+  jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional Namespace namespace = 2;
  * @return {?proto.netbeam.Namespace}
  */
 proto.netbeam.MetricSpec.prototype.getNamespace = function() {
   return /** @type{?proto.netbeam.Namespace} */ (
-    jspb.Message.getWrapperField(this, proto.netbeam.Namespace, 1));
+    jspb.Message.getWrapperField(this, proto.netbeam.Namespace, 2));
 };
 
 
 /** @param {?proto.netbeam.Namespace|undefined} value */
 proto.netbeam.MetricSpec.prototype.setNamespace = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
+  jspb.Message.setWrapperField(this, 2, value);
 };
 
 
@@ -2312,97 +2339,97 @@ proto.netbeam.MetricSpec.prototype.clearNamespace = function() {
  * @return {boolean}
  */
 proto.netbeam.MetricSpec.prototype.hasNamespace = function() {
-  return jspb.Message.getField(this, 1) != null;
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
 /**
- * optional string type = 2;
+ * optional string type = 3;
  * @return {string}
  */
 proto.netbeam.MetricSpec.prototype.getType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/** @param {string} value */
-proto.netbeam.MetricSpec.prototype.setType = function(value) {
-  jspb.Message.setProto3StringField(this, 2, value);
-};
-
-
-/**
- * optional string scope = 3;
- * @return {string}
- */
-proto.netbeam.MetricSpec.prototype.getScope = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /** @param {string} value */
-proto.netbeam.MetricSpec.prototype.setScope = function(value) {
+proto.netbeam.MetricSpec.prototype.setType = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
 /**
- * optional string name = 4;
+ * optional string scope = 4;
  * @return {string}
  */
-proto.netbeam.MetricSpec.prototype.getName = function() {
+proto.netbeam.MetricSpec.prototype.getScope = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /** @param {string} value */
-proto.netbeam.MetricSpec.prototype.setName = function(value) {
+proto.netbeam.MetricSpec.prototype.setScope = function(value) {
   jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional string suffix = 5;
+ * optional string name = 5;
  * @return {string}
  */
-proto.netbeam.MetricSpec.prototype.getSuffix = function() {
+proto.netbeam.MetricSpec.prototype.getName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
 
 /** @param {string} value */
-proto.netbeam.MetricSpec.prototype.setSuffix = function(value) {
+proto.netbeam.MetricSpec.prototype.setName = function(value) {
   jspb.Message.setProto3StringField(this, 5, value);
 };
 
 
 /**
- * optional string align = 6;
+ * optional string suffix = 6;
  * @return {string}
  */
-proto.netbeam.MetricSpec.prototype.getAlign = function() {
+proto.netbeam.MetricSpec.prototype.getSuffix = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
 };
 
 
 /** @param {string} value */
-proto.netbeam.MetricSpec.prototype.setAlign = function(value) {
+proto.netbeam.MetricSpec.prototype.setSuffix = function(value) {
   jspb.Message.setProto3StringField(this, 6, value);
 };
 
 
 /**
- * optional string units = 7;
+ * optional string align = 7;
  * @return {string}
  */
-proto.netbeam.MetricSpec.prototype.getUnits = function() {
+proto.netbeam.MetricSpec.prototype.getAlign = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
 
 /** @param {string} value */
-proto.netbeam.MetricSpec.prototype.setUnits = function(value) {
+proto.netbeam.MetricSpec.prototype.setAlign = function(value) {
   jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string units = 8;
+ * @return {string}
+ */
+proto.netbeam.MetricSpec.prototype.getUnits = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/** @param {string} value */
+proto.netbeam.MetricSpec.prototype.setUnits = function(value) {
+  jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
@@ -4724,7 +4751,7 @@ proto.netbeam.MetricSpecRequest.prototype.toObject = function(opt_includeInstanc
 proto.netbeam.MetricSpecRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     namespace: (f = msg.getNamespace()) && proto.netbeam.Namespace.toObject(includeInstance, f),
-    index: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    id: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -4768,7 +4795,7 @@ proto.netbeam.MetricSpecRequest.deserializeBinaryFromReader = function(msg, read
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setIndex(value);
+      msg.setId(value);
       break;
     default:
       reader.skipField();
@@ -4807,7 +4834,7 @@ proto.netbeam.MetricSpecRequest.serializeBinaryToWriter = function(message, writ
       proto.netbeam.Namespace.serializeBinaryToWriter
     );
   }
-  f = message.getIndex();
+  f = message.getId();
   if (f !== 0) {
     writer.writeInt32(
       2,
@@ -4851,16 +4878,16 @@ proto.netbeam.MetricSpecRequest.prototype.hasNamespace = function() {
 
 
 /**
- * optional int32 index = 2;
+ * optional int32 id = 2;
  * @return {number}
  */
-proto.netbeam.MetricSpecRequest.prototype.getIndex = function() {
+proto.netbeam.MetricSpecRequest.prototype.getId = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /** @param {number} value */
-proto.netbeam.MetricSpecRequest.prototype.setIndex = function(value) {
+proto.netbeam.MetricSpecRequest.prototype.setId = function(value) {
   jspb.Message.setProto3IntField(this, 2, value);
 };
 

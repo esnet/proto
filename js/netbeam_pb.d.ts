@@ -242,6 +242,9 @@ export namespace SourceList {
 }
 
 export class MetricSpec extends jspb.Message { 
+    getId(): number;
+    setId(value: number): void;
+
 
     hasNamespace(): boolean;
     clearNamespace(): void;
@@ -279,6 +282,7 @@ export class MetricSpec extends jspb.Message {
 
 export namespace MetricSpec {
     export type AsObject = {
+        id: number,
         namespace?: Namespace.AsObject,
         type: string,
         scope: string,
@@ -663,8 +667,8 @@ export class MetricSpecRequest extends jspb.Message {
     getNamespace(): Namespace | undefined;
     setNamespace(value?: Namespace): void;
 
-    getIndex(): number;
-    setIndex(value: number): void;
+    getId(): number;
+    setId(value: number): void;
 
 
     serializeBinary(): Uint8Array;
@@ -680,7 +684,7 @@ export class MetricSpecRequest extends jspb.Message {
 export namespace MetricSpecRequest {
     export type AsObject = {
         namespace?: Namespace.AsObject,
-        index: number,
+        id: number,
     }
 }
 
