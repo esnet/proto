@@ -78,28 +78,31 @@ message SourceList {
 }
 
 message MetricSpec {
+    // The ID of the Metric
+    int32 id = 1;
+
     // The namespace to register the Metric within
-    Namespace namespace = 1;
+    Namespace namespace = 2;
 
     // The type of the metric: bytes, counter, gauge or string
-    string type = 2;
+    string type = 3;
 
     // The scope wildcard which determines which Resources the Metric will apply to
-    string scope = 3;
+    string scope = 4;
 
     // The base name of the metric e.g. "traffic"
-    string name = 4;
+    string name = 5;
 
     // The suffic of the metric e.g. "in" or "out"
-    string suffix = 5;
+    string suffix = 6;
 
     // The alignment of the data to periodic boundaries
-    string align = 6;
+    string align = 7;
 
     // The  units of the output data if applicable. Applies to gauges and counters while bytes can
     // be assumed to output bits/sec rates and string types are unitless. A gauge of say kb of memory
     // will output kb as its units. A counter of units errors will output a rate of errors as errors/sec.
-    string units = 7;
+    string units = 8;
 }
 
 message MetricSpecList {
@@ -210,8 +213,8 @@ message MetricSpecRequest {
     // The namespace containing the Metric
     Namespace namespace = 1;
 
-    // The index of the Metric Spec to fetch
-    int32 index = 2;
+    // The id of the Metric Spec to fetch
+    int32 id = 2;
 }
 
 message RegisterMetricSpecRequest {
