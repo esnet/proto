@@ -248,6 +248,9 @@ export class MetricSpec extends jspb.Message {
     getNamespace(): Namespace | undefined;
     setNamespace(value?: Namespace): void;
 
+    getType(): string;
+    setType(value: string): void;
+
     getScope(): string;
     setScope(value: string): void;
 
@@ -259,6 +262,9 @@ export class MetricSpec extends jspb.Message {
 
     getAlign(): string;
     setAlign(value: string): void;
+
+    getUnits(): string;
+    setUnits(value: string): void;
 
 
     serializeBinary(): Uint8Array;
@@ -274,10 +280,12 @@ export class MetricSpec extends jspb.Message {
 export namespace MetricSpec {
     export type AsObject = {
         namespace?: Namespace.AsObject,
+        type: string,
         scope: string,
         name: string,
         suffix: string,
         align: string,
+        units: string,
     }
 }
 
@@ -648,6 +656,34 @@ export namespace MetricSpecsRequest {
     }
 }
 
+export class MetricSpecRequest extends jspb.Message { 
+
+    hasNamespace(): boolean;
+    clearNamespace(): void;
+    getNamespace(): Namespace | undefined;
+    setNamespace(value?: Namespace): void;
+
+    getIndex(): number;
+    setIndex(value: number): void;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): MetricSpecRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: MetricSpecRequest): MetricSpecRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: MetricSpecRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): MetricSpecRequest;
+    static deserializeBinaryFromReader(message: MetricSpecRequest, reader: jspb.BinaryReader): MetricSpecRequest;
+}
+
+export namespace MetricSpecRequest {
+    export type AsObject = {
+        namespace?: Namespace.AsObject,
+        index: number,
+    }
+}
+
 export class RegisterMetricSpecRequest extends jspb.Message { 
 
     hasNamespace(): boolean;
@@ -667,6 +703,9 @@ export class RegisterMetricSpecRequest extends jspb.Message {
     getAlign(): string;
     setAlign(value: string): void;
 
+    getUnits(): string;
+    setUnits(value: string): void;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): RegisterMetricSpecRequest.AsObject;
@@ -685,5 +724,6 @@ export namespace RegisterMetricSpecRequest {
         name: string,
         suffix: string,
         align: string,
+        units: string,
     }
 }

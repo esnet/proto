@@ -15,10 +15,12 @@ interface INetbeamService extends grpc.ServiceDefinition<grpc.UntypedServiceImpl
     listCollections: INetbeamService_IListCollections;
     getCollection: INetbeamService_IGetCollection;
     listSources: INetbeamService_IListSources;
+    getSource: INetbeamService_IGetSource;
     createSource: INetbeamService_ICreateSource;
     updateSourcePriority: INetbeamService_IUpdateSourcePriority;
     deleteSource: INetbeamService_IDeleteSource;
     listMetricsSpecs: INetbeamService_IListMetricsSpecs;
+    getMetric: INetbeamService_IGetMetric;
     registerByteMetric: INetbeamService_IRegisterByteMetric;
     registerCounterMetric: INetbeamService_IRegisterCounterMetric;
     registerGaugeMetric: INetbeamService_IRegisterGaugeMetric;
@@ -88,6 +90,15 @@ interface INetbeamService_IListSources extends grpc.MethodDefinition<netbeam_pb.
     responseSerialize: grpc.serialize<netbeam_pb.SourceList>;
     responseDeserialize: grpc.deserialize<netbeam_pb.SourceList>;
 }
+interface INetbeamService_IGetSource extends grpc.MethodDefinition<netbeam_pb.SourceRequest, netbeam_pb.Source> {
+    path: string; // "/netbeam.Netbeam/GetSource"
+    requestStream: boolean; // false
+    responseStream: boolean; // false
+    requestSerialize: grpc.serialize<netbeam_pb.SourceRequest>;
+    requestDeserialize: grpc.deserialize<netbeam_pb.SourceRequest>;
+    responseSerialize: grpc.serialize<netbeam_pb.Source>;
+    responseDeserialize: grpc.deserialize<netbeam_pb.Source>;
+}
 interface INetbeamService_ICreateSource extends grpc.MethodDefinition<netbeam_pb.CreateSourceRequest, netbeam_pb.Source> {
     path: string; // "/netbeam.Netbeam/CreateSource"
     requestStream: boolean; // false
@@ -123,6 +134,15 @@ interface INetbeamService_IListMetricsSpecs extends grpc.MethodDefinition<netbea
     requestDeserialize: grpc.deserialize<netbeam_pb.MetricSpecsRequest>;
     responseSerialize: grpc.serialize<netbeam_pb.MetricSpecList>;
     responseDeserialize: grpc.deserialize<netbeam_pb.MetricSpecList>;
+}
+interface INetbeamService_IGetMetric extends grpc.MethodDefinition<netbeam_pb.MetricSpecRequest, netbeam_pb.Source> {
+    path: string; // "/netbeam.Netbeam/GetMetric"
+    requestStream: boolean; // false
+    responseStream: boolean; // false
+    requestSerialize: grpc.serialize<netbeam_pb.MetricSpecRequest>;
+    requestDeserialize: grpc.deserialize<netbeam_pb.MetricSpecRequest>;
+    responseSerialize: grpc.serialize<netbeam_pb.Source>;
+    responseDeserialize: grpc.deserialize<netbeam_pb.Source>;
 }
 interface INetbeamService_IRegisterByteMetric extends grpc.MethodDefinition<netbeam_pb.RegisterMetricSpecRequest, netbeam_pb.MetricSpec> {
     path: string; // "/netbeam.Netbeam/RegisterByteMetric"
@@ -171,10 +191,12 @@ export interface INetbeamServer {
     listCollections: grpc.handleUnaryCall<netbeam_pb.CollectionListRequest, netbeam_pb.CollectionList>;
     getCollection: grpc.handleUnaryCall<netbeam_pb.CollectionRequest, netbeam_pb.Collection>;
     listSources: grpc.handleUnaryCall<netbeam_pb.SourceListRequest, netbeam_pb.SourceList>;
+    getSource: grpc.handleUnaryCall<netbeam_pb.SourceRequest, netbeam_pb.Source>;
     createSource: grpc.handleUnaryCall<netbeam_pb.CreateSourceRequest, netbeam_pb.Source>;
     updateSourcePriority: grpc.handleUnaryCall<netbeam_pb.ChangeSourcePriorityRequest, netbeam_pb.Source>;
     deleteSource: grpc.handleUnaryCall<netbeam_pb.DeleteSourceRequest, netbeam_pb.Empty>;
     listMetricsSpecs: grpc.handleUnaryCall<netbeam_pb.MetricSpecsRequest, netbeam_pb.MetricSpecList>;
+    getMetric: grpc.handleUnaryCall<netbeam_pb.MetricSpecRequest, netbeam_pb.Source>;
     registerByteMetric: grpc.handleUnaryCall<netbeam_pb.RegisterMetricSpecRequest, netbeam_pb.MetricSpec>;
     registerCounterMetric: grpc.handleUnaryCall<netbeam_pb.RegisterMetricSpecRequest, netbeam_pb.MetricSpec>;
     registerGaugeMetric: grpc.handleUnaryCall<netbeam_pb.RegisterMetricSpecRequest, netbeam_pb.MetricSpec>;
@@ -203,6 +225,9 @@ export interface INetbeamClient {
     listSources(request: netbeam_pb.SourceListRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.SourceList) => void): grpc.ClientUnaryCall;
     listSources(request: netbeam_pb.SourceListRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.SourceList) => void): grpc.ClientUnaryCall;
     listSources(request: netbeam_pb.SourceListRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.SourceList) => void): grpc.ClientUnaryCall;
+    getSource(request: netbeam_pb.SourceRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
+    getSource(request: netbeam_pb.SourceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
+    getSource(request: netbeam_pb.SourceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
     createSource(request: netbeam_pb.CreateSourceRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
     createSource(request: netbeam_pb.CreateSourceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
     createSource(request: netbeam_pb.CreateSourceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
@@ -215,6 +240,9 @@ export interface INetbeamClient {
     listMetricsSpecs(request: netbeam_pb.MetricSpecsRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpecList) => void): grpc.ClientUnaryCall;
     listMetricsSpecs(request: netbeam_pb.MetricSpecsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpecList) => void): grpc.ClientUnaryCall;
     listMetricsSpecs(request: netbeam_pb.MetricSpecsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpecList) => void): grpc.ClientUnaryCall;
+    getMetric(request: netbeam_pb.MetricSpecRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
+    getMetric(request: netbeam_pb.MetricSpecRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
+    getMetric(request: netbeam_pb.MetricSpecRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
     registerByteMetric(request: netbeam_pb.RegisterMetricSpecRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
     registerByteMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
     registerByteMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
@@ -252,6 +280,9 @@ export class NetbeamClient extends grpc.Client implements INetbeamClient {
     public listSources(request: netbeam_pb.SourceListRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.SourceList) => void): grpc.ClientUnaryCall;
     public listSources(request: netbeam_pb.SourceListRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.SourceList) => void): grpc.ClientUnaryCall;
     public listSources(request: netbeam_pb.SourceListRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.SourceList) => void): grpc.ClientUnaryCall;
+    public getSource(request: netbeam_pb.SourceRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
+    public getSource(request: netbeam_pb.SourceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
+    public getSource(request: netbeam_pb.SourceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
     public createSource(request: netbeam_pb.CreateSourceRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
     public createSource(request: netbeam_pb.CreateSourceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
     public createSource(request: netbeam_pb.CreateSourceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
@@ -264,6 +295,9 @@ export class NetbeamClient extends grpc.Client implements INetbeamClient {
     public listMetricsSpecs(request: netbeam_pb.MetricSpecsRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpecList) => void): grpc.ClientUnaryCall;
     public listMetricsSpecs(request: netbeam_pb.MetricSpecsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpecList) => void): grpc.ClientUnaryCall;
     public listMetricsSpecs(request: netbeam_pb.MetricSpecsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpecList) => void): grpc.ClientUnaryCall;
+    public getMetric(request: netbeam_pb.MetricSpecRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
+    public getMetric(request: netbeam_pb.MetricSpecRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
+    public getMetric(request: netbeam_pb.MetricSpecRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Source) => void): grpc.ClientUnaryCall;
     public registerByteMetric(request: netbeam_pb.RegisterMetricSpecRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
     public registerByteMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
     public registerByteMetric(request: netbeam_pb.RegisterMetricSpecRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.MetricSpec) => void): grpc.ClientUnaryCall;
