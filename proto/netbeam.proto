@@ -77,11 +77,12 @@ message SourceList {
     repeated Source sources = 1;
 }
 
-message MetricSpec {
+// An ingest rule
+message Rule {
     // The ID of the Metric
     int32 id = 1;
 
-    // The namespace to register the Metric within
+    // The namespace to register the rule within
     Namespace namespace = 2;
 
     // The type of the metric: bytes, counter, gauge or string
@@ -105,9 +106,9 @@ message MetricSpec {
     string units = 8;
 }
 
-message MetricSpecList {
-    // The list of Metric Specs
-    repeated MetricSpec specs = 1;
+message RuleList {
+    // The list of rules
+    repeated Rule rules = 1;
 }
 
 //
@@ -204,41 +205,52 @@ message DeleteSourceRequest {
     int32 index = 2;
 }
 
-message MetricSpecsRequest {
-    // The namespace to request the Metrics Specs within
+message RuleListRequest {
+    // The namespace to request the ingest rules within
     Namespace namespace = 1;
 }
 
-message MetricSpecRequest {
-    // The namespace containing the Metric
+message RuleRequest {
+    // The namespace containing the ingest rule
     Namespace namespace = 1;
 
-    // The id of the Metric Spec to fetch
+    // The id of the rule to fetch
     int32 id = 2;
 }
 
-message RegisterMetricSpecRequest {
-    // The namespace to register the Metric Spec within
-    Namespace namespace = 1;
+message CreateRuleRequest {
+
+    enum Type {
+        BYTE = 0;
+        COUNTER = 1;
+        GAUGE = 2;
+        STRING = 3;
+    }
+
+    // The type of the metric to ingest, may be bytes, counter, gauge or string
+    Type type = 1;
+
+    // The namespace to register the rule within
+    Namespace namespace = 2;
 
     // The scope wildcard which determines which Resources the Metric will apply to.
     // e.g. "devices/*/interfaces/*"
-    string scope = 2;
+    string scope = 3;
 
     // The base name of the metric e.g. "traffic"
-    string name = 3;
+    string name = 4;
 
     // The suffic of the metric e.g. "in" or "out"
-    string suffix = 4;
+    string suffix = 5;
 
     // The alignment of the data to periodic boundaries e.g. "30s" or "5m"
-    string align = 5;
+    string align = 6;
 
     // Units, applicable to counter and gauge types. For counter types the output rates
     // will be ${units}/s and for gauges the output units will just be ${units}. For example
     // a counter of errors my have units "errors" and will output "errors/sec", while a
     // temperature gauge may have units "deg C" which will be its output units as well
-    string units = 6;
+    string units = 7;
 }
 
 //
@@ -296,24 +308,16 @@ service Netbeam {
     rpc DeleteSource (DeleteSourceRequest) returns (Empty) {}
 
     //
-    // Admin: Metrics
+    // Admin: Metrics rules
     //
 
-    // Request a list of all Metrics Specs registered to the Collection
-    rpc ListMetricsSpecs (MetricSpecsRequest) returns (MetricSpecList) {}
+    // Request a list of all ingest rules registered to the Collection
+    rpc ListRules (RuleListRequest) returns (RuleList) {}
 
-    // Get a specific Source by supplying the Organization, Collection and the Source index
-    rpc GetMetricSpec (MetricSpecRequest) returns (MetricSpec) {}
+    // Get a specific rule by supplying the Organization, Collection and rule id
+    rpc GetRule (RuleRequest) returns (Rule) {}
 
-    // Register a Byte Counter Metric with netbeam
-    rpc RegisterByteMetric (RegisterMetricSpecRequest) returns (MetricSpec) {}
+    // Register an ingest rule with netbeam
+    rpc CreateRule (CreateRuleRequest) returns (Rule) {}
 
-    // Register a Counter Metric with netbeam
-    rpc RegisterCounterMetric (RegisterMetricSpecRequest) returns (MetricSpec) {}
-
-    // Register a Gauge Metric with netbeam
-    rpc RegisterGaugeMetric (RegisterMetricSpecRequest) returns (MetricSpec) {}
-
-    // Register a String Metric with netbeam
-    rpc RegisterStringMetric (RegisterMetricSpecRequest) returns (MetricSpec) {}
 }

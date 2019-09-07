@@ -241,7 +241,7 @@ export namespace SourceList {
     }
 }
 
-export class MetricSpec extends jspb.Message { 
+export class Rule extends jspb.Message { 
     getId(): number;
     setId(value: number): void;
 
@@ -271,16 +271,16 @@ export class MetricSpec extends jspb.Message {
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): MetricSpec.AsObject;
-    static toObject(includeInstance: boolean, msg: MetricSpec): MetricSpec.AsObject;
+    toObject(includeInstance?: boolean): Rule.AsObject;
+    static toObject(includeInstance: boolean, msg: Rule): Rule.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: MetricSpec, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): MetricSpec;
-    static deserializeBinaryFromReader(message: MetricSpec, reader: jspb.BinaryReader): MetricSpec;
+    static serializeBinaryToWriter(message: Rule, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Rule;
+    static deserializeBinaryFromReader(message: Rule, reader: jspb.BinaryReader): Rule;
 }
 
-export namespace MetricSpec {
+export namespace Rule {
     export type AsObject = {
         id: number,
         namespace?: Namespace.AsObject,
@@ -293,26 +293,26 @@ export namespace MetricSpec {
     }
 }
 
-export class MetricSpecList extends jspb.Message { 
-    clearSpecsList(): void;
-    getSpecsList(): Array<MetricSpec>;
-    setSpecsList(value: Array<MetricSpec>): void;
-    addSpecs(value?: MetricSpec, index?: number): MetricSpec;
+export class RuleList extends jspb.Message { 
+    clearRulesList(): void;
+    getRulesList(): Array<Rule>;
+    setRulesList(value: Array<Rule>): void;
+    addRules(value?: Rule, index?: number): Rule;
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): MetricSpecList.AsObject;
-    static toObject(includeInstance: boolean, msg: MetricSpecList): MetricSpecList.AsObject;
+    toObject(includeInstance?: boolean): RuleList.AsObject;
+    static toObject(includeInstance: boolean, msg: RuleList): RuleList.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: MetricSpecList, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): MetricSpecList;
-    static deserializeBinaryFromReader(message: MetricSpecList, reader: jspb.BinaryReader): MetricSpecList;
+    static serializeBinaryToWriter(message: RuleList, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): RuleList;
+    static deserializeBinaryFromReader(message: RuleList, reader: jspb.BinaryReader): RuleList;
 }
 
-export namespace MetricSpecList {
+export namespace RuleList {
     export type AsObject = {
-        specsList: Array<MetricSpec.AsObject>,
+        rulesList: Array<Rule.AsObject>,
     }
 }
 
@@ -636,7 +636,7 @@ export namespace DeleteSourceRequest {
     }
 }
 
-export class MetricSpecsRequest extends jspb.Message { 
+export class RuleListRequest extends jspb.Message { 
 
     hasNamespace(): boolean;
     clearNamespace(): void;
@@ -645,22 +645,22 @@ export class MetricSpecsRequest extends jspb.Message {
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): MetricSpecsRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: MetricSpecsRequest): MetricSpecsRequest.AsObject;
+    toObject(includeInstance?: boolean): RuleListRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: RuleListRequest): RuleListRequest.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: MetricSpecsRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): MetricSpecsRequest;
-    static deserializeBinaryFromReader(message: MetricSpecsRequest, reader: jspb.BinaryReader): MetricSpecsRequest;
+    static serializeBinaryToWriter(message: RuleListRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): RuleListRequest;
+    static deserializeBinaryFromReader(message: RuleListRequest, reader: jspb.BinaryReader): RuleListRequest;
 }
 
-export namespace MetricSpecsRequest {
+export namespace RuleListRequest {
     export type AsObject = {
         namespace?: Namespace.AsObject,
     }
 }
 
-export class MetricSpecRequest extends jspb.Message { 
+export class RuleRequest extends jspb.Message { 
 
     hasNamespace(): boolean;
     clearNamespace(): void;
@@ -672,23 +672,26 @@ export class MetricSpecRequest extends jspb.Message {
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): MetricSpecRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: MetricSpecRequest): MetricSpecRequest.AsObject;
+    toObject(includeInstance?: boolean): RuleRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: RuleRequest): RuleRequest.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: MetricSpecRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): MetricSpecRequest;
-    static deserializeBinaryFromReader(message: MetricSpecRequest, reader: jspb.BinaryReader): MetricSpecRequest;
+    static serializeBinaryToWriter(message: RuleRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): RuleRequest;
+    static deserializeBinaryFromReader(message: RuleRequest, reader: jspb.BinaryReader): RuleRequest;
 }
 
-export namespace MetricSpecRequest {
+export namespace RuleRequest {
     export type AsObject = {
         namespace?: Namespace.AsObject,
         id: number,
     }
 }
 
-export class RegisterMetricSpecRequest extends jspb.Message { 
+export class CreateRuleRequest extends jspb.Message { 
+    getType(): CreateRuleRequest.Type;
+    setType(value: CreateRuleRequest.Type): void;
+
 
     hasNamespace(): boolean;
     clearNamespace(): void;
@@ -712,17 +715,18 @@ export class RegisterMetricSpecRequest extends jspb.Message {
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): RegisterMetricSpecRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: RegisterMetricSpecRequest): RegisterMetricSpecRequest.AsObject;
+    toObject(includeInstance?: boolean): CreateRuleRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: CreateRuleRequest): CreateRuleRequest.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: RegisterMetricSpecRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): RegisterMetricSpecRequest;
-    static deserializeBinaryFromReader(message: RegisterMetricSpecRequest, reader: jspb.BinaryReader): RegisterMetricSpecRequest;
+    static serializeBinaryToWriter(message: CreateRuleRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CreateRuleRequest;
+    static deserializeBinaryFromReader(message: CreateRuleRequest, reader: jspb.BinaryReader): CreateRuleRequest;
 }
 
-export namespace RegisterMetricSpecRequest {
+export namespace CreateRuleRequest {
     export type AsObject = {
+        type: CreateRuleRequest.Type,
         namespace?: Namespace.AsObject,
         scope: string,
         name: string,
@@ -730,4 +734,12 @@ export namespace RegisterMetricSpecRequest {
         align: string,
         units: string,
     }
+
+    export enum Type {
+    BYTE = 0,
+    COUNTER = 1,
+    GAUGE = 2,
+    STRING = 3,
+    }
+
 }
