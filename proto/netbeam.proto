@@ -77,7 +77,11 @@ message SourceList {
     repeated Source sources = 1;
 }
 
-// An ingest rule
+// An ingest rule that describes at a high level how some particular metric will be processed.
+// This consists of three parts: A matcher (based on the namespace of the event and the scope
+// that matches the resource), a Type (which corresponds to different netbeam handling of the event),
+// and finally parameters which further control the way that metric is processed (alignment of
+// the data, naming and units).
 message Rule {
     // The ID of the Metric
     int32 id = 1;
@@ -85,8 +89,14 @@ message Rule {
     // The namespace to register the rule within
     Namespace namespace = 2;
 
+    enum Type {
+        COUNTER = 0;
+        GAUGE = 1;
+        STRING = 2;
+    }
+
     // The type of the metric: bytes, counter, gauge or string
-    string type = 3;
+    Type type = 3;
 
     // The scope wildcard which determines which Resources the Metric will apply to
     string scope = 4;
@@ -100,9 +110,10 @@ message Rule {
     // The alignment of the data to periodic boundaries
     string align = 7;
 
-    // The  units of the output data if applicable. Applies to gauges and counters while bytes can
-    // be assumed to output bits/sec rates and string types are unitless. A gauge of say kb of memory
-    // will output kb as its units. A counter of units errors will output a rate of errors as errors/sec.
+    // The  units of the output data if applicable. Applies to gauges and counters. Counters with units of
+    // bytes is assumed to output bits per second rates. This is a special case. String types are unitless.
+    // A gauge of say kb of memory will output kb as its units. A counter of units "errors" will output a
+    // rate of errors as "errors/sec".
     string units = 8;
 }
 
@@ -221,13 +232,12 @@ message RuleRequest {
 message CreateRuleRequest {
 
     enum Type {
-        BYTE = 0;
-        COUNTER = 1;
-        GAUGE = 2;
-        STRING = 3;
+        COUNTER = 0;
+        GAUGE = 1;
+        STRING = 2;
     }
 
-    // The type of the metric to ingest, may be bytes, counter, gauge or string
+    // The type of the metric to ingest, may be counter, gauge or string
     Type type = 1;
 
     // The namespace to register the rule within
@@ -250,6 +260,10 @@ message CreateRuleRequest {
     // will be ${units}/s and for gauges the output units will just be ${units}. For example
     // a counter of errors my have units "errors" and will output "errors/sec", while a
     // temperature gauge may have units "deg C" which will be its output units as well
+    //
+    // If the counter units is "bytes" then the counter is assumed to be a traffic counter
+    // and rate outputs will be converted automatically to bits per second.
+    //
     string units = 7;
 }
 
@@ -269,7 +283,7 @@ service Netbeam {
     rpc FetchTile (TileRequest) returns (pond.TimeSeries) {}
 
     //
-    // Admin: Organizations
+    // Organizations
     //
 
     // Request the list of Organizations registered with netbeam
@@ -279,7 +293,7 @@ service Netbeam {
     rpc GetOrganization (OrganizationRequest) returns (Organization) {}
 
     //
-    // Admin: Collections
+    // Collections
     //
 
     // Request the list of Collections within an Organization registered with netbeam
@@ -289,7 +303,7 @@ service Netbeam {
     rpc GetCollection (CollectionRequest) returns (Collection) {}
 
     //
-    // Admin: Sources
+    // Sources
     //
 
     // Request the list of all Sources within a Collection. The list will be returned in order of priority.
@@ -308,7 +322,7 @@ service Netbeam {
     rpc DeleteSource (DeleteSourceRequest) returns (Empty) {}
 
     //
-    // Admin: Metrics rules
+    // Rules
     //
 
     // Request a list of all ingest rules registered to the Collection

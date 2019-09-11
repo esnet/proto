@@ -251,8 +251,8 @@ export class Rule extends jspb.Message {
     getNamespace(): Namespace | undefined;
     setNamespace(value?: Namespace): void;
 
-    getType(): string;
-    setType(value: string): void;
+    getType(): Rule.Type;
+    setType(value: Rule.Type): void;
 
     getScope(): string;
     setScope(value: string): void;
@@ -284,13 +284,20 @@ export namespace Rule {
     export type AsObject = {
         id: number,
         namespace?: Namespace.AsObject,
-        type: string,
+        type: Rule.Type,
         scope: string,
         name: string,
         suffix: string,
         align: string,
         units: string,
     }
+
+    export enum Type {
+    COUNTER = 0,
+    GAUGE = 1,
+    STRING = 2,
+    }
+
 }
 
 export class RuleList extends jspb.Message { 
@@ -736,10 +743,9 @@ export namespace CreateRuleRequest {
     }
 
     export enum Type {
-    BYTE = 0,
-    COUNTER = 1,
-    GAUGE = 2,
-    STRING = 3,
+    COUNTER = 0,
+    GAUGE = 1,
+    STRING = 2,
     }
 
 }

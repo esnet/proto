@@ -33,6 +33,7 @@ goog.exportSymbol('proto.netbeam.OrganizationListRequest', null, global);
 goog.exportSymbol('proto.netbeam.OrganizationRequest', null, global);
 goog.exportSymbol('proto.netbeam.Resource', null, global);
 goog.exportSymbol('proto.netbeam.Rule', null, global);
+goog.exportSymbol('proto.netbeam.Rule.Type', null, global);
 goog.exportSymbol('proto.netbeam.RuleList', null, global);
 goog.exportSymbol('proto.netbeam.RuleListRequest', null, global);
 goog.exportSymbol('proto.netbeam.RuleRequest', null, global);
@@ -2132,7 +2133,7 @@ proto.netbeam.Rule.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, 0),
     namespace: (f = msg.getNamespace()) && proto.netbeam.Namespace.toObject(includeInstance, f),
-    type: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    type: jspb.Message.getFieldWithDefault(msg, 3, 0),
     scope: jspb.Message.getFieldWithDefault(msg, 4, ""),
     name: jspb.Message.getFieldWithDefault(msg, 5, ""),
     suffix: jspb.Message.getFieldWithDefault(msg, 6, ""),
@@ -2184,7 +2185,7 @@ proto.netbeam.Rule.deserializeBinaryFromReader = function(msg, reader) {
       msg.setNamespace(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
+      var value = /** @type {!proto.netbeam.Rule.Type} */ (reader.readEnum());
       msg.setType(value);
       break;
     case 4:
@@ -2252,8 +2253,8 @@ proto.netbeam.Rule.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getType();
-  if (f.length > 0) {
-    writer.writeString(
+  if (f !== 0.0) {
+    writer.writeEnum(
       3,
       f
     );
@@ -2295,6 +2296,15 @@ proto.netbeam.Rule.serializeBinaryToWriter = function(message, writer) {
   }
 };
 
+
+/**
+ * @enum {number}
+ */
+proto.netbeam.Rule.Type = {
+  COUNTER: 0,
+  GAUGE: 1,
+  STRING: 2
+};
 
 /**
  * optional int32 id = 1;
@@ -2345,17 +2355,17 @@ proto.netbeam.Rule.prototype.hasNamespace = function() {
 
 
 /**
- * optional string type = 3;
- * @return {string}
+ * optional Type type = 3;
+ * @return {!proto.netbeam.Rule.Type}
  */
 proto.netbeam.Rule.prototype.getType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {!proto.netbeam.Rule.Type} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
-/** @param {string} value */
+/** @param {!proto.netbeam.Rule.Type} value */
 proto.netbeam.Rule.prototype.setType = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
+  jspb.Message.setProto3EnumField(this, 3, value);
 };
 
 
@@ -5083,10 +5093,9 @@ proto.netbeam.CreateRuleRequest.serializeBinaryToWriter = function(message, writ
  * @enum {number}
  */
 proto.netbeam.CreateRuleRequest.Type = {
-  BYTE: 0,
-  COUNTER: 1,
-  GAUGE: 2,
-  STRING: 3
+  COUNTER: 0,
+  GAUGE: 1,
+  STRING: 2
 };
 
 /**
