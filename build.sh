@@ -30,3 +30,9 @@ mkdir -p go/pond
 
 protoc -I proto --go_out=plugins=grpc,paths=source_relative:./go/pond --proto_path=./proto pond.proto
 protoc -I proto --go_out=plugins=grpc,paths=source_relative:./go/netbeam --proto_path=./proto proto/netbeam.proto
+
+#
+# Descriptors
+#
+
+protoc --proto_path=./proto --include_imports --include_source_info --descriptor_set_out=pb/netbeam.pb proto/netbeam.proto
