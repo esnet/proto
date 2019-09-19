@@ -55,6 +55,22 @@ message CollectionList {
     repeated Collection collections = 1;
 }
 
+message ResourceGroup {
+    // The database ID of the resource group
+    int32 id =1;
+
+    // The short name of the resource group
+    string name = 2;
+
+    // A longer descriptive name of the resource group
+    string description = 3;
+}
+
+message ResourceGroupList {
+    // A list of ResourceGroups
+    repeated ResourceGroup resourceGroups = 1;
+}
+
 message Source {
     // The database ID of the Source
     int32 id = 1;
@@ -168,6 +184,19 @@ message CollectionRequest {
     string organization = 1;
 
     // The short name of the Collection
+    string name = 2;
+}
+
+message ResourceGroupListRequest {
+    // The short name of the Collection containing the Resource Groups
+    string collection = 1;
+}
+
+message ResourceGroupRequest {
+    // The Collection to look up the Resource Group in
+    string collection = 1;
+
+    // The short name of the Resource Group
     string name = 2;
 }
 
@@ -301,6 +330,16 @@ service Netbeam {
 
     // Get a specific Collection by supplying the Organization it is in as well as the Collection short name
     rpc GetCollection (CollectionRequest) returns (Collection) {}
+
+    //
+    // Resource Groups
+    //
+
+    // Request the list of resource groups within a Collection registered with netbeam
+    rpc ListResourceGroups (ResourceGroupListRequest) returns (ResourceGroupList) {}
+
+    // Get a specific Resource Group by supplying the Collection it is in as well as the Resource Group short name
+    rpc getResourceGroup (ResourceGroupRequest) returns (ResourceGroup) {}
 
     //
     // Sources
