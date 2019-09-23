@@ -90,9 +90,10 @@ message Rule {
     Namespace namespace = 2;
 
     enum Type {
-        COUNTER = 0;
-        GAUGE = 1;
-        STRING = 2;
+        BYTES = 0;
+        COUNTER = 1;
+        GAUGE = 2;
+        STRING = 3;
     }
 
     // The type of the metric: bytes, counter, gauge or string

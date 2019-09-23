@@ -2257,9 +2257,10 @@ proto.netbeam.Rule.serializeBinaryToWriter = function(message, writer) {
  * @enum {number}
  */
 proto.netbeam.Rule.Type = {
-  COUNTER: 0,
-  GAUGE: 1,
-  STRING: 2
+  BYTES: 0,
+  COUNTER: 1,
+  GAUGE: 2,
+  STRING: 3
 };
 
 /**
