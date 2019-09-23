@@ -126,17 +126,6 @@ message RuleList {
 // Service Request objects
 //
 
-// The request message containing the user's name.
-message HelloRequest {
-    string name = 1;
-}
-    
-// The response message containing the greetings
-message HelloReply {
-    string message = 1;
-    pond.Timestamp tstamp = 2;
-}
-
 message TileRequest {
     // The namespace
     Namespace namespace = 1;
@@ -232,9 +221,10 @@ message RuleRequest {
 message CreateRuleRequest {
 
     enum Type {
-        COUNTER = 0;
-        GAUGE = 1;
-        STRING = 2;
+        BYTES = 0;
+        COUNTER = 1;
+        GAUGE = 2;
+        STRING = 3;
     }
 
     // The type of the metric to ingest, may be counter, gauge or string
@@ -272,8 +262,6 @@ message CreateRuleRequest {
 //
 
 service Netbeam {
-    // Say hello to netbeam
-    rpc SayHello (HelloRequest) returns (HelloReply) {}
 
     //
     // Queries
@@ -328,10 +316,10 @@ service Netbeam {
     // Request a list of all ingest rules registered to the Collection
     rpc ListRules (RuleListRequest) returns (RuleList) {}
 
-    // Get a specific rule by supplying the Organization, Collection and rule id
+    // Get a specific rule by supplying the Organization, Collection and rule identifier
     rpc GetRule (RuleRequest) returns (Rule) {}
 
-    // Register an ingest rule with netbeam
+    // Register a new ingest rule
     rpc CreateRule (CreateRuleRequest) returns (Rule) {}
 
 }

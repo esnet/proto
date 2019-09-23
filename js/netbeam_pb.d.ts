@@ -323,55 +323,6 @@ export namespace RuleList {
     }
 }
 
-export class HelloRequest extends jspb.Message { 
-    getName(): string;
-    setName(value: string): void;
-
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): HelloRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: HelloRequest): HelloRequest.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: HelloRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): HelloRequest;
-    static deserializeBinaryFromReader(message: HelloRequest, reader: jspb.BinaryReader): HelloRequest;
-}
-
-export namespace HelloRequest {
-    export type AsObject = {
-        name: string,
-    }
-}
-
-export class HelloReply extends jspb.Message { 
-    getMessage(): string;
-    setMessage(value: string): void;
-
-
-    hasTstamp(): boolean;
-    clearTstamp(): void;
-    getTstamp(): pond_pb.Timestamp | undefined;
-    setTstamp(value?: pond_pb.Timestamp): void;
-
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): HelloReply.AsObject;
-    static toObject(includeInstance: boolean, msg: HelloReply): HelloReply.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: HelloReply, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): HelloReply;
-    static deserializeBinaryFromReader(message: HelloReply, reader: jspb.BinaryReader): HelloReply;
-}
-
-export namespace HelloReply {
-    export type AsObject = {
-        message: string,
-        tstamp?: pond_pb.Timestamp.AsObject,
-    }
-}
-
 export class TileRequest extends jspb.Message { 
 
     hasNamespace(): boolean;
@@ -743,9 +694,10 @@ export namespace CreateRuleRequest {
     }
 
     export enum Type {
-    COUNTER = 0,
-    GAUGE = 1,
-    STRING = 2,
+    BYTES = 0,
+    COUNTER = 1,
+    GAUGE = 2,
+    STRING = 3,
     }
 
 }
