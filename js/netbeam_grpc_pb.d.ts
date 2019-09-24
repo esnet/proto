@@ -21,6 +21,7 @@ interface INetbeamService extends grpc.ServiceDefinition<grpc.UntypedServiceImpl
     listRules: INetbeamService_IListRules;
     getRule: INetbeamService_IGetRule;
     createRule: INetbeamService_ICreateRule;
+    listMatchers: INetbeamService_IListMatchers;
 }
 
 interface INetbeamService_IFetchTile extends grpc.MethodDefinition<netbeam_pb.TileRequest, pond_pb.TimeSeries> {
@@ -140,6 +141,15 @@ interface INetbeamService_ICreateRule extends grpc.MethodDefinition<netbeam_pb.C
     responseSerialize: grpc.serialize<netbeam_pb.Rule>;
     responseDeserialize: grpc.deserialize<netbeam_pb.Rule>;
 }
+interface INetbeamService_IListMatchers extends grpc.MethodDefinition<netbeam_pb.MatchersRequest, netbeam_pb.Matchers> {
+    path: string; // "/netbeam.Netbeam/ListMatchers"
+    requestStream: boolean; // false
+    responseStream: boolean; // false
+    requestSerialize: grpc.serialize<netbeam_pb.MatchersRequest>;
+    requestDeserialize: grpc.deserialize<netbeam_pb.MatchersRequest>;
+    responseSerialize: grpc.serialize<netbeam_pb.Matchers>;
+    responseDeserialize: grpc.deserialize<netbeam_pb.Matchers>;
+}
 
 export const NetbeamService: INetbeamService;
 
@@ -157,6 +167,7 @@ export interface INetbeamServer {
     listRules: grpc.handleUnaryCall<netbeam_pb.RuleListRequest, netbeam_pb.RuleList>;
     getRule: grpc.handleUnaryCall<netbeam_pb.RuleRequest, netbeam_pb.Rule>;
     createRule: grpc.handleUnaryCall<netbeam_pb.CreateRuleRequest, netbeam_pb.Rule>;
+    listMatchers: grpc.handleUnaryCall<netbeam_pb.MatchersRequest, netbeam_pb.Matchers>;
 }
 
 export interface INetbeamClient {
@@ -199,6 +210,9 @@ export interface INetbeamClient {
     createRule(request: netbeam_pb.CreateRuleRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Rule) => void): grpc.ClientUnaryCall;
     createRule(request: netbeam_pb.CreateRuleRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Rule) => void): grpc.ClientUnaryCall;
     createRule(request: netbeam_pb.CreateRuleRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Rule) => void): grpc.ClientUnaryCall;
+    listMatchers(request: netbeam_pb.MatchersRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Matchers) => void): grpc.ClientUnaryCall;
+    listMatchers(request: netbeam_pb.MatchersRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Matchers) => void): grpc.ClientUnaryCall;
+    listMatchers(request: netbeam_pb.MatchersRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Matchers) => void): grpc.ClientUnaryCall;
 }
 
 export class NetbeamClient extends grpc.Client implements INetbeamClient {
@@ -242,4 +256,7 @@ export class NetbeamClient extends grpc.Client implements INetbeamClient {
     public createRule(request: netbeam_pb.CreateRuleRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Rule) => void): grpc.ClientUnaryCall;
     public createRule(request: netbeam_pb.CreateRuleRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Rule) => void): grpc.ClientUnaryCall;
     public createRule(request: netbeam_pb.CreateRuleRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Rule) => void): grpc.ClientUnaryCall;
+    public listMatchers(request: netbeam_pb.MatchersRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Matchers) => void): grpc.ClientUnaryCall;
+    public listMatchers(request: netbeam_pb.MatchersRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Matchers) => void): grpc.ClientUnaryCall;
+    public listMatchers(request: netbeam_pb.MatchersRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Matchers) => void): grpc.ClientUnaryCall;
 }

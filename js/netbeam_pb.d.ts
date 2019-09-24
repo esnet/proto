@@ -324,6 +324,291 @@ export namespace RuleList {
     }
 }
 
+export class Matchers extends jspb.Message { 
+
+    hasNamespace(): boolean;
+    clearNamespace(): void;
+    getNamespace(): Namespace | undefined;
+    setNamespace(value?: Namespace): void;
+
+    clearMatchersList(): void;
+    getMatchersList(): Array<Matcher>;
+    setMatchersList(value: Array<Matcher>): void;
+    addMatchers(value?: Matcher, index?: number): Matcher;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Matchers.AsObject;
+    static toObject(includeInstance: boolean, msg: Matchers): Matchers.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Matchers, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Matchers;
+    static deserializeBinaryFromReader(message: Matchers, reader: jspb.BinaryReader): Matchers;
+}
+
+export namespace Matchers {
+    export type AsObject = {
+        namespace?: Namespace.AsObject,
+        matchersList: Array<Matcher.AsObject>,
+    }
+}
+
+export class Matcher extends jspb.Message { 
+    getName(): string;
+    setName(value: string): void;
+
+    clearScopeList(): void;
+    getScopeList(): Array<string>;
+    setScopeList(value: Array<string>): void;
+    addScope(value: string, index?: number): string;
+
+    getDescription(): string;
+    setDescription(value: string): void;
+
+    getUnits(): string;
+    setUnits(value: string): void;
+
+    getAlign(): string;
+    setAlign(value: string): void;
+
+    clearProcessorsList(): void;
+    getProcessorsList(): Array<Processor>;
+    setProcessorsList(value: Array<Processor>): void;
+    addProcessors(value?: Processor, index?: number): Processor;
+
+    clearOutputsList(): void;
+    getOutputsList(): Array<Output>;
+    setOutputsList(value: Array<Output>): void;
+    addOutputs(value?: Output, index?: number): Output;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Matcher.AsObject;
+    static toObject(includeInstance: boolean, msg: Matcher): Matcher.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Matcher, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Matcher;
+    static deserializeBinaryFromReader(message: Matcher, reader: jspb.BinaryReader): Matcher;
+}
+
+export namespace Matcher {
+    export type AsObject = {
+        name: string,
+        scopeList: Array<string>,
+        description: string,
+        units: string,
+        align: string,
+        processorsList: Array<Processor.AsObject>,
+        outputsList: Array<Output.AsObject>,
+    }
+}
+
+export class Processor extends jspb.Message { 
+    getType(): Processor.Type;
+    setType(value: Processor.Type): void;
+
+    clearTargetList(): void;
+    getTargetList(): Array<string>;
+    setTargetList(value: Array<string>): void;
+    addTarget(value: string, index?: number): string;
+
+
+    hasConvertArgs(): boolean;
+    clearConvertArgs(): void;
+    getConvertArgs(): ConvertProcessorArgs | undefined;
+    setConvertArgs(value?: ConvertProcessorArgs): void;
+
+
+    hasRateArgs(): boolean;
+    clearRateArgs(): void;
+    getRateArgs(): RateProcessorArgs | undefined;
+    setRateArgs(value?: RateProcessorArgs): void;
+
+
+    getArgsCase(): Processor.ArgsCase;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Processor.AsObject;
+    static toObject(includeInstance: boolean, msg: Processor): Processor.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Processor, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Processor;
+    static deserializeBinaryFromReader(message: Processor, reader: jspb.BinaryReader): Processor;
+}
+
+export namespace Processor {
+    export type AsObject = {
+        type: Processor.Type,
+        targetList: Array<string>,
+        convertArgs?: ConvertProcessorArgs.AsObject,
+        rateArgs?: RateProcessorArgs.AsObject,
+    }
+
+    export enum Type {
+    ROLLUP = 0,
+    RATE = 1,
+    CONVERT = 2,
+    }
+
+
+    export enum ArgsCase {
+        ARGS_NOT_SET = 0,
+    
+    CONVERT_ARGS = 3,
+
+    RATE_ARGS = 4,
+
+    }
+
+}
+
+export class ConvertProcessorArgs extends jspb.Message { 
+    getFactor(): number;
+    setFactor(value: number): void;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ConvertProcessorArgs.AsObject;
+    static toObject(includeInstance: boolean, msg: ConvertProcessorArgs): ConvertProcessorArgs.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ConvertProcessorArgs, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ConvertProcessorArgs;
+    static deserializeBinaryFromReader(message: ConvertProcessorArgs, reader: jspb.BinaryReader): ConvertProcessorArgs;
+}
+
+export namespace ConvertProcessorArgs {
+    export type AsObject = {
+        factor: number,
+    }
+}
+
+export class RateProcessorArgs extends jspb.Message { 
+    getAllowNegative(): boolean;
+    setAllowNegative(value: boolean): void;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): RateProcessorArgs.AsObject;
+    static toObject(includeInstance: boolean, msg: RateProcessorArgs): RateProcessorArgs.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: RateProcessorArgs, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): RateProcessorArgs;
+    static deserializeBinaryFromReader(message: RateProcessorArgs, reader: jspb.BinaryReader): RateProcessorArgs;
+}
+
+export namespace RateProcessorArgs {
+    export type AsObject = {
+        allowNegative: boolean,
+    }
+}
+
+export class Output extends jspb.Message { 
+    getType(): Output.Type;
+    setType(value: Output.Type): void;
+
+
+    hasTileArgs(): boolean;
+    clearTileArgs(): void;
+    getTileArgs(): TileOutputArgs | undefined;
+    setTileArgs(value?: TileOutputArgs): void;
+
+
+    hasTagArgs(): boolean;
+    clearTagArgs(): void;
+    getTagArgs(): TagOutputArgs | undefined;
+    setTagArgs(value?: TagOutputArgs): void;
+
+
+    getArgsCase(): Output.ArgsCase;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Output.AsObject;
+    static toObject(includeInstance: boolean, msg: Output): Output.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Output, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Output;
+    static deserializeBinaryFromReader(message: Output, reader: jspb.BinaryReader): Output;
+}
+
+export namespace Output {
+    export type AsObject = {
+        type: Output.Type,
+        tileArgs?: TileOutputArgs.AsObject,
+        tagArgs?: TagOutputArgs.AsObject,
+    }
+
+    export enum Type {
+    ROLLUP = 0,
+    RATE = 1,
+    CONVERT = 2,
+    }
+
+
+    export enum ArgsCase {
+        ARGS_NOT_SET = 0,
+    
+    TILE_ARGS = 2,
+
+    TAG_ARGS = 3,
+
+    }
+
+}
+
+export class TileOutputArgs extends jspb.Message { 
+    getSpan(): string;
+    setSpan(value: string): void;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): TileOutputArgs.AsObject;
+    static toObject(includeInstance: boolean, msg: TileOutputArgs): TileOutputArgs.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: TileOutputArgs, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TileOutputArgs;
+    static deserializeBinaryFromReader(message: TileOutputArgs, reader: jspb.BinaryReader): TileOutputArgs;
+}
+
+export namespace TileOutputArgs {
+    export type AsObject = {
+        span: string,
+    }
+}
+
+export class TagOutputArgs extends jspb.Message { 
+    getSpan(): string;
+    setSpan(value: string): void;
+
+    clearMetricList(): void;
+    getMetricList(): Array<string>;
+    setMetricList(value: Array<string>): void;
+    addMetric(value: string, index?: number): string;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): TagOutputArgs.AsObject;
+    static toObject(includeInstance: boolean, msg: TagOutputArgs): TagOutputArgs.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: TagOutputArgs, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TagOutputArgs;
+    static deserializeBinaryFromReader(message: TagOutputArgs, reader: jspb.BinaryReader): TagOutputArgs;
+}
+
+export namespace TagOutputArgs {
+    export type AsObject = {
+        span: string,
+        metricList: Array<string>,
+    }
+}
+
 export class TileRequest extends jspb.Message { 
 
     hasNamespace(): boolean;
@@ -701,4 +986,28 @@ export namespace CreateRuleRequest {
     STRING = 3,
     }
 
+}
+
+export class MatchersRequest extends jspb.Message { 
+
+    hasNamespace(): boolean;
+    clearNamespace(): void;
+    getNamespace(): Namespace | undefined;
+    setNamespace(value?: Namespace): void;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): MatchersRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: MatchersRequest): MatchersRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: MatchersRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): MatchersRequest;
+    static deserializeBinaryFromReader(message: MatchersRequest, reader: jspb.BinaryReader): MatchersRequest;
+}
+
+export namespace MatchersRequest {
+    export type AsObject = {
+        namespace?: Namespace.AsObject,
+    }
 }
