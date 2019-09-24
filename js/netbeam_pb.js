@@ -4476,7 +4476,7 @@ proto.netbeam.TagOutputArgs.prototype.toObject = function(opt_includeInstance) {
 proto.netbeam.TagOutputArgs.toObject = function(includeInstance, msg) {
   var f, obj = {
     span: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    tagList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
+    metricList: (f = jspb.Message.getRepeatedField(msg, 2)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -4519,7 +4519,7 @@ proto.netbeam.TagOutputArgs.deserializeBinaryFromReader = function(msg, reader) 
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.addTag(value);
+      msg.addMetric(value);
       break;
     default:
       reader.skipField();
@@ -4557,7 +4557,7 @@ proto.netbeam.TagOutputArgs.serializeBinaryToWriter = function(message, writer) 
       f
     );
   }
-  f = message.getTagList();
+  f = message.getMetricList();
   if (f.length > 0) {
     writer.writeRepeatedString(
       2,
@@ -4583,16 +4583,16 @@ proto.netbeam.TagOutputArgs.prototype.setSpan = function(value) {
 
 
 /**
- * repeated string tag = 2;
+ * repeated string metric = 2;
  * @return {!Array<string>}
  */
-proto.netbeam.TagOutputArgs.prototype.getTagList = function() {
+proto.netbeam.TagOutputArgs.prototype.getMetricList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
 /** @param {!Array<string>} value */
-proto.netbeam.TagOutputArgs.prototype.setTagList = function(value) {
+proto.netbeam.TagOutputArgs.prototype.setMetricList = function(value) {
   jspb.Message.setField(this, 2, value || []);
 };
 
@@ -4601,7 +4601,7 @@ proto.netbeam.TagOutputArgs.prototype.setTagList = function(value) {
  * @param {string} value
  * @param {number=} opt_index
  */
-proto.netbeam.TagOutputArgs.prototype.addTag = function(value, opt_index) {
+proto.netbeam.TagOutputArgs.prototype.addMetric = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 2, value, opt_index);
 };
 
@@ -4609,8 +4609,8 @@ proto.netbeam.TagOutputArgs.prototype.addTag = function(value, opt_index) {
 /**
  * Clears the list making it empty but non-null.
  */
-proto.netbeam.TagOutputArgs.prototype.clearTagList = function() {
-  this.setTagList([]);
+proto.netbeam.TagOutputArgs.prototype.clearMetricList = function() {
+  this.setMetricList([]);
 };
 
 

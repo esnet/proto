@@ -612,10 +612,10 @@ export class TagOutputArgs extends jspb.Message {
     getSpan(): string;
     setSpan(value: string): void;
 
-    clearTagList(): void;
-    getTagList(): Array<string>;
-    setTagList(value: Array<string>): void;
-    addTag(value: string, index?: number): string;
+    clearMetricList(): void;
+    getMetricList(): Array<string>;
+    setMetricList(value: Array<string>): void;
+    addMetric(value: string, index?: number): string;
 
 
     serializeBinary(): Uint8Array;
@@ -631,7 +631,7 @@ export class TagOutputArgs extends jspb.Message {
 export namespace TagOutputArgs {
     export type AsObject = {
         span: string,
-        tagList: Array<string>,
+        metricList: Array<string>,
     }
 }
 

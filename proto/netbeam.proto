@@ -223,8 +223,8 @@ message TagOutputArgs {
     // The span of the tile to write into e.g. 30s samples into a span of "1d" (2880 points per tile)
     string span = 1;
 
-    // The tag name
-    repeated string tag = 2;
+    // The output metric name for the tag resource e.g. tags/sites/anl::traffic/$suffix
+    repeated string metric = 2;
 }
 
 //
