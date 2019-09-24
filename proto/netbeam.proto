@@ -195,9 +195,9 @@ message RateProcessorArgs {
 
 message Output {
     enum Type {
-        ROLLUP = 0;
-        RATE = 1;
-        CONVERT = 2;
+        TILE = 0;
+        CURRENT = 1;
+        TAG = 2;
     }
 
     // The type of the metric: bytes, counter, gauge or string
@@ -206,7 +206,8 @@ message Output {
     // Output args
     oneof args {
         TileOutputArgs tile_args = 2;
-        TagOutputArgs tag_args = 3;
+        CurrentOutputArgs current_args = 3;
+        TagOutputArgs tag_args = 4;
     }
 }
 
@@ -215,12 +216,15 @@ message TileOutputArgs {
     string span = 1;
 }
 
+message CurrentOutputArgs {
+}
+
 message TagOutputArgs {
     // The span of the tile to write into e.g. 30s samples into a span of "1d" (2880 points per tile)
     string span = 1;
 
     // The tag name
-    repeated string metric = 2;
+    repeated string tag = 2;
 }
 
 //

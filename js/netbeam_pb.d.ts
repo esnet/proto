@@ -518,6 +518,12 @@ export class Output extends jspb.Message {
     setTileArgs(value?: TileOutputArgs): void;
 
 
+    hasCurrentArgs(): boolean;
+    clearCurrentArgs(): void;
+    getCurrentArgs(): CurrentOutputArgs | undefined;
+    setCurrentArgs(value?: CurrentOutputArgs): void;
+
+
     hasTagArgs(): boolean;
     clearTagArgs(): void;
     getTagArgs(): TagOutputArgs | undefined;
@@ -540,13 +546,14 @@ export namespace Output {
     export type AsObject = {
         type: Output.Type,
         tileArgs?: TileOutputArgs.AsObject,
+        currentArgs?: CurrentOutputArgs.AsObject,
         tagArgs?: TagOutputArgs.AsObject,
     }
 
     export enum Type {
-    ROLLUP = 0,
-    RATE = 1,
-    CONVERT = 2,
+    TILE = 0,
+    CURRENT = 1,
+    TAG = 2,
     }
 
 
@@ -555,7 +562,9 @@ export namespace Output {
     
     TILE_ARGS = 2,
 
-    TAG_ARGS = 3,
+    CURRENT_ARGS = 3,
+
+    TAG_ARGS = 4,
 
     }
 
@@ -582,14 +591,31 @@ export namespace TileOutputArgs {
     }
 }
 
+export class CurrentOutputArgs extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): CurrentOutputArgs.AsObject;
+    static toObject(includeInstance: boolean, msg: CurrentOutputArgs): CurrentOutputArgs.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: CurrentOutputArgs, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CurrentOutputArgs;
+    static deserializeBinaryFromReader(message: CurrentOutputArgs, reader: jspb.BinaryReader): CurrentOutputArgs;
+}
+
+export namespace CurrentOutputArgs {
+    export type AsObject = {
+    }
+}
+
 export class TagOutputArgs extends jspb.Message { 
     getSpan(): string;
     setSpan(value: string): void;
 
-    clearMetricList(): void;
-    getMetricList(): Array<string>;
-    setMetricList(value: Array<string>): void;
-    addMetric(value: string, index?: number): string;
+    clearTagList(): void;
+    getTagList(): Array<string>;
+    setTagList(value: Array<string>): void;
+    addTag(value: string, index?: number): string;
 
 
     serializeBinary(): Uint8Array;
@@ -605,7 +631,7 @@ export class TagOutputArgs extends jspb.Message {
 export namespace TagOutputArgs {
     export type AsObject = {
         span: string,
-        metricList: Array<string>,
+        tagList: Array<string>,
     }
 }
 
