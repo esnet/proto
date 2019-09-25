@@ -263,6 +263,9 @@ export class Rule extends jspb.Message {
     getSuffix(): string;
     setSuffix(value: string): void;
 
+    getTagSuffix(): string;
+    setTagSuffix(value: string): void;
+
     getAlign(): string;
     setAlign(value: string): void;
 
@@ -288,6 +291,7 @@ export namespace Rule {
         scope: string,
         name: string,
         suffix: string,
+        tagSuffix: string,
         align: string,
         units: string,
     }
@@ -427,6 +431,12 @@ export class Processor extends jspb.Message {
     setRateArgs(value?: RateProcessorArgs): void;
 
 
+    hasRollupArgs(): boolean;
+    clearRollupArgs(): void;
+    getRollupArgs(): RollupProcessorArgs | undefined;
+    setRollupArgs(value?: RollupProcessorArgs): void;
+
+
     getArgsCase(): Processor.ArgsCase;
 
     serializeBinary(): Uint8Array;
@@ -445,6 +455,7 @@ export namespace Processor {
         targetList: Array<string>,
         convertArgs?: ConvertProcessorArgs.AsObject,
         rateArgs?: RateProcessorArgs.AsObject,
+        rollupArgs?: RollupProcessorArgs.AsObject,
     }
 
     export enum Type {
@@ -460,6 +471,8 @@ export namespace Processor {
     CONVERT_ARGS = 3,
 
     RATE_ARGS = 4,
+
+    ROLLUP_ARGS = 5,
 
     }
 
@@ -505,6 +518,38 @@ export namespace RateProcessorArgs {
     export type AsObject = {
         allowNegative: boolean,
     }
+}
+
+export class RollupProcessorArgs extends jspb.Message { 
+    getAgg(): RollupProcessorArgs.AggregationFunction;
+    setAgg(value: RollupProcessorArgs.AggregationFunction): void;
+
+    getPeriod(): string;
+    setPeriod(value: string): void;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): RollupProcessorArgs.AsObject;
+    static toObject(includeInstance: boolean, msg: RollupProcessorArgs): RollupProcessorArgs.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: RollupProcessorArgs, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): RollupProcessorArgs;
+    static deserializeBinaryFromReader(message: RollupProcessorArgs, reader: jspb.BinaryReader): RollupProcessorArgs;
+}
+
+export namespace RollupProcessorArgs {
+    export type AsObject = {
+        agg: RollupProcessorArgs.AggregationFunction,
+        period: string,
+    }
+
+    export enum AggregationFunction {
+    SUM = 0,
+    AVG = 1,
+    MAX = 2,
+    }
+
 }
 
 export class Output extends jspb.Message { 
@@ -974,14 +1019,17 @@ export class CreateRuleRequest extends jspb.Message {
     getName(): string;
     setName(value: string): void;
 
+    getUnits(): string;
+    setUnits(value: string): void;
+
     getSuffix(): string;
     setSuffix(value: string): void;
 
+    getTagSuffix(): string;
+    setTagSuffix(value: string): void;
+
     getAlign(): string;
     setAlign(value: string): void;
-
-    getUnits(): string;
-    setUnits(value: string): void;
 
 
     serializeBinary(): Uint8Array;
@@ -1000,9 +1048,10 @@ export namespace CreateRuleRequest {
         namespace?: Namespace.AsObject,
         scope: string,
         name: string,
-        suffix: string,
-        align: string,
         units: string,
+        suffix: string,
+        tagSuffix: string,
+        align: string,
     }
 
     export enum Type {
