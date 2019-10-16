@@ -58,6 +58,23 @@ message CollectionList {
     repeated Collection collections = 1;
 }
 
+message ResourceGroup {
+    // The database ID of the resource group
+    int32 id =1;
+
+    // The short name of the resource group
+    string name = 2;
+
+    // The namespace of anything within this Collection, contains both the Organization name
+    // and the Collection name e.g. {organization: "esnet", collection: "prod"}
+    Namespace namespace = 3;
+}
+
+message ResourceGroupList {
+    // A list of ResourceGroups
+    repeated ResourceGroup resourceGroups = 1;
+}
+
 message Source {
     // The database ID of the Source
     int32 id = 1;
@@ -285,6 +302,22 @@ message CollectionRequest {
     string name = 2;
 }
 
+message ResourceGroupListRequest {
+    // The namespace containing the Resource Groups
+    Namespace namespace = 1;
+
+    // parent root
+    repeated string parent = 2;
+}
+
+message ResourceGroupRequest {
+    // The namespace containing the Resource Group
+    Namespace namespace = 1;
+
+    // The name of the Resource Group
+    string name = 2;
+}
+
 message CreateSourceRequest {
     // The namespace containing the Source
     Namespace namespace = 1;
@@ -425,6 +458,16 @@ service Netbeam {
 
     // Get a specific Collection by supplying the Organization it is in as well as the Collection short name
     rpc GetCollection (CollectionRequest) returns (Collection) {}
+
+    //
+    // Resource Groups
+    //
+
+    // Request the list of resource groups within a Collection registered with netbeam
+    rpc ListResourceGroups (ResourceGroupListRequest) returns (ResourceGroupList) {}
+
+    // Get a specific Resource Group by supplying the Collection it is in as well as the Resource Group short name
+    rpc getResourceGroup (ResourceGroupRequest) returns (ResourceGroup) {}
 
     //
     // Sources
