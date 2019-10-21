@@ -60,7 +60,7 @@ message CollectionList {
 
 message ResourceGroup {
     // The database ID of the resource group
-    int32 id =1;
+    int32 id = 1;
 
     // The short name of the resource group
     string name = 2;
@@ -73,6 +73,22 @@ message ResourceGroup {
 message ResourceGroupList {
     // A list of ResourceGroups
     repeated ResourceGroup resourceGroups = 1;
+}
+
+message ResourceObject {
+    // The database ID of the resource
+    int32 id = 1;
+
+    // The name of this resource
+    string name = 2;
+
+    // The namespace to which this resource belongs.
+    Namespace namespace = 3;
+}
+
+message ResourceList {
+    // A list of Resources
+    repeated ResourceObject resources = 1;
 }
 
 message Source {
@@ -318,6 +334,22 @@ message ResourceGroupRequest {
     string name = 2;
 }
 
+message ResourceListRequest {
+    // The namespace containing the resource
+    Namespace namespace = 1;
+
+    // parent root
+    repeated string parent = 2;
+}
+
+message ResourceRequest {
+    // The namespace containing the resource
+    Namespace namespace = 1;
+
+    // The name of the resource
+    string name = 2;
+}
+
 message CreateSourceRequest {
     // The namespace containing the Source
     Namespace namespace = 1;
@@ -328,7 +360,7 @@ message CreateSourceRequest {
     // The relative priority of the Source used to merge events
     int32 priority = 3;
 
-    // A human friendly escription of the Source and what it represents
+    // A human friendly description of the Source and what it represents
     string description = 4;
 }
 
@@ -468,6 +500,15 @@ service Netbeam {
 
     // Get a specific Resource Group by supplying the Collection it is in as well as the Resource Group short name
     rpc getResourceGroup (ResourceGroupRequest) returns (ResourceGroup) {}
+
+    //
+    // Resources
+
+    // Request the list of resources within a resource group
+    rpc listResources (ResourceListRequest) returns (ResourceList) {}
+
+    // Get a specific resource by supplying the resource group it is in as well as the resource name
+    rpc getResource (ResourceRequest) returns (ResourceObject) {}
 
     //
     // Sources
