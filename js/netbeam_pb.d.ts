@@ -179,17 +179,8 @@ export namespace CollectionList {
 }
 
 export class ResourceGroup extends jspb.Message { 
-    getId(): number;
-    setId(value: number): void;
-
     getName(): string;
     setName(value: string): void;
-
-
-    hasNamespace(): boolean;
-    clearNamespace(): void;
-    getNamespace(): Namespace | undefined;
-    setNamespace(value?: Namespace): void;
 
 
     serializeBinary(): Uint8Array;
@@ -204,9 +195,7 @@ export class ResourceGroup extends jspb.Message {
 
 export namespace ResourceGroup {
     export type AsObject = {
-        id: number,
         name: string,
-        namespace?: Namespace.AsObject,
     }
 }
 
@@ -215,6 +204,15 @@ export class ResourceGroupList extends jspb.Message {
     getResourcegroupsList(): Array<ResourceGroup>;
     setResourcegroupsList(value: Array<ResourceGroup>): void;
     addResourcegroups(value?: ResourceGroup, index?: number): ResourceGroup;
+
+
+    hasNamespace(): boolean;
+    clearNamespace(): void;
+    getNamespace(): Namespace | undefined;
+    setNamespace(value?: Namespace): void;
+
+    getParent(): string;
+    setParent(value: string): void;
 
 
     serializeBinary(): Uint8Array;
@@ -230,6 +228,8 @@ export class ResourceGroupList extends jspb.Message {
 export namespace ResourceGroupList {
     export type AsObject = {
         resourcegroupsList: Array<ResourceGroup.AsObject>,
+        namespace?: Namespace.AsObject,
+        parent: string,
     }
 }
 
@@ -870,6 +870,9 @@ export class ResourceGroupListRequest extends jspb.Message {
     setParentList(value: Array<string>): void;
     addParent(value: string, index?: number): string;
 
+    getIndex(): string;
+    setIndex(value: string): void;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ResourceGroupListRequest.AsObject;
@@ -885,34 +888,7 @@ export namespace ResourceGroupListRequest {
     export type AsObject = {
         namespace?: Namespace.AsObject,
         parentList: Array<string>,
-    }
-}
-
-export class ResourceGroupRequest extends jspb.Message { 
-
-    hasNamespace(): boolean;
-    clearNamespace(): void;
-    getNamespace(): Namespace | undefined;
-    setNamespace(value?: Namespace): void;
-
-    getName(): string;
-    setName(value: string): void;
-
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): ResourceGroupRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: ResourceGroupRequest): ResourceGroupRequest.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: ResourceGroupRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): ResourceGroupRequest;
-    static deserializeBinaryFromReader(message: ResourceGroupRequest, reader: jspb.BinaryReader): ResourceGroupRequest;
-}
-
-export namespace ResourceGroupRequest {
-    export type AsObject = {
-        namespace?: Namespace.AsObject,
-        name: string,
+        index: string,
     }
 }
 
