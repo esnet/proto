@@ -13,6 +13,7 @@ interface INetbeamService extends grpc.ServiceDefinition<grpc.UntypedServiceImpl
     getOrganization: INetbeamService_IGetOrganization;
     listCollections: INetbeamService_IListCollections;
     getCollection: INetbeamService_IGetCollection;
+    listResourceGroups: INetbeamService_IListResourceGroups;
     listSources: INetbeamService_IListSources;
     getSource: INetbeamService_IGetSource;
     createSource: INetbeamService_ICreateSource;
@@ -68,6 +69,15 @@ interface INetbeamService_IGetCollection extends grpc.MethodDefinition<netbeam_p
     requestDeserialize: grpc.deserialize<netbeam_pb.CollectionRequest>;
     responseSerialize: grpc.serialize<netbeam_pb.Collection>;
     responseDeserialize: grpc.deserialize<netbeam_pb.Collection>;
+}
+interface INetbeamService_IListResourceGroups extends grpc.MethodDefinition<netbeam_pb.ResourceGroupListRequest, netbeam_pb.ResourceGroupList> {
+    path: string; // "/netbeam.Netbeam/ListResourceGroups"
+    requestStream: boolean; // false
+    responseStream: boolean; // false
+    requestSerialize: grpc.serialize<netbeam_pb.ResourceGroupListRequest>;
+    requestDeserialize: grpc.deserialize<netbeam_pb.ResourceGroupListRequest>;
+    responseSerialize: grpc.serialize<netbeam_pb.ResourceGroupList>;
+    responseDeserialize: grpc.deserialize<netbeam_pb.ResourceGroupList>;
 }
 interface INetbeamService_IListSources extends grpc.MethodDefinition<netbeam_pb.SourceListRequest, netbeam_pb.SourceList> {
     path: string; // "/netbeam.Netbeam/ListSources"
@@ -159,6 +169,7 @@ export interface INetbeamServer {
     getOrganization: grpc.handleUnaryCall<netbeam_pb.OrganizationRequest, netbeam_pb.Organization>;
     listCollections: grpc.handleUnaryCall<netbeam_pb.CollectionListRequest, netbeam_pb.CollectionList>;
     getCollection: grpc.handleUnaryCall<netbeam_pb.CollectionRequest, netbeam_pb.Collection>;
+    listResourceGroups: grpc.handleUnaryCall<netbeam_pb.ResourceGroupListRequest, netbeam_pb.ResourceGroupList>;
     listSources: grpc.handleUnaryCall<netbeam_pb.SourceListRequest, netbeam_pb.SourceList>;
     getSource: grpc.handleUnaryCall<netbeam_pb.SourceRequest, netbeam_pb.Source>;
     createSource: grpc.handleUnaryCall<netbeam_pb.CreateSourceRequest, netbeam_pb.Source>;
@@ -186,6 +197,9 @@ export interface INetbeamClient {
     getCollection(request: netbeam_pb.CollectionRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Collection) => void): grpc.ClientUnaryCall;
     getCollection(request: netbeam_pb.CollectionRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Collection) => void): grpc.ClientUnaryCall;
     getCollection(request: netbeam_pb.CollectionRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Collection) => void): grpc.ClientUnaryCall;
+    listResourceGroups(request: netbeam_pb.ResourceGroupListRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.ResourceGroupList) => void): grpc.ClientUnaryCall;
+    listResourceGroups(request: netbeam_pb.ResourceGroupListRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.ResourceGroupList) => void): grpc.ClientUnaryCall;
+    listResourceGroups(request: netbeam_pb.ResourceGroupListRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.ResourceGroupList) => void): grpc.ClientUnaryCall;
     listSources(request: netbeam_pb.SourceListRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.SourceList) => void): grpc.ClientUnaryCall;
     listSources(request: netbeam_pb.SourceListRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.SourceList) => void): grpc.ClientUnaryCall;
     listSources(request: netbeam_pb.SourceListRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.SourceList) => void): grpc.ClientUnaryCall;
@@ -232,6 +246,9 @@ export class NetbeamClient extends grpc.Client implements INetbeamClient {
     public getCollection(request: netbeam_pb.CollectionRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Collection) => void): grpc.ClientUnaryCall;
     public getCollection(request: netbeam_pb.CollectionRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Collection) => void): grpc.ClientUnaryCall;
     public getCollection(request: netbeam_pb.CollectionRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.Collection) => void): grpc.ClientUnaryCall;
+    public listResourceGroups(request: netbeam_pb.ResourceGroupListRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.ResourceGroupList) => void): grpc.ClientUnaryCall;
+    public listResourceGroups(request: netbeam_pb.ResourceGroupListRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.ResourceGroupList) => void): grpc.ClientUnaryCall;
+    public listResourceGroups(request: netbeam_pb.ResourceGroupListRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.ResourceGroupList) => void): grpc.ClientUnaryCall;
     public listSources(request: netbeam_pb.SourceListRequest, callback: (error: grpc.ServiceError | null, response: netbeam_pb.SourceList) => void): grpc.ClientUnaryCall;
     public listSources(request: netbeam_pb.SourceListRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: netbeam_pb.SourceList) => void): grpc.ClientUnaryCall;
     public listSources(request: netbeam_pb.SourceListRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: netbeam_pb.SourceList) => void): grpc.ClientUnaryCall;
