@@ -2006,7 +2006,7 @@ type CreateSourceRequest struct {
 	Index int32 `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
 	// The relative priority of the Source used to merge events
 	Priority int32 `protobuf:"varint,3,opt,name=priority,proto3" json:"priority,omitempty"`
-	// A human friendly escription of the Source and what it represents
+	// A human friendly description of the Source and what it represents
 	Description          string   `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
