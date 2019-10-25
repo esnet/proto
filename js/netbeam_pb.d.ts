@@ -48,7 +48,7 @@ export namespace Namespace {
     }
 }
 
-export class Resource extends jspb.Message { 
+export class ResourcePath extends jspb.Message { 
     clearPathList(): void;
     getPathList(): Array<string>;
     setPathList(value: Array<string>): void;
@@ -56,16 +56,16 @@ export class Resource extends jspb.Message {
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): Resource.AsObject;
-    static toObject(includeInstance: boolean, msg: Resource): Resource.AsObject;
+    toObject(includeInstance?: boolean): ResourcePath.AsObject;
+    static toObject(includeInstance: boolean, msg: ResourcePath): ResourcePath.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: Resource, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): Resource;
-    static deserializeBinaryFromReader(message: Resource, reader: jspb.BinaryReader): Resource;
+    static serializeBinaryToWriter(message: ResourcePath, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ResourcePath;
+    static deserializeBinaryFromReader(message: ResourcePath, reader: jspb.BinaryReader): ResourcePath;
 }
 
-export namespace Resource {
+export namespace ResourcePath {
     export type AsObject = {
         pathList: Array<string>,
     }
@@ -228,6 +228,61 @@ export class ResourceGroupList extends jspb.Message {
 export namespace ResourceGroupList {
     export type AsObject = {
         resourcegroupsList: Array<ResourceGroup.AsObject>,
+        namespace?: Namespace.AsObject,
+        parent: string,
+    }
+}
+
+export class Resource extends jspb.Message { 
+    getName(): string;
+    setName(value: string): void;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Resource.AsObject;
+    static toObject(includeInstance: boolean, msg: Resource): Resource.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Resource, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Resource;
+    static deserializeBinaryFromReader(message: Resource, reader: jspb.BinaryReader): Resource;
+}
+
+export namespace Resource {
+    export type AsObject = {
+        name: string,
+    }
+}
+
+export class ResourceList extends jspb.Message { 
+    clearResourcesList(): void;
+    getResourcesList(): Array<Resource>;
+    setResourcesList(value: Array<Resource>): void;
+    addResources(value?: Resource, index?: number): Resource;
+
+
+    hasNamespace(): boolean;
+    clearNamespace(): void;
+    getNamespace(): Namespace | undefined;
+    setNamespace(value?: Namespace): void;
+
+    getParent(): string;
+    setParent(value: string): void;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ResourceList.AsObject;
+    static toObject(includeInstance: boolean, msg: ResourceList): ResourceList.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ResourceList, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ResourceList;
+    static deserializeBinaryFromReader(message: ResourceList, reader: jspb.BinaryReader): ResourceList;
+}
+
+export namespace ResourceList {
+    export type AsObject = {
+        resourcesList: Array<Resource.AsObject>,
         namespace?: Namespace.AsObject,
         parent: string,
     }
@@ -745,8 +800,8 @@ export class TileRequest extends jspb.Message {
 
     hasResource(): boolean;
     clearResource(): void;
-    getResource(): Resource | undefined;
-    setResource(value?: Resource): void;
+    getResource(): ResourcePath | undefined;
+    setResource(value?: ResourcePath): void;
 
     getMetric(): string;
     setMetric(value: string): void;
@@ -768,7 +823,7 @@ export class TileRequest extends jspb.Message {
 export namespace TileRequest {
     export type AsObject = {
         namespace?: Namespace.AsObject,
-        resource?: Resource.AsObject,
+        resource?: ResourcePath.AsObject,
         metric: string,
         index: string,
     }
@@ -889,6 +944,36 @@ export namespace ResourceGroupListRequest {
         namespace?: Namespace.AsObject,
         parentList: Array<string>,
         index: string,
+    }
+}
+
+export class ResourceListRequest extends jspb.Message { 
+
+    hasNamespace(): boolean;
+    clearNamespace(): void;
+    getNamespace(): Namespace | undefined;
+    setNamespace(value?: Namespace): void;
+
+    clearParentList(): void;
+    getParentList(): Array<string>;
+    setParentList(value: Array<string>): void;
+    addParent(value: string, index?: number): string;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ResourceListRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: ResourceListRequest): ResourceListRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ResourceListRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ResourceListRequest;
+    static deserializeBinaryFromReader(message: ResourceListRequest, reader: jspb.BinaryReader): ResourceListRequest;
+}
+
+export namespace ResourceListRequest {
+    export type AsObject = {
+        namespace?: Namespace.AsObject,
+        parentList: Array<string>,
     }
 }
 

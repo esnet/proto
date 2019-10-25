@@ -21,7 +21,7 @@ message Namespace {
 }
 
 // The full resource path e.g. ["devices", "chic-cr5", "interfaces", "1/1/1"]
-message Resource {
+message ResourcePath {
     repeated string path = 1;
 }
 
@@ -58,6 +58,7 @@ message CollectionList {
     repeated Collection collections = 1;
 }
 
+// e.g: devices, tags, interfaces, etc.
 message ResourceGroup {
     // The short name of the resource group
     string name = 1;
@@ -71,7 +72,24 @@ message ResourceGroupList {
     // and the Collection name e.g. {organization: "esnet", collection: "prod"}
     Namespace namespace = 2;
 
-    // The parent path of this resource group
+    // The parent path of the resource groups
+    string parent = 3;
+}
+
+// e.g: star-cr5, intercloud, etc.
+message Resource {
+    // The name of this resource
+    string name = 1;
+}
+
+message ResourceList {
+    // A list of Resources
+    repeated Resource resources = 1;
+
+    // The namespace that contains these resources
+    Namespace namespace = 2;
+
+    // The parent path of the resources
     string parent = 3;
 }
 
@@ -273,7 +291,7 @@ message TileRequest {
     Namespace namespace = 1;
 
     // The resource as a path
-    Resource resource = 2;
+    ResourcePath resource = 2;
 
     // The metric to get the tile from, for example "traffic/in"
     string metric = 3;
@@ -306,11 +324,19 @@ message ResourceGroupListRequest {
     // The namespace containing the Resource Groups
     Namespace namespace = 1;
 
-    // parent root
+    // The parent path to the surrounding ResourceGroup
     repeated string parent = 2;
 
     // An optional index to get the resource groups list at a given month.
     string index = 3;
+}
+
+message ResourceListRequest {
+    // The namespace containing the resource
+    Namespace namespace = 1;
+
+    // The parent path to the surrounding ResourceGroup
+    repeated string parent = 2;
 }
 
 message CreateSourceRequest {
@@ -323,7 +349,7 @@ message CreateSourceRequest {
     // The relative priority of the Source used to merge events
     int32 priority = 3;
 
-    // A human friendly escription of the Source and what it represents
+    // A human friendly description of the Source and what it represents
     string description = 4;
 }
 
@@ -460,6 +486,12 @@ service Netbeam {
 
     // Request the list of resource groups within a Collection registered with netbeam
     rpc ListResourceGroups (ResourceGroupListRequest) returns (ResourceGroupList) {}
+
+    //
+    // Resources
+
+    // Request the list of resources within a resource group
+    rpc ListResources (ResourceListRequest) returns (ResourceList) {}
 
     //
     // Sources
