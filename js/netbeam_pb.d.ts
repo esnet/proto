@@ -238,12 +238,6 @@ export class ResourceObject extends jspb.Message {
     setName(value: string): void;
 
 
-    hasNamespace(): boolean;
-    clearNamespace(): void;
-    getNamespace(): Namespace | undefined;
-    setNamespace(value?: Namespace): void;
-
-
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ResourceObject.AsObject;
     static toObject(includeInstance: boolean, msg: ResourceObject): ResourceObject.AsObject;
@@ -257,7 +251,6 @@ export class ResourceObject extends jspb.Message {
 export namespace ResourceObject {
     export type AsObject = {
         name: string,
-        namespace?: Namespace.AsObject,
     }
 }
 
@@ -266,6 +259,15 @@ export class ResourceList extends jspb.Message {
     getResourcesList(): Array<ResourceObject>;
     setResourcesList(value: Array<ResourceObject>): void;
     addResources(value?: ResourceObject, index?: number): ResourceObject;
+
+
+    hasNamespace(): boolean;
+    clearNamespace(): void;
+    getNamespace(): Namespace | undefined;
+    setNamespace(value?: Namespace): void;
+
+    getParent(): string;
+    setParent(value: string): void;
 
 
     serializeBinary(): Uint8Array;
@@ -281,6 +283,8 @@ export class ResourceList extends jspb.Message {
 export namespace ResourceList {
     export type AsObject = {
         resourcesList: Array<ResourceObject.AsObject>,
+        namespace?: Namespace.AsObject,
+        parent: string,
     }
 }
 
@@ -970,27 +974,6 @@ export namespace ResourceListRequest {
     export type AsObject = {
         namespace?: Namespace.AsObject,
         parentList: Array<string>,
-    }
-}
-
-export class ResourceRequest extends jspb.Message { 
-    getName(): string;
-    setName(value: string): void;
-
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): ResourceRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: ResourceRequest): ResourceRequest.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: ResourceRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): ResourceRequest;
-    static deserializeBinaryFromReader(message: ResourceRequest, reader: jspb.BinaryReader): ResourceRequest;
-}
-
-export namespace ResourceRequest {
-    export type AsObject = {
-        name: string,
     }
 }
 

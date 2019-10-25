@@ -71,21 +71,24 @@ message ResourceGroupList {
     // and the Collection name e.g. {organization: "esnet", collection: "prod"}
     Namespace namespace = 2;
 
-    // The parent path of this resource group
+    // The parent path of the resource groups
     string parent = 3;
 }
 
 message ResourceObject {
     // The name of this resource
-    string name = 2;
-
-    // The namespace to which this resource belongs.
-    Namespace namespace = 3;
+    string name = 1;
 }
 
 message ResourceList {
     // A list of Resources
     repeated ResourceObject resources = 1;
+
+    // The namespace that contains these resources
+    Namespace namespace = 2;
+
+    // The parent path of the resources
+    string parent = 3;
 }
 
 message Source {
@@ -334,11 +337,6 @@ message ResourceListRequest {
     repeated string parent = 2;
 }
 
-message ResourceRequest {
-    // The name of the resource
-    string name = 2;
-}
-
 message CreateSourceRequest {
     // The namespace containing the Source
     Namespace namespace = 1;
@@ -492,9 +490,6 @@ service Netbeam {
 
     // Request the list of resources within a resource group
     rpc listResources (ResourceListRequest) returns (ResourceList) {}
-
-    // Get a specific resource by supplying the resource group it is in as well as the resource name
-    rpc getResource (ResourceRequest) returns (ResourceObject) {}
 
     //
     // Sources
