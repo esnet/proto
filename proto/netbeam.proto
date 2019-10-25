@@ -76,9 +76,6 @@ message ResourceGroupList {
 }
 
 message ResourceObject {
-    // The database ID of the resource
-    int32 id = 1;
-
     // The name of this resource
     string name = 2;
 
@@ -338,9 +335,6 @@ message ResourceListRequest {
 }
 
 message ResourceRequest {
-    // The namespace containing the resource
-    Namespace namespace = 1;
-
     // The name of the resource
     string name = 2;
 }

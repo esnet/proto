@@ -234,9 +234,6 @@ export namespace ResourceGroupList {
 }
 
 export class ResourceObject extends jspb.Message { 
-    getId(): number;
-    setId(value: number): void;
-
     getName(): string;
     setName(value: string): void;
 
@@ -259,7 +256,6 @@ export class ResourceObject extends jspb.Message {
 
 export namespace ResourceObject {
     export type AsObject = {
-        id: number,
         name: string,
         namespace?: Namespace.AsObject,
     }
@@ -978,12 +974,6 @@ export namespace ResourceListRequest {
 }
 
 export class ResourceRequest extends jspb.Message { 
-
-    hasNamespace(): boolean;
-    clearNamespace(): void;
-    getNamespace(): Namespace | undefined;
-    setNamespace(value?: Namespace): void;
-
     getName(): string;
     setName(value: string): void;
 
@@ -1000,7 +990,6 @@ export class ResourceRequest extends jspb.Message {
 
 export namespace ResourceRequest {
     export type AsObject = {
-        namespace?: Namespace.AsObject,
         name: string,
     }
 }

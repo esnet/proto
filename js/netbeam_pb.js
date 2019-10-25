@@ -2436,7 +2436,6 @@ proto.netbeam.ResourceObject.prototype.toObject = function(opt_includeInstance) 
  */
 proto.netbeam.ResourceObject.toObject = function(includeInstance, msg) {
   var f, obj = {
-    id: jspb.Message.getFieldWithDefault(msg, 1, 0),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     namespace: (f = msg.getNamespace()) && proto.netbeam.Namespace.toObject(includeInstance, f)
   };
@@ -2475,10 +2474,6 @@ proto.netbeam.ResourceObject.deserializeBinaryFromReader = function(msg, reader)
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {number} */ (reader.readInt32());
-      msg.setId(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
@@ -2517,13 +2512,6 @@ proto.netbeam.ResourceObject.prototype.serializeBinary = function() {
  */
 proto.netbeam.ResourceObject.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getId();
-  if (f !== 0) {
-    writer.writeInt32(
-      1,
-      f
-    );
-  }
   f = message.getName();
   if (f.length > 0) {
     writer.writeString(
@@ -2539,21 +2527,6 @@ proto.netbeam.ResourceObject.serializeBinaryToWriter = function(message, writer)
       proto.netbeam.Namespace.serializeBinaryToWriter
     );
   }
-};
-
-
-/**
- * optional int32 id = 1;
- * @return {number}
- */
-proto.netbeam.ResourceObject.prototype.getId = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/** @param {number} value */
-proto.netbeam.ResourceObject.prototype.setId = function(value) {
-  jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -6955,7 +6928,6 @@ proto.netbeam.ResourceRequest.prototype.toObject = function(opt_includeInstance)
  */
 proto.netbeam.ResourceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    namespace: (f = msg.getNamespace()) && proto.netbeam.Namespace.toObject(includeInstance, f),
     name: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
@@ -6993,11 +6965,6 @@ proto.netbeam.ResourceRequest.deserializeBinaryFromReader = function(msg, reader
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto.netbeam.Namespace;
-      reader.readMessage(value,proto.netbeam.Namespace.deserializeBinaryFromReader);
-      msg.setNamespace(value);
-      break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
@@ -7031,14 +6998,6 @@ proto.netbeam.ResourceRequest.prototype.serializeBinary = function() {
  */
 proto.netbeam.ResourceRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getNamespace();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.netbeam.Namespace.serializeBinaryToWriter
-    );
-  }
   f = message.getName();
   if (f.length > 0) {
     writer.writeString(
@@ -7046,39 +7005,6 @@ proto.netbeam.ResourceRequest.serializeBinaryToWriter = function(message, writer
       f
     );
   }
-};
-
-
-/**
- * optional Namespace namespace = 1;
- * @return {?proto.netbeam.Namespace}
- */
-proto.netbeam.ResourceRequest.prototype.getNamespace = function() {
-  return /** @type{?proto.netbeam.Namespace} */ (
-    jspb.Message.getWrapperField(this, proto.netbeam.Namespace, 1));
-};
-
-
-/** @param {?proto.netbeam.Namespace|undefined} value */
-proto.netbeam.ResourceRequest.prototype.setNamespace = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
- */
-proto.netbeam.ResourceRequest.prototype.clearNamespace = function() {
-  this.setNamespace(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.netbeam.ResourceRequest.prototype.hasNamespace = function() {
-  return jspb.Message.getField(this, 1) != null;
 };
 
 
