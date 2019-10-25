@@ -21,7 +21,7 @@ message Namespace {
 }
 
 // The full resource path e.g. ["devices", "chic-cr5", "interfaces", "1/1/1"]
-message Resource {
+message ResourcePath {
     repeated string path = 1;
 }
 
@@ -58,6 +58,7 @@ message CollectionList {
     repeated Collection collections = 1;
 }
 
+// e.g: devices, tags, interfaces, etc.
 message ResourceGroup {
     // The short name of the resource group
     string name = 1;
@@ -75,14 +76,15 @@ message ResourceGroupList {
     string parent = 3;
 }
 
-message ResourceObject {
+// e.g: star-cr5, intercloud, etc.
+message Resource {
     // The name of this resource
     string name = 1;
 }
 
 message ResourceList {
     // A list of Resources
-    repeated ResourceObject resources = 1;
+    repeated Resource resources = 1;
 
     // The namespace that contains these resources
     Namespace namespace = 2;
@@ -289,7 +291,7 @@ message TileRequest {
     Namespace namespace = 1;
 
     // The resource as a path
-    Resource resource = 2;
+    ResourcePath resource = 2;
 
     // The metric to get the tile from, for example "traffic/in"
     string metric = 3;
@@ -322,7 +324,7 @@ message ResourceGroupListRequest {
     // The namespace containing the Resource Groups
     Namespace namespace = 1;
 
-    // parent root
+    // The parent path to the surrounding ResourceGroup
     repeated string parent = 2;
 
     // An optional index to get the resource groups list at a given month.
@@ -333,7 +335,7 @@ message ResourceListRequest {
     // The namespace containing the resource
     Namespace namespace = 1;
 
-    // parent root
+    // The parent path to the surrounding ResourceGroup
     repeated string parent = 2;
 }
 
@@ -489,7 +491,7 @@ service Netbeam {
     // Resources
 
     // Request the list of resources within a resource group
-    rpc listResources (ResourceListRequest) returns (ResourceList) {}
+    rpc ListResources (ResourceListRequest) returns (ResourceList) {}
 
     //
     // Sources

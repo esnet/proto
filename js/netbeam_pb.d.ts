@@ -48,7 +48,7 @@ export namespace Namespace {
     }
 }
 
-export class Resource extends jspb.Message { 
+export class ResourcePath extends jspb.Message { 
     clearPathList(): void;
     getPathList(): Array<string>;
     setPathList(value: Array<string>): void;
@@ -56,16 +56,16 @@ export class Resource extends jspb.Message {
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): Resource.AsObject;
-    static toObject(includeInstance: boolean, msg: Resource): Resource.AsObject;
+    toObject(includeInstance?: boolean): ResourcePath.AsObject;
+    static toObject(includeInstance: boolean, msg: ResourcePath): ResourcePath.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: Resource, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): Resource;
-    static deserializeBinaryFromReader(message: Resource, reader: jspb.BinaryReader): Resource;
+    static serializeBinaryToWriter(message: ResourcePath, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ResourcePath;
+    static deserializeBinaryFromReader(message: ResourcePath, reader: jspb.BinaryReader): ResourcePath;
 }
 
-export namespace Resource {
+export namespace ResourcePath {
     export type AsObject = {
         pathList: Array<string>,
     }
@@ -233,22 +233,22 @@ export namespace ResourceGroupList {
     }
 }
 
-export class ResourceObject extends jspb.Message { 
+export class Resource extends jspb.Message { 
     getName(): string;
     setName(value: string): void;
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): ResourceObject.AsObject;
-    static toObject(includeInstance: boolean, msg: ResourceObject): ResourceObject.AsObject;
+    toObject(includeInstance?: boolean): Resource.AsObject;
+    static toObject(includeInstance: boolean, msg: Resource): Resource.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: ResourceObject, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): ResourceObject;
-    static deserializeBinaryFromReader(message: ResourceObject, reader: jspb.BinaryReader): ResourceObject;
+    static serializeBinaryToWriter(message: Resource, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Resource;
+    static deserializeBinaryFromReader(message: Resource, reader: jspb.BinaryReader): Resource;
 }
 
-export namespace ResourceObject {
+export namespace Resource {
     export type AsObject = {
         name: string,
     }
@@ -256,9 +256,9 @@ export namespace ResourceObject {
 
 export class ResourceList extends jspb.Message { 
     clearResourcesList(): void;
-    getResourcesList(): Array<ResourceObject>;
-    setResourcesList(value: Array<ResourceObject>): void;
-    addResources(value?: ResourceObject, index?: number): ResourceObject;
+    getResourcesList(): Array<Resource>;
+    setResourcesList(value: Array<Resource>): void;
+    addResources(value?: Resource, index?: number): Resource;
 
 
     hasNamespace(): boolean;
@@ -282,7 +282,7 @@ export class ResourceList extends jspb.Message {
 
 export namespace ResourceList {
     export type AsObject = {
-        resourcesList: Array<ResourceObject.AsObject>,
+        resourcesList: Array<Resource.AsObject>,
         namespace?: Namespace.AsObject,
         parent: string,
     }
@@ -800,8 +800,8 @@ export class TileRequest extends jspb.Message {
 
     hasResource(): boolean;
     clearResource(): void;
-    getResource(): Resource | undefined;
-    setResource(value?: Resource): void;
+    getResource(): ResourcePath | undefined;
+    setResource(value?: ResourcePath): void;
 
     getMetric(): string;
     setMetric(value: string): void;
@@ -823,7 +823,7 @@ export class TileRequest extends jspb.Message {
 export namespace TileRequest {
     export type AsObject = {
         namespace?: Namespace.AsObject,
-        resource?: Resource.AsObject,
+        resource?: ResourcePath.AsObject,
         metric: string,
         index: string,
     }

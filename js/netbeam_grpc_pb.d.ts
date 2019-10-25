@@ -14,7 +14,7 @@ interface INetbeamService extends grpc.ServiceDefinition<grpc.UntypedServiceImpl
     listCollections: INetbeamService_IListCollections;
     getCollection: INetbeamService_IGetCollection;
     listResourceGroups: INetbeamService_IListResourceGroups;
-    listResources: INetbeamService_IlistResources;
+    listResources: INetbeamService_IListResources;
     listSources: INetbeamService_IListSources;
     getSource: INetbeamService_IGetSource;
     createSource: INetbeamService_ICreateSource;
@@ -80,8 +80,8 @@ interface INetbeamService_IListResourceGroups extends grpc.MethodDefinition<netb
     responseSerialize: grpc.serialize<netbeam_pb.ResourceGroupList>;
     responseDeserialize: grpc.deserialize<netbeam_pb.ResourceGroupList>;
 }
-interface INetbeamService_IlistResources extends grpc.MethodDefinition<netbeam_pb.ResourceListRequest, netbeam_pb.ResourceList> {
-    path: string; // "/netbeam.Netbeam/listResources"
+interface INetbeamService_IListResources extends grpc.MethodDefinition<netbeam_pb.ResourceListRequest, netbeam_pb.ResourceList> {
+    path: string; // "/netbeam.Netbeam/ListResources"
     requestStream: boolean; // false
     responseStream: boolean; // false
     requestSerialize: grpc.serialize<netbeam_pb.ResourceListRequest>;
