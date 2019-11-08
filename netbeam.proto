@@ -6,7 +6,7 @@ import "google/api/annotations.proto";
 
 package netbeam;
 
-option go_package = "github.com/esnet/proto/go/netbeam";
+option go_package = "github.com/esnet/proto/netbeam";
 
 message Empty {
 }

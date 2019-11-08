@@ -1,8 +1,8 @@
 syntax = "proto3";
-package pond;
-option go_package = "github.com/esnet/proto/go/pond";
 
-// protoc -I pond --go_out=pond --proto_path=proto pond.proto
+package pond;
+
+option go_package = "github.com/esnet/proto/pond";
 
 // a Timestamp is a point in time independent of any timezone or calendar
 message Timestamp {
