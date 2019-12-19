@@ -171,37 +171,36 @@ message RuleList {
 //
 
 message Matchers {
-    // The namespace the list of Matchers applies to e.g. esnet/prod
-    Namespace namespace = 1;
-
     // A list of matchers within that namespace
     repeated Matcher matchers = 2;
 }
 
 message Matcher {
+    // The organization and collection of the matcher
+    Namespace namespace = 1;
 
     // The name of the matcher
-    string name = 1;
+    string name = 2;
 
     // The matcher's wildcards against the incoming resource. If any of the wildcards
     // matches against the resources the rule will be active.
-    repeated string scope = 2;
+    repeated string scope = 3;
 
     // A human readable description as to what this matcher represents
-    string description = 3;
+    string description = 4;
 
     // Units of the metrics that this matcher applies to
-    string units = 4;
+    string units = 5;
 
     // Alignment of this data, for example "30s" would align this data to every 30 seconds (4:30, 5:00, 5:30 ...)
-    string align = 5;
+    string align = 6;
 
     // A list of processors to run as a result of this match on the incoming metric event. A processor will
     // transform this Event into another Event (with a different metric name) that may match other Matchers.
-    repeated Processor processors = 6;
+    repeated Processor processors = 7;
 
     // A list of Outputs which will write or otherwise emit the data, for example to a specific table.
-    repeated Output outputs = 7;
+    repeated Output outputs = 8;
 }
 
 message Processor {
@@ -320,6 +319,17 @@ message CollectionRequest {
     string name = 2;
 }
 
+message CreateCollectionRequest {
+    // The Organization to look up the Collection in
+    string organization = 1;
+
+    // The name of the collection to create
+    string name = 2;
+
+    // A longer more human readable name or description for the Collection
+    string description = 3;
+}
+
 message ResourceGroupListRequest {
     // The namespace containing the Resource Groups
     Namespace namespace = 1;
@@ -389,6 +399,9 @@ message RuleListRequest {
     Namespace namespace = 1;
 }
 
+message AllRuleListRequest {
+}
+
 message RuleRequest {
     // The namespace containing the ingest rule
     Namespace namespace = 1;
@@ -442,9 +455,6 @@ message CreateRuleRequest {
 }
 
 message MatchersRequest {
-    // The namespace to request the Matchers within, based on the Rules registered for the
-    // Organization and Collection
-    Namespace namespace = 1;
 }
 
 //
@@ -479,6 +489,9 @@ service Netbeam {
 
     // Get a specific Collection by supplying the Organization it is in as well as the Collection short name
     rpc GetCollection (CollectionRequest) returns (Collection) {}
+
+    // Creates a new Collection registered to the Organization
+    rpc CreateCollection (CreateCollectionRequest) returns (Collection) {}
 
     //
     // Resource Groups
@@ -522,6 +535,9 @@ service Netbeam {
 
     // Request a list of all ingest rules registered to the Collection
     rpc ListRules (RuleListRequest) returns (RuleList) {}
+
+    // Request a list of all ingest rules regardless of Collection
+    rpc ListAllRules (AllRuleListRequest) returns (RuleList) {}
 
     // Get a specific rule by supplying the Organization, Collection and rule identifier
     rpc GetRule (RuleRequest) returns (Rule) {}
