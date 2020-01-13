@@ -467,92 +467,185 @@ service Netbeam {
     // Queries
     //
 
-    // Requests a tile from the netbeam core for a specific metric
+    // Requests a tile from the netbeam core for a specific metric. Currently does
+    // not a have a REST counterpart.
     rpc FetchTile (TileRequest) returns (pond.TimeSeries) {}
 
     //
-    // Organizations
-    //
-
-    // Request the list of Organizations registered with netbeam
-    rpc ListOrganizations (OrganizationListRequest) returns (OrganizationList) {}
-
-    // Get a specific Organization by supplying it's short name
-    rpc GetOrganization (OrganizationRequest) returns (Organization) {}
-
-    //
-    // Collections
-    //
-
-    // Request the list of Collections within an Organization registered with netbeam
-    rpc ListCollections (CollectionListRequest) returns (CollectionList) {}
-
-    // Get a specific Collection by supplying the Organization it is in as well as the Collection short name
-    rpc GetCollection (CollectionRequest) returns (Collection) {}
-
-    // Creates a new Collection registered to the Organization
-    rpc CreateCollection (CreateCollectionRequest) returns (Collection) {}
-
-    //
-    // Resource Groups
+    // Resource traversal
     //
 
     // Request the list of resource groups within a Collection registered with netbeam
     rpc ListResourceGroups (ResourceGroupListRequest) returns (ResourceGroupList) {}
 
-    //
-    // Resources
 
     // Request the list of resources within a resource group
     rpc ListResources (ResourceListRequest) returns (ResourceList) {}
+
+
+    //
+    // Organizations
+    //
+
+    // Request the list of Organizations registered with netbeam.
+    // You need to have special permissions to access this list.
+    rpc ListOrganizations (OrganizationListRequest) returns (OrganizationList) {
+        option (google.api.http) = { get: "/v1/orgs" };
+    }
+
+    // Get a specific Organization by supplying its short name. Currently this will just
+    // return the internal id, the name, and a description associated with the organization
+    rpc GetOrganization (OrganizationRequest) returns (Organization) {
+        option (google.api.http) = { get: "/v1/orgs/{name}" };
+    }
+
+    //
+    // Collections
+    //
+
+    // Request the list of registered Collections for an Organization.
+    rpc ListCollections (CollectionListRequest) returns (CollectionList) {
+        option (google.api.http) = { get: "/v1/orgs/{organization}/collections" };
+    }
+
+    // Get a specific Collection by supplying the `organization` it is in as well
+    // as the Collection short `name`.
+    rpc GetCollection (CollectionRequest) returns (Collection) {
+        option (google.api.http) = { get: "/v1/orgs/{organization}/collections/{name}" };
+    }
+
+    // Creates a new Collection registered to the Organization. A collection is
+    // created with the `organization`, `name` and `description`.
+    rpc CreateCollection (CreateCollectionRequest) returns (Collection) {
+        option (google.api.http) = {
+            post: "/v1/orgs/{organization}/create_collection",
+            body: "*"
+        };
+    }
 
     //
     // Sources
     //
 
-    // Request the list of all Sources within a Collection. The list will be returned in order of priority.
+    // Request the list of all Sources within a Collection by supplying the `namespace` of the
+    // Collection. The list will be returned in order of priority that events with that source
+    // will be merged together. 
     rpc ListSources (SourceListRequest) returns (SourceList) {
-        option (google.api.http) = { get: "/v1/orgs/{namespace.organization}/collections/{namespace.collection}/sources" };
+        option (google.api.http) = {
+            get: "/v1/orgs/{namespace.organization}/collections/{namespace.collection}/sources"
+        };
     }
 
-    // Get a specific Source by supplying the Organization, Collection and the Source index
+    // Get a specific Source by supplying the `namespace` (`organization` and `collection`)
+    // and the Source's identifying `index`.
     rpc GetSource (SourceRequest) returns (Source) {
-        option (google.api.http) = { get: "/v1/orgs/{namespace.organization}/collections/{namespace.collection}/sources/{index}" };
+        option (google.api.http) = {
+            get: "/v1/orgs/{namespace.organization}/collections/{namespace.collection}/sources/{index}"
+        };
     }
 
-    // Registers a new Source with the Collection
-    rpc CreateSource (CreateSourceRequest) returns (Source) {}
+    // Registers a new Source with the Collection. A source is what is associated with an event
+    // sent to netbeam. Sources tell netbeam where the event came from. Each source has a priority
+    // relative to other sources, so that as events are ingested multiple redundent sources can
+    // be reconciled with each other. Lower `priority` sources win. Each source also has an `index`,
+    // while is how the source is referenced in an event, along with a `description` which should
+    // be a short human readable string describing the source to identify it in the future.
+    rpc CreateSource (CreateSourceRequest) returns (Source) {
+        option (google.api.http) = { 
+            post: "/v1/orgs/{namespace.organization}/collections/{namespace.collection}/create_source"
+            body: "*"
+        };
+    }
 
-    // Update the Source priority
-    rpc UpdateSourcePriority (ChangeSourcePriorityRequest) returns (Source) {}
+    // Update the Source's priority
+    rpc UpdateSourcePriority (ChangeSourcePriorityRequest) returns (Source) {
+        option (google.api.http) = { 
+            post: "/v1/orgs/{namespace.organization}/collections/{namespace.collection}/change_source_priority"
+            body: "*"
+        };
+    }
 
     // Delete the Source
-    rpc DeleteSource (DeleteSourceRequest) returns (Empty) {}
+    rpc DeleteSource (DeleteSourceRequest) returns (Empty) {
+        option (google.api.http) = { 
+            post: "/v1/orgs/{namespace.organization}/collections/{namespace.collection}/delete_source"
+            body: "*"
+        };
+    }
 
     //
     // Rules
     //
 
-    // Request a list of all ingest rules registered to the Collection
-    rpc ListRules (RuleListRequest) returns (RuleList) {}
+    // Request a list of all ingest rules registered to a specific Collection
+    rpc ListRules (RuleListRequest) returns (RuleList) {
+        option (google.api.http) = {
+            get: "/v1/orgs/{namespace.organization}/collections/{namespace.collection}/rules"
+        };
+    }
 
-    // Request a list of all ingest rules regardless of Collection
-    rpc ListAllRules (AllRuleListRequest) returns (RuleList) {}
+    // Request a list of all ingest rules regardless of Collection. This is used internally for
+    // netbeam operations and so requires special permissions as it returns rules from all
+    // organizations.
+    rpc ListAllRules (AllRuleListRequest) returns (RuleList) {
+        option (google.api.http) = {
+            get: "/v1/rules"
+        };
+    }
 
     // Get a specific rule by supplying the Organization, Collection and rule identifier
-    rpc GetRule (RuleRequest) returns (Rule) {}
+    rpc GetRule (RuleRequest) returns (Rule) {
+        option (google.api.http) = {
+            get: "/v1/orgs/{namespace.organization}/collections/{namespace.collection}/rules/{id}"
+        };
+    }
 
-    // Register a new ingest rule
+    // Register a new ingest rule.
+    //
+    // Currently a rule can be of 4 `type`s:
+    //  * BYTES - Byte counters, such as network traffic
+    //  * COUNTER - A pure counter, such as errors or incidents
+    //  * GAUGE - A general numeric value, such as temperature
+    //  * STRING - A general string value, such as meta data like the ifName of an interface
+    //
+    // Rules are matched to events using both a wildcard matcher to the resource defined by
+    // the `scope` and the metric base `name` (e.g. `traffic`) combined with the a `suffix`
+    // such as the direction of the traffic (e.g. `in` or `out`).
+    //
+    // Once matched, the `type` determines what the processing of that event looks like.
+    // Currently a `BYTES` type will be aligned, converted to rates, converted to bits/sec
+    // and the written out to the timeseries. `COUNTER` is similar, it will be aligned and
+    // converted to a rate (count/sec), then written to the timeseries. `GAUGE` types will
+    // be aligned only, then written out. `STRING` types will just be written to the latest
+    // value table.
+    //
+    // Options used in the above processing include the `align` value, such as "30s".
+    //
+    // The `tag_suffix` of the metric allows different suffixes to map to the same suffix
+    // in a tag output. The main usecase for this is to map "in_inProfile" and "in_outProfile"
+    // in a SAP (for example), to "in" as the tag suffix (e.g. oscars/in).
+    //
+    // The `units` is currently not surfaced outside of netbeam, but maybe in the future.
+    // It should be the units of the output (for example: "bps") not the input ("bytes").
+    //
+    // Creating a new rule needs to be done via a gRPC call (or with the cli).
+    //
     rpc CreateRule (CreateRuleRequest) returns (Rule) {}
 
     //
     // Matchers
     //
 
-    // Given an Organization and Collection, return the Matchers derived from
-    // the rules registered within that Collection. Matchers describe the processing graph for
-    // resources and metrics that match. Matchers are described using Rules then built into
-    // a tree of matchers that describe the transformations and output sinks that should be
-    // applied.
-    rpc ListMatchers (MatchersRequest) returns (Matchers) {}
+    // Return the Matchers derived from the collection of all rules. This call is
+    // used internally as part of netbeam processing operations. To control processing
+    // of events create Rules for those events using this API.
+    //
+    // Matchers describe the processing graph for resources and metrics that match.
+    // Matchers are described using Rules then built into a tree of matchers that
+    // describe the transformations and output sinks that should be applied.
+    rpc ListMatchers (MatchersRequest) returns (Matchers) {
+        option (google.api.http) = {
+            get: "/v1/matchers"
+        };
+    }
 }
