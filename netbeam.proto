@@ -12,6 +12,9 @@ message Empty {
 
 }
 
+message SentryPDUMetaDataRequest {}
+message AlphaPDUMetaDataRequest {}
+
 message SentryPDUMetaData {
     string hostName = 1;
     string deviceId = 2;
@@ -557,12 +560,12 @@ service Netbeam {
     // PDU Listings
 
     // Sentry Device API
-    rpc ListSentryDevices (Empty) returns (SentryPDUMetaDataList) {
+    rpc ListSentryDevices (SentryPDUMetaDataRequest) returns (SentryPDUMetaDataList) {
         option (google.api.http) = { get: "/v1/pdu/sentry/list" };
     }
 
     // Alpha Device API
-    rpc ListAlphaDevices (Empty) returns (AlphaPDUMetaDataList) {
+    rpc ListAlphaDevices (AlphaPDUMetaDataRequest) returns (AlphaPDUMetaDataList) {
         option (google.api.http) = { get: "/v1/pdu/alpha/list" };
     }
 
