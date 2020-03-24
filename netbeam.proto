@@ -476,11 +476,16 @@ service Netbeam {
     //
 
     // Request the list of resource groups within a Collection registered with netbeam
-    rpc ListResourceGroups (ResourceGroupListRequest) returns (ResourceGroupList) {}
+    rpc ListResourceGroups (ResourceGroupListRequest) returns (ResourceGroupList) {
+        option (google.api.http) = { get: "/v1/resources/groups" };
+    }
 
 
     // Request the list of resources within a resource group
-    rpc ListResources (ResourceListRequest) returns (ResourceList) {}
+    rpc ListResources (ResourceListRequest) returns (ResourceList) {
+        option (google.api.http) = { get: "/v1/resources" };
+
+    }
 
 
     //
