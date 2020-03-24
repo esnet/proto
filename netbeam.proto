@@ -3,44 +3,13 @@ syntax = "proto3";
 import "pond.proto";
 
 import "google/api/annotations.proto";
+import "shared/pdu_messages.proto";
 
 package netbeam;
 
 option go_package = "github.com/esnet/proto/netbeam";
 
-message Empty {
-
-}
-
-message SentryPDUMetaDataRequest {}
-message AlphaPDUMetaDataRequest {}
-
-message SentryPDUMetaData {
-    string hostName = 1;
-    string deviceId = 2;
-    string deviceName = 3;
-}
-
-
-message SentryPDUMetaDataList {
-    // The list of Sources
-    repeated SentryPDUMetaData listing = 1;
-}
-
-message AlphaPDUMetaData {
-    string hostName = 1;
-    string name = 2;
-    string sysName = 3;
-    string subSysName = 4;
-    int32 parentSubSys = 5;
-    int32 parentSys = 6;
-}
-
-message AlphaPDUMetaDataList {
-    // The list of Sources
-    repeated AlphaPDUMetaData listing = 1;
-}
-
+message Empty {}
 
 
 // The namespace, which is made up of the organization and the collection e.g. { organization: "esnet", collection: "prod"}
@@ -560,12 +529,12 @@ service Netbeam {
     // PDU Listings
 
     // Sentry Device API
-    rpc ListSentryDevices (SentryPDUMetaDataRequest) returns (SentryPDUMetaDataList) {
+    rpc ListSentryDevices (shared.SentryPDUMetaDataRequest) returns (shared.SentryPDUMetaDataList) {
         option (google.api.http) = { get: "/v1/pdu/sentry/list" };
     }
 
     // Alpha Device API
-    rpc ListAlphaDevices (AlphaPDUMetaDataRequest) returns (AlphaPDUMetaDataList) {
+    rpc ListAlphaDevices (shared.AlphaPDUMetaDataRequest) returns (shared.AlphaPDUMetaDataList) {
         option (google.api.http) = { get: "/v1/pdu/alpha/list" };
     }
 

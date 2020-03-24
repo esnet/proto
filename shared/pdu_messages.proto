@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package shared;
+
+
+import "google/protobuf/timestamp.proto";
+
+message SentryPDUMetaData {
+    string hostName = 1;
+    string deviceId = 2;
+    string deviceName = 3;
+}
+
+message SentryPDUMetaDataRequest {}
+message AlphaPDUMetaDataRequest {}
+
+message SentryPDUMetaDataList {
+    // The list of Sources
+    repeated shared.SentryPDUMetaData listing = 1;
+}
+
+message AlphaPDUMetaData {
+    string hostName = 1;
+    string name = 2;
+    string sysName = 3;
+    string subSysName = 4;
+    int32 parentSubSys = 5;
+    int32 parentSys = 6;
+}
+
+message AlphaPDUMetaDataList {
+    // The list of Sources
+    repeated AlphaPDUMetaData listing = 1;
+}
+
+message SentryPDU {
+    google.protobuf.Timestamp time = 1;
+    string hostName = 2;
+    int32 status = 3;
+    int32  controlstate = 4;
+    int32  load = 5;
+
+}
+
+message SentryPDUList {
+    // The list of Sources
+    repeated SentryPDU sentry = 1;
+}
