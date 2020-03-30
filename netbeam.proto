@@ -11,6 +11,10 @@ option go_package = "github.com/esnet/proto/netbeam";
 message Empty {
 }
 
+message Simple {
+    string message = 1;
+}
+
 // The namespace, which is made up of the organization and the collection e.g. { organization: "esnet", collection: "prod"}
 message Namespace {
     // The organization this request is associated with e.g. "esnet"
@@ -358,6 +362,14 @@ message ResourceGroupListRequest {
     string index = 3;
 }
 
+message SamirRequest {
+    // The namespace containing the resource
+    Namespace namespace = 1;
+
+    // The parent path to the surrounding ResourceGroup
+    repeated string parent = 2;
+}
+
 message ResourceListRequest {
     // The namespace containing the resource
     Namespace namespace = 1;
@@ -373,6 +385,39 @@ message MetricListRequest {
     // The parent path to the surrounding resource
     repeated string parent = 2;
 }
+
+message TimeRangeRequest {
+    // The namespace containing the metric
+    Namespace namespace = 1;
+    // The full resource path
+    string resource = 2;
+    // The full path of the metric
+    string metric = 3;
+    // The tile to request
+    string tile = 4;
+}
+message TimeRange {
+    // name of the interface or sap
+    string name = 1;
+    // The namespace of the resource
+    Namespace namespace = 2;
+    // The path of the resource
+    string resource = 3;
+    // The timezone used
+    string tz = 4;
+    // The list of column headers
+    repeated string columns = 5;
+    // The list of data points.
+    repeated Datapoint datapoints = 6;
+}
+
+message Datapoint {
+    // The timestamp in milliseconds
+    int32 timestamp = 1;
+    // The datapoints
+    string values = 2;
+}
+
 
 message CreateSourceRequest {
     // The namespace containing the Source
@@ -508,11 +553,18 @@ service Netbeam {
         };
     }
 
-
     // Request the list of resources within a resource group
     rpc ListResources (ResourceListRequest) returns (ResourceList) {
         option (google.api.http) = {
             post: "/v1/resources/list",
+            body: "*"
+        };
+    }
+
+    // Request the list of resources within a resource group
+    rpc TestResourceCall (ResourceListRequest) returns (Simple) {
+        option (google.api.http) = {
+            post: "/v1/samir",
             body: "*"
         };
     }
@@ -561,13 +613,21 @@ service Netbeam {
     //
     // Metrics
     //
-
     // Request the list of metrics within a resource
     rpc ListMetrics (MetricListRequest) returns (MetricList) {
         option (google.api.http) = {
             post: "/v1/metrics/list",
             body: "*"
         };
+    }
+
+    rpc GetMetricData (TimeRangeRequest) returns (TimeRange) {
+        option (google.api.http) = {
+            post: "/v1/metrics/get",
+            body: "*"
+        };
+
+
     }
 
     //
