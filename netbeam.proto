@@ -494,7 +494,12 @@ service Netbeam {
 
     // Requests a tile from the netbeam core for a specific metric. Currently does
     // not a have a REST counterpart.
-    rpc FetchTile (TileRequest) returns (pond.TimeSeries) {}
+    rpc FetchTile (TileRequest) returns (pond.TimeSeries) {
+        option (google.api.http) = {
+            post: "/v1/resources/tile/get",
+            body: "*"
+        };
+    }
 
     //
     // Resource traversal
