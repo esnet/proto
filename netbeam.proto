@@ -315,8 +315,23 @@ message TileRequest {
     string index = 4;
 }
 
-message OrganizationListRequest {
+message OrganizationListRequest { }
+
+message TimeRangeRequest {
+    // The namespace containing the metric
+    Namespace namespace = 1;
+    // The full resource path
+    ResourcePath resource = 2;
+    // The full path of the metric
+    string metric = 3;
+    // rollup
+    string rollup = 4;
+    // window
+    string aggregation = 5;
+    //time Range
+    pond.TimeRange  timeRange = 6;
 }
+
 
 message OrganizationRequest {
     string name = 1;
@@ -491,12 +506,18 @@ service Netbeam {
     //
     // Queries
     //
-
     // Requests a tile from the netbeam core for a specific metric. Currently does
     // not a have a REST counterpart.
     rpc FetchTile (TileRequest) returns (pond.TimeSeries) {
         option (google.api.http) = {
             post: "/v1/resources/tile/get",
+            body: "*"
+        };
+    }
+
+    rpc GetMetricTimeSeries (TimeRangeRequest) returns (pond.TimeSeries) {
+        option (google.api.http) = {
+            post: "/v1/resources/timeseries/get",
             body: "*"
         };
     }
